@@ -1,0 +1,12 @@
+//those things not when touch
+@use "./util/colors.scss" as colors;
+@media (pointer: coarse) {
+  .profile {
+    .profileBox {
+      .tempUserImage:hover::after,
+      .profileImage:hover::after {
+        opacity: 0;
+      }
+    }
+  }
+}

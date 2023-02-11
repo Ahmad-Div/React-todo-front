@@ -1,0 +1,47 @@
+.w {
+  &-100 {
+    width: 100%;
+  }
+  &-75 {
+    width: 75%;
+  }
+  &-50 {
+    width: 50%;
+  }
+  &-25 {
+    width: 25%;
+  }
+  &-fit {
+    width: fit-content;
+  }
+}
+
+.h {
+  &-100 {
+    width: 100%;
+  }
+  &-75 {
+    width: 75%;
+  }
+  &-50 {
+    width: 50%;
+  }
+  &-25 {
+    width: 25%;
+  }
+  &-fit {
+    width: fit-content;
+  }
+}
+
+.object {
+  &-cover {
+    object-fit: cover;
+  }
+  &-fill {
+    object-fit: fill;
+  }
+  &-contain {
+    object-fit: contain;
+  }
+}

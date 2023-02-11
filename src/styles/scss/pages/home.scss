@@ -1,0 +1,31 @@
+@use "../util/colors.scss" as colors;
+.home {
+  padding-top: 150px;
+  .welcomeHome {
+    margin: 0;
+    font-weight: 500;
+    font-size: 26px;
+  }
+  .content {
+    text-align: center;
+  }
+  .username {
+    color: colors.$dark_green;
+    font-weight: 600;
+  }
+
+  .infoCards {
+    .infoCard {
+      box-shadow: 11px 10px 101px -78px rgba(120, 157, 94, 0.83);
+      -webkit-box-shadow: 11px 10px 101px -78px rgba(120, 157, 94, 0.83);
+      -moz-box-shadow: 11px 10px 101px -78px rgba(120, 157, 94, 0.83);
+      text-align: center;
+      background-color: colors.$milk;
+      border: 1px colors.$black solid;
+      padding: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      max-width: 400px;
+    }
+  }
+}

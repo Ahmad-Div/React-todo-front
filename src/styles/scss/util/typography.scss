@@ -1,0 +1,42 @@
+@use "../breakpoints.scss" as res;
+
+//variable
+/* Create my own font rabar-39 */
+@font-face {
+  font-family: rabar-39;
+  src: url(/fonts/Rabar_039.ttf);
+}
+
+$rabar: rabar-39;
+
+$poppins: Poppins;
+$karla: Karla;
+
+//scss styles
+
+//this is for every section header
+$section-header-size: 36px;
+$section-header-weight: 700;
+
+.sectionHeader {
+  font-size: $section-header-size;
+  font-weight: $section-header-weight;
+}
+
+@include res.responsive(tablet) {
+  $section-header-size: 30px;
+  $section-header-weight: 600;
+  .sectionHeader {
+    font-size: $section-header-size;
+    font-weight: $section-header-weight;
+  }
+}
+
+@include res.responsive(mobile) {
+  $section-header-size: 26px;
+  $section-header-weight: 500;
+  .sectionHeader {
+    font-size: $section-header-size;
+    font-weight: $section-header-weight;
+  }
+}

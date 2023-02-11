@@ -1,0 +1,143 @@
+@use "../util/colors.scss" as colors;
+@use "../util/hover.scss" as hover;
+@use "../breakpoints.scss" as res;
+.plan {
+  .planAndCollection {
+    flex-direction: column;
+  }
+  .activeCollection {
+    border-right: 1px colors.$dark_green solid;
+    border-left: 1px colors.$dark_green solid;
+    color: colors.$dark_green;
+    background-color: colors.$white;
+  }
+  .donePlan {
+    text-decoration: line-through;
+  }
+  .planCard {
+    order: 2;
+  }
+  .collectionCard {
+    order: 1;
+  }
+  .planCard,
+  .collectionCard {
+    width: 95%;
+
+    max-width: 400px;
+    border-radius: 8px;
+  }
+  .upCollectionCard {
+    margin: 0;
+  }
+  .upPlanCard,
+  .upCollectionCard {
+    text-align: center;
+    background-color: colors.$milk;
+    padding: 8px;
+    border-radius: 8px;
+    width: 100%;
+  }
+  .downPlanCard,
+  .downCollectionCard {
+    padding: 10px 0;
+    height: 200px;
+    overflow-y: scroll;
+    background-color: colors.$milk;
+    border-radius: 8px;
+    position: relative;
+    width: 100%;
+    .planItem,
+    .collectionItem {
+      @include hover.hover-effect(
+        200ms,
+        (
+          border-right: 1px colors.$dark_green solid,
+          border-left: 1px colors.$dark_green solid,
+        )
+      );
+      cursor: pointer;
+      padding: 8px;
+      width: 100%;
+      .planTask,
+      .collectionName {
+        margin: 0;
+      }
+      .fa-trash {
+        color: tomato;
+      }
+      .fa-pen-to-square {
+        color: lightseagreen;
+      }
+
+      form {
+        width: 70%;
+        input {
+          padding: 5px;
+          border-radius: 8px;
+        }
+      }
+      button {
+        border: 0;
+        background-color: transparent;
+        padding: 0;
+      }
+      .fa-solid {
+        cursor: pointer;
+      }
+      .fa-xmark {
+        color: tomato;
+      }
+      .fa-circle-check {
+        color: green;
+      }
+      button,
+      span {
+        font-size: 15px;
+      }
+    }
+  }
+  .planForm,
+  .collectionForm {
+    background-color: colors.$milk;
+    border-top: none;
+    border-radius: 10px;
+    padding: 5px;
+    input {
+      padding: 8px;
+      border-radius: 10px;
+      background-color: colors.$milk;
+      width: 80%;
+    }
+    .addPlan,
+    .addCollection {
+      background-color: colors.$white;
+      padding: 6px 10px;
+      border-radius: 50%;
+      aspect-ratio: 1/1;
+      font-size: 14px;
+      cursor: pointer;
+      border: none;
+    }
+  }
+  .donePlan:disabled i {
+    color: grey !important;
+  }
+  .downCollectionCard::-webkit-scrollbar,
+  .downPlanCard::-webkit-scrollbar {
+    display: none !important;
+  }
+}
+@include res.responsive(computer) {
+  .plan {
+    .planAndCollection {
+      flex-direction: row !important;
+    }
+    .planCard {
+      order: 1 !important;
+    }
+    .collectionCard {
+      order: 2 !important;
+    }
+  }
+}

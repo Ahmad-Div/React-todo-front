@@ -1,0 +1,56 @@
+@use "../util/colors.scss" as colors;
+@use "../util/hover.scss" as hover;
+.login {
+  min-height: 100vh;
+  background-color: colors.$milk;
+  .loginBox {
+    background-color: colors.$white;
+    border-radius: 8px;
+    padding: 16px;
+    border: 1px colors.$black solid;
+    width: 95%;
+    max-width: 300px;
+    .inputDivs {
+      gap: 12px;
+    }
+    input,
+    .input {
+      padding: 5px;
+      border-radius: 4px;
+      border: 1px colors.$black solid;
+      width: 100%;
+    }
+    .input {
+      padding: 0;
+      padding-right: 5px;
+    }
+    .input input {
+      border: 0;
+    }
+    button {
+      background-color: colors.$white;
+      color: colors.$grey;
+      border: 2px colors.$grey solid;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 16px;
+      @include hover.hover-effect(
+        200ms,
+        (
+          background-color: colors.$grey,
+          color: colors.$white,
+        )
+      );
+    }
+    .link {
+      font-size: 10px;
+    }
+    .inputDiv {
+      gap: 5px;
+      .inputError {
+        font-size: 10px;
+        color: tomato;
+      }
+    }
+  }
+}

@@ -1,0 +1,32 @@
+.font {
+  &-bold {
+    font-weight: bold;
+  }
+  &-bolder {
+    font-weight: bolder;
+  }
+  &-light {
+    font-weight: light;
+  }
+  &-lighter {
+    font-weight: lighter;
+  }
+}
+
+.fs {
+  &-1 {
+    font-size: 1rem;
+  }
+  &-2 {
+    font-size: 2rem;
+  }
+  &-3 {
+    font-size: 3rem;
+  }
+  &-4 {
+    font-size: 4rem;
+  }
+  &-5 {
+    font-size: 5rem;
+  }
+}

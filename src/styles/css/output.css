@@ -1,0 +1,2243 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400;500;600;700&family=Lora:ital,wght@1,400;1,500;1,600;1,700&family=Open+Sans:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700;900&family=Varela&family=Varela+Round&display=swap");
+.layout .header {
+  background-color: #f6f6f6;
+  border-bottom: 2px #aaaaaa solid;
+  position: fixed;
+  height: 80px;
+  padding: 15px 40px;
+  z-index: 900;
+}
+.layout .header .logo {
+  font-size: 26px;
+}
+.layout .header .navigation .navList .navItem {
+  list-style: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 200ms;
+}
+.layout .header .navigation .navList .navItem:hover {
+  color: #789d5e;
+}
+.layout .header .profile {
+  border-radius: 8px;
+  background-color: #fff;
+  transition: all 200ms;
+  border: 3px #fff solid;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+.layout .header .profile:hover {
+  background-color: #f6f6f6;
+}
+.layout .header .profile .profileImage {
+  width: 2rem;
+  height: 2rem;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.layout .header .profile .tempUserImage {
+  width: 2rem;
+  height: 2rem;
+  object-fit: cover;
+  border-radius: 50%;
+  text-align: center;
+  background-color: #f6f6f6;
+}
+.layout .header .languageDiv {
+  color: #1a1919;
+  width: 68px;
+  height: 30px;
+  border: 1.5px solid #1a1919;
+  gap: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.layout .header .languageDiv .languageDivBox {
+  border-radius: 9px;
+  gap: 5px;
+  width: 100%;
+  height: 100%;
+  transition: all 200ms;
+}
+.layout .header .languageDiv .languageDivBox:hover {
+  color: #fff;
+  background-color: #1a1919;
+}
+.layout .header .languageDiv .languagesList {
+  top: 90%;
+  background-color: #f6f6f6;
+  color: #1a1919;
+  border-radius: 10px;
+  width: 50px;
+  padding: 5px;
+}
+.layout .header .languageDiv .languagesList span {
+  width: 100%;
+  text-align: center;
+  background-color: #fff;
+  border-radius: 6px;
+  transition: all 200ms;
+}
+.layout .header .languageDiv .languagesList span:hover {
+  background-color: #1a1919;
+  color: #f6f6f6;
+}
+.layout .header .mobileNav {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  z-index: 999;
+  display: none !important;
+  position: absolute;
+  top: 5rem;
+  right: 0;
+  left: 0;
+  background-color: #f6f6f6;
+}
+.layout .header .mobileNav ul {
+  padding-right: 0 !important;
+  padding: 20px 0;
+}
+.layout .header .mobileNav ul li {
+  list-style: none;
+  text-align: center;
+  width: 100%;
+}
+.layout .header .mobileNav ul li span {
+  font-size: 16px !important;
+}
+.layout .header .mobNavAnim {
+  animation: nav 250ms ease;
+}
+@keyframes nav {
+  0% {
+    top: 1rem;
+    opacity: 0.6;
+  }
+  25% {
+    top: 1.5rem;
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 0.8;
+    top: 2.5rem;
+  }
+  75% {
+    opacity: 0.9;
+    top: 3.8rem;
+  }
+  100% {
+    opacity: 1;
+    top: 5rem;
+  }
+}
+.layout .header .xMobNav {
+  font-size: 1.5rem;
+  color: tomato;
+  cursor: pointer;
+  height: fit-content;
+}
+.layout .header .humb {
+  display: none;
+  cursor: pointer;
+}
+.layout .footer {
+  background-color: #f6f6f6;
+  padding: 20px;
+  min-height: 70px;
+  padding: 20px 10px;
+  text-align: center;
+}
+.layout .footer p {
+  margin: 0;
+}
+.layout .footer .socials span {
+  font-size: 26px;
+  cursor: pointer;
+}
+.layout .footer .socials .fa-facebook {
+  transition: all 200ms;
+}
+.layout .footer .socials .fa-facebook:hover {
+  color: #0c87ef;
+}
+.layout .footer .socials .fa-youtube {
+  transition: all 200ms;
+}
+.layout .footer .socials .fa-youtube:hover {
+  color: #ff0000;
+}
+.layout .footer .socials .fa-github {
+  transition: all 200ms;
+}
+.layout .footer .socials .fa-github:hover {
+  color: #babfc6;
+}
+.layout .footer .socials .fa-linkedin {
+  transition: all 200ms;
+}
+.layout .footer .socials .fa-linkedin:hover {
+  color: #0a66c2;
+}
+.layout .footer .socials .fa-b {
+  transition: all 200ms;
+}
+.layout .footer .socials .fa-b:hover {
+  color: #0a66c2;
+}
+
+@media (min-width: 1024px) {
+  .header nav {
+    display: flex !important;
+  }
+}
+@media (min-width: 767px) and (max-width: 1023px) {
+  .header .logo {
+    font-size: 20px !important;
+  }
+  .header .profile {
+    padding: 5px !important;
+  }
+  .header .profile span {
+    font-size: 14px;
+  }
+  .header nav {
+    gap: 1rem !important;
+  }
+  .header nav ul li {
+    font-size: 14px !important;
+  }
+  .header .languageDiv {
+    width: 55px !important;
+    height: 25px !important;
+    font-size: 13px !important;
+  }
+  .header .activeNav::after {
+    width: 8px !important;
+    height: 8px !important;
+  }
+}
+@media (max-width: 767px) {
+  .layout .header {
+    padding-inline: 20px !important;
+  }
+  .layout .header .navList {
+    display: none !important;
+  }
+  .layout .header .profile {
+    width: 100px;
+    height: 50px;
+    padding: 3px;
+    font-size: 10px;
+  }
+  .layout .header .profile img {
+    width: 1.5rem !important;
+    height: 1.5rem !important;
+  }
+  .layout .header .mobileNav,
+  .layout .header .humb {
+    display: flex !important;
+  }
+  .layout .header .logo {
+    font-size: 16px !important;
+  }
+  .layout .header nav {
+    gap: 1rem !important;
+  }
+  .layout .header nav ul li {
+    font-size: 14px !important;
+  }
+  .layout .header .activeNav::after {
+    width: 8px !important;
+    height: 8px !important;
+  }
+}
+/* Create my own font rabar-39 */
+@font-face {
+  font-family: rabar-39;
+  src: url(/fonts/Rabar_039.ttf);
+}
+.sectionHeader {
+  font-size: 36px;
+  font-weight: 700;
+}
+
+@media (min-width: 767px) and (max-width: 1023px) {
+  .sectionHeader {
+    font-size: 30px;
+    font-weight: 600;
+  }
+}
+@media (max-width: 767px) {
+  .sectionHeader {
+    font-size: 26px;
+    font-weight: 500;
+  }
+}
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  scroll-padding-top: 15rem !important;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Poppins, sans-serif;
+  position: relative;
+  min-height: 100vh;
+}
+
+textarea::placeholder,
+input::placeholder {
+  font-family: Poppins, sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+textarea,
+input {
+  font-family: Poppins, sans-serif;
+}
+
+textarea {
+  resize: none;
+  border: 0;
+}
+
+input {
+  border: 0;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+}
+
+a,
+Link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.active {
+  color: #789d5e;
+  transition: all 200ms ease;
+  position: relative;
+}
+
+.active::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform-origin: bottom center;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin-left: auto;
+  margin-right: auto;
+  height: 3px;
+  background-color: #789d5e;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+input[type=color] {
+  -webkit-appearance: none;
+  border: none;
+  width: 32px;
+  height: 32px;
+}
+
+input[type=color]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+input[type=color]::-webkit-color-swatch {
+  border: none;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+img {
+  object-fit: cover;
+}
+
+button,
+.fa-solid {
+  cursor: pointer;
+}
+
+button:focus {
+  outline: none;
+  border: none;
+}
+
+.opaBackground {
+  background: #1a1919;
+  opacity: 0.25;
+  position: fixed;
+  z-index: 910;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.loader {
+  text-align: center;
+  animation-name: loader;
+  animation-duration: 2000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-fill-mode: both;
+  transition: all 100ms line;
+}
+
+@keyframes loader {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.headers {
+  font-weight: 500 !important;
+  font-size: 32px;
+  margin: 0;
+}
+
+section {
+  padding: 20px 60px;
+  min-height: 100vh;
+  padding-top: 100px;
+}
+
+@media (min-width: 767px) and (max-width: 1023px) {
+  section {
+    padding-inline: 20px !important;
+  }
+  .headers {
+    font-weight: 500;
+    font-size: 26px !important;
+  }
+}
+@media (max-width: 767px) {
+  section {
+    padding-inline: 20px !important;
+  }
+  .headers {
+    font-size: 22px !important;
+  }
+}
+small.error {
+  color: tomato;
+  font-size: 10px;
+  width: 100%;
+  text-align: left;
+}
+
+.flex {
+  display: flex;
+}
+.flex-row {
+  flex-direction: row;
+}
+.flex-column {
+  flex-direction: column;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+.flex-nowrap {
+  flex-wrap: nowrap;
+}
+.flex-row-reverse {
+  flex-direction: row-reverse;
+}
+.flex-column-reverse {
+  flex-direction: column-reverse;
+}
+
+.justify-center {
+  justify-content: center;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.justify-left {
+  justify-content: left;
+}
+.justify-right {
+  justify-content: right;
+}
+.justify-evenly {
+  justify-content: space-evenly;
+}
+
+.align-center {
+  align-items: center;
+}
+.align-start {
+  align-items: flex-start;
+}
+.align-end {
+  align-items: flex-end;
+}
+
+.gap-1 {
+  gap: 1rem;
+}
+
+.gap-2 {
+  gap: 2rem;
+}
+
+.gap-3 {
+  gap: 3rem;
+}
+
+.gap-4 {
+  gap: 4rem;
+}
+
+.gap-5 {
+  gap: 5rem;
+}
+
+.gap-6 {
+  gap: 6rem;
+}
+
+.gap-7 {
+  gap: 7rem;
+}
+
+.gap-8 {
+  gap: 8rem;
+}
+
+.gap-9 {
+  gap: 9rem;
+}
+
+.gap-10 {
+  gap: 10rem;
+}
+
+.gap-11 {
+  gap: 11rem;
+}
+
+.gap-12 {
+  gap: 12rem;
+}
+
+.gap-13 {
+  gap: 13rem;
+}
+
+.gap-14 {
+  gap: 14rem;
+}
+
+.gap-15 {
+  gap: 15rem;
+}
+
+.gap-16 {
+  gap: 16rem;
+}
+
+.gap-17 {
+  gap: 17rem;
+}
+
+.gap-18 {
+  gap: 18rem;
+}
+
+.gap-19 {
+  gap: 19rem;
+}
+
+.gap-20 {
+  gap: 20rem;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.flex-2 {
+  flex: 2;
+}
+
+.flex-3 {
+  flex: 3;
+}
+
+.flex-4 {
+  flex: 4;
+}
+
+.flex-5 {
+  flex: 5;
+}
+
+.flex-6 {
+  flex: 6;
+}
+
+.flex-7 {
+  flex: 7;
+}
+
+.flex-8 {
+  flex: 8;
+}
+
+.flex-9 {
+  flex: 9;
+}
+
+.flex-10 {
+  flex: 10;
+}
+
+.flex-11 {
+  flex: 11;
+}
+
+.flex-12 {
+  flex: 12;
+}
+
+.flex-13 {
+  flex: 13;
+}
+
+.flex-14 {
+  flex: 14;
+}
+
+.flex-15 {
+  flex: 15;
+}
+
+.flex-16 {
+  flex: 16;
+}
+
+.flex-17 {
+  flex: 17;
+}
+
+.flex-18 {
+  flex: 18;
+}
+
+.flex-19 {
+  flex: 19;
+}
+
+.flex-20 {
+  flex: 20;
+}
+
+.grid {
+  display: grid;
+}
+
+.position-relative {
+  position: relative;
+}
+.position-absolute {
+  position: absolute;
+}
+.position-sticky {
+  position: sticky;
+}
+.position-fixed {
+  position: fixed;
+}
+
+.top-0 {
+  top: 0;
+}
+.top-1 {
+  top: 1rem;
+}
+.top-2 {
+  top: 2rem;
+}
+.top-3 {
+  top: 3rem;
+}
+.top-4 {
+  top: 4rem;
+}
+.top-5 {
+  top: 5rem;
+}
+.top-6 {
+  top: 6rem;
+}
+.top-7 {
+  top: 7rem;
+}
+.top-8 {
+  top: 8rem;
+}
+.top-9 {
+  top: 9rem;
+}
+.top-10 {
+  top: 10rem;
+}
+
+.bottom-0 {
+  bottom: 0;
+}
+.bottom-1 {
+  bottom: 1rem;
+}
+.bottom-2 {
+  bottom: 2rem;
+}
+.bottom-3 {
+  bottom: 3rem;
+}
+.bottom-4 {
+  bottom: 4rem;
+}
+.bottom-5 {
+  bottom: 5rem;
+}
+.bottom-6 {
+  bottom: 6rem;
+}
+.bottom-7 {
+  bottom: 7rem;
+}
+.bottom-8 {
+  bottom: 8rem;
+}
+.bottom-9 {
+  bottom: 9rem;
+}
+.bottom-10 {
+  bottom: 10rem;
+}
+
+.right-0 {
+  right: 0;
+}
+.right-1 {
+  right: 1rem;
+}
+.right-2 {
+  right: 2rem;
+}
+.right-3 {
+  right: 3rem;
+}
+.right-4 {
+  right: 4rem;
+}
+.right-5 {
+  right: 5rem;
+}
+.right-6 {
+  right: 6rem;
+}
+.right-7 {
+  right: 7rem;
+}
+.right-8 {
+  right: 8rem;
+}
+.right-9 {
+  right: 9rem;
+}
+.right-10 {
+  right: 10rem;
+}
+
+.left-0 {
+  left: 0;
+}
+.left-1 {
+  left: 1rem;
+}
+.left-2 {
+  left: 2rem;
+}
+.left-3 {
+  left: 3rem;
+}
+.left-4 {
+  left: 4rem;
+}
+.left-5 {
+  left: 5rem;
+}
+.left-6 {
+  left: 6rem;
+}
+.left-7 {
+  left: 7rem;
+}
+.left-8 {
+  left: 8rem;
+}
+.left-9 {
+  left: 9rem;
+}
+.left-10 {
+  left: 10rem;
+}
+
+.none {
+  display: none;
+}
+
+.m-1 {
+  margin: 1rem;
+}
+
+.mr-1 {
+  margin-right: 1rem;
+}
+
+.ml-1 {
+  margin-left: 1rem;
+}
+
+.mt-1 {
+  margin-top: 1rem;
+}
+
+.mb-1 {
+  margin-bottom: 1rem;
+}
+
+.my-1 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.mx-1 {
+  margin-inline: 1rem;
+}
+
+.m-2 {
+  margin: 2rem;
+}
+
+.mr-2 {
+  margin-right: 2rem;
+}
+
+.ml-2 {
+  margin-left: 2rem;
+}
+
+.mt-2 {
+  margin-top: 2rem;
+}
+
+.mb-2 {
+  margin-bottom: 2rem;
+}
+
+.my-2 {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.mx-2 {
+  margin-inline: 2rem;
+}
+
+.m-3 {
+  margin: 3rem;
+}
+
+.mr-3 {
+  margin-right: 3rem;
+}
+
+.ml-3 {
+  margin-left: 3rem;
+}
+
+.mt-3 {
+  margin-top: 3rem;
+}
+
+.mb-3 {
+  margin-bottom: 3rem;
+}
+
+.my-3 {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+.mx-3 {
+  margin-inline: 3rem;
+}
+
+.m-4 {
+  margin: 4rem;
+}
+
+.mr-4 {
+  margin-right: 4rem;
+}
+
+.ml-4 {
+  margin-left: 4rem;
+}
+
+.mt-4 {
+  margin-top: 4rem;
+}
+
+.mb-4 {
+  margin-bottom: 4rem;
+}
+
+.my-4 {
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+}
+
+.mx-4 {
+  margin-inline: 4rem;
+}
+
+.m-5 {
+  margin: 5rem;
+}
+
+.mr-5 {
+  margin-right: 5rem;
+}
+
+.ml-5 {
+  margin-left: 5rem;
+}
+
+.mt-5 {
+  margin-top: 5rem;
+}
+
+.mb-5 {
+  margin-bottom: 5rem;
+}
+
+.my-5 {
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+}
+
+.mx-5 {
+  margin-inline: 5rem;
+}
+
+.m-6 {
+  margin: 6rem;
+}
+
+.mr-6 {
+  margin-right: 6rem;
+}
+
+.ml-6 {
+  margin-left: 6rem;
+}
+
+.mt-6 {
+  margin-top: 6rem;
+}
+
+.mb-6 {
+  margin-bottom: 6rem;
+}
+
+.my-6 {
+  margin-top: 6rem;
+  margin-bottom: 6rem;
+}
+
+.mx-6 {
+  margin-inline: 6rem;
+}
+
+.m-7 {
+  margin: 7rem;
+}
+
+.mr-7 {
+  margin-right: 7rem;
+}
+
+.ml-7 {
+  margin-left: 7rem;
+}
+
+.mt-7 {
+  margin-top: 7rem;
+}
+
+.mb-7 {
+  margin-bottom: 7rem;
+}
+
+.my-7 {
+  margin-top: 7rem;
+  margin-bottom: 7rem;
+}
+
+.mx-7 {
+  margin-inline: 7rem;
+}
+
+.m-8 {
+  margin: 8rem;
+}
+
+.mr-8 {
+  margin-right: 8rem;
+}
+
+.ml-8 {
+  margin-left: 8rem;
+}
+
+.mt-8 {
+  margin-top: 8rem;
+}
+
+.mb-8 {
+  margin-bottom: 8rem;
+}
+
+.my-8 {
+  margin-top: 8rem;
+  margin-bottom: 8rem;
+}
+
+.mx-8 {
+  margin-inline: 8rem;
+}
+
+.m-9 {
+  margin: 9rem;
+}
+
+.mr-9 {
+  margin-right: 9rem;
+}
+
+.ml-9 {
+  margin-left: 9rem;
+}
+
+.mt-9 {
+  margin-top: 9rem;
+}
+
+.mb-9 {
+  margin-bottom: 9rem;
+}
+
+.my-9 {
+  margin-top: 9rem;
+  margin-bottom: 9rem;
+}
+
+.mx-9 {
+  margin-inline: 9rem;
+}
+
+.m-10 {
+  margin: 10rem;
+}
+
+.mr-10 {
+  margin-right: 10rem;
+}
+
+.ml-10 {
+  margin-left: 10rem;
+}
+
+.mt-10 {
+  margin-top: 10rem;
+}
+
+.mb-10 {
+  margin-bottom: 10rem;
+}
+
+.my-10 {
+  margin-top: 10rem;
+  margin-bottom: 10rem;
+}
+
+.mx-10 {
+  margin-inline: 10rem;
+}
+
+.m-auto {
+  margin: auto;
+}
+
+.my-auto {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.mx-auto {
+  margin-inline: auto;
+}
+
+.ml-auto {
+  margin-left: auto;
+}
+
+.mr-auto {
+  margin-right: auto;
+}
+
+.mt-auto {
+  margin-top: auto;
+}
+
+.mb-auto {
+  margin-bottom: auto;
+}
+
+.p-1 {
+  padding: 1rem;
+}
+
+.pr-1 {
+  padding-right: 1rem;
+}
+
+.pl-1 {
+  padding-left: 1rem;
+}
+
+.pt-1 {
+  padding-top: 1rem;
+}
+
+.pb-1 {
+  padding-bottom: 1rem;
+}
+
+.py-1 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.px-1 {
+  padding-inline: 1rem;
+}
+
+.p-2 {
+  padding: 2rem;
+}
+
+.pr-2 {
+  padding-right: 2rem;
+}
+
+.pl-2 {
+  padding-left: 2rem;
+}
+
+.pt-2 {
+  padding-top: 2rem;
+}
+
+.pb-2 {
+  padding-bottom: 2rem;
+}
+
+.py-2 {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.px-2 {
+  padding-inline: 2rem;
+}
+
+.p-3 {
+  padding: 3rem;
+}
+
+.pr-3 {
+  padding-right: 3rem;
+}
+
+.pl-3 {
+  padding-left: 3rem;
+}
+
+.pt-3 {
+  padding-top: 3rem;
+}
+
+.pb-3 {
+  padding-bottom: 3rem;
+}
+
+.py-3 {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.px-3 {
+  padding-inline: 3rem;
+}
+
+.p-4 {
+  padding: 4rem;
+}
+
+.pr-4 {
+  padding-right: 4rem;
+}
+
+.pl-4 {
+  padding-left: 4rem;
+}
+
+.pt-4 {
+  padding-top: 4rem;
+}
+
+.pb-4 {
+  padding-bottom: 4rem;
+}
+
+.py-4 {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.px-4 {
+  padding-inline: 4rem;
+}
+
+.p-5 {
+  padding: 5rem;
+}
+
+.pr-5 {
+  padding-right: 5rem;
+}
+
+.pl-5 {
+  padding-left: 5rem;
+}
+
+.pt-5 {
+  padding-top: 5rem;
+}
+
+.pb-5 {
+  padding-bottom: 5rem;
+}
+
+.py-5 {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+.px-5 {
+  padding-inline: 5rem;
+}
+
+.p-6 {
+  padding: 6rem;
+}
+
+.pr-6 {
+  padding-right: 6rem;
+}
+
+.pl-6 {
+  padding-left: 6rem;
+}
+
+.pt-6 {
+  padding-top: 6rem;
+}
+
+.pb-6 {
+  padding-bottom: 6rem;
+}
+
+.py-6 {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+
+.px-6 {
+  padding-inline: 6rem;
+}
+
+.p-7 {
+  padding: 7rem;
+}
+
+.pr-7 {
+  padding-right: 7rem;
+}
+
+.pl-7 {
+  padding-left: 7rem;
+}
+
+.pt-7 {
+  padding-top: 7rem;
+}
+
+.pb-7 {
+  padding-bottom: 7rem;
+}
+
+.py-7 {
+  padding-top: 7rem;
+  padding-bottom: 7rem;
+}
+
+.px-7 {
+  padding-inline: 7rem;
+}
+
+.p-8 {
+  padding: 8rem;
+}
+
+.pr-8 {
+  padding-right: 8rem;
+}
+
+.pl-8 {
+  padding-left: 8rem;
+}
+
+.pt-8 {
+  padding-top: 8rem;
+}
+
+.pb-8 {
+  padding-bottom: 8rem;
+}
+
+.py-8 {
+  padding-top: 8rem;
+  padding-bottom: 8rem;
+}
+
+.px-8 {
+  padding-inline: 8rem;
+}
+
+.p-9 {
+  padding: 9rem;
+}
+
+.pr-9 {
+  padding-right: 9rem;
+}
+
+.pl-9 {
+  padding-left: 9rem;
+}
+
+.pt-9 {
+  padding-top: 9rem;
+}
+
+.pb-9 {
+  padding-bottom: 9rem;
+}
+
+.py-9 {
+  padding-top: 9rem;
+  padding-bottom: 9rem;
+}
+
+.px-9 {
+  padding-inline: 9rem;
+}
+
+.p-10 {
+  padding: 10rem;
+}
+
+.pr-10 {
+  padding-right: 10rem;
+}
+
+.pl-10 {
+  padding-left: 10rem;
+}
+
+.pt-10 {
+  padding-top: 10rem;
+}
+
+.pb-10 {
+  padding-bottom: 10rem;
+}
+
+.py-10 {
+  padding-top: 10rem;
+  padding-bottom: 10rem;
+}
+
+.px-10 {
+  padding-inline: 10rem;
+}
+
+.font-bold {
+  font-weight: bold;
+}
+.font-bolder {
+  font-weight: bolder;
+}
+.font-light {
+  font-weight: light;
+}
+.font-lighter {
+  font-weight: lighter;
+}
+
+.fs-1 {
+  font-size: 1rem;
+}
+.fs-2 {
+  font-size: 2rem;
+}
+.fs-3 {
+  font-size: 3rem;
+}
+.fs-4 {
+  font-size: 4rem;
+}
+.fs-5 {
+  font-size: 5rem;
+}
+
+.w-100 {
+  width: 100%;
+}
+.w-75 {
+  width: 75%;
+}
+.w-50 {
+  width: 50%;
+}
+.w-25 {
+  width: 25%;
+}
+.w-fit {
+  width: fit-content;
+}
+
+.h-100 {
+  width: 100%;
+}
+.h-75 {
+  width: 75%;
+}
+.h-50 {
+  width: 50%;
+}
+.h-25 {
+  width: 25%;
+}
+.h-fit {
+  width: fit-content;
+}
+
+.object-cover {
+  object-fit: cover;
+}
+.object-fill {
+  object-fit: fill;
+}
+.object-contain {
+  object-fit: contain;
+}
+
+.border {
+  border-style: solid;
+}
+.border-1 {
+  border-width: 1px;
+}
+.border-2 {
+  border-width: 2px;
+}
+.border-3 {
+  border-width: 3px;
+}
+.border-4 {
+  border-width: 4px;
+}
+.border-5 {
+  border-width: 5px;
+}
+
+.rounded-1 {
+  border-radius: 10px;
+}
+.rounded-2 {
+  border-radius: 20px;
+}
+.rounded-3 {
+  border-radius: 30px;
+}
+.rounded-4 {
+  border-radius: 40px;
+}
+.rounded-5 {
+  border-radius: 50px;
+}
+
+.border-white {
+  border-color: white;
+}
+.border-black {
+  border-color: black;
+}
+
+.z-100 {
+  z-index: 100;
+}
+.z-200 {
+  z-index: 200;
+}
+.z-300 {
+  z-index: 300;
+}
+.z-400 {
+  z-index: 400;
+}
+.z-500 {
+  z-index: 500;
+}
+.z-600 {
+  z-index: 600;
+}
+.z-700 {
+  z-index: 700;
+}
+.z-800 {
+  z-index: 800;
+}
+.z-900 {
+  z-index: 900;
+}
+.z-1000 {
+  z-index: 999;
+}
+
+.login {
+  min-height: 100vh;
+  background-color: #f6f6f6;
+}
+.login .loginBox {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 16px;
+  border: 1px #1a1919 solid;
+  width: 95%;
+  max-width: 300px;
+}
+.login .loginBox .inputDivs {
+  gap: 12px;
+}
+.login .loginBox input,
+.login .loginBox .input {
+  padding: 5px;
+  border-radius: 4px;
+  border: 1px #1a1919 solid;
+  width: 100%;
+}
+.login .loginBox .input {
+  padding: 0;
+  padding-right: 5px;
+}
+.login .loginBox .input input {
+  border: 0;
+}
+.login .loginBox button {
+  background-color: #fff;
+  color: #aaaaaa;
+  border: 2px #aaaaaa solid;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 200ms;
+}
+.login .loginBox button:hover {
+  background-color: #aaaaaa;
+  color: #fff;
+}
+.login .loginBox .link {
+  font-size: 10px;
+}
+.login .loginBox .inputDiv {
+  gap: 5px;
+}
+.login .loginBox .inputDiv .inputError {
+  font-size: 10px;
+  color: tomato;
+}
+
+.register {
+  min-height: 100vh;
+  background-color: #f6f6f6;
+}
+.register .registerBox {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 16px;
+  border: 1px #1a1919 solid;
+  width: 95%;
+  max-width: 300px;
+}
+.register .registerBox .inputDivs {
+  gap: 12px;
+}
+.register .registerBox input,
+.register .registerBox .input {
+  padding: 5px;
+  border-radius: 4px;
+  border: 1px #1a1919 solid;
+  width: 100%;
+}
+.register .registerBox .input {
+  padding: 0;
+  padding-inline: 5px;
+}
+.register .registerBox .input input {
+  border: 0;
+}
+.register .registerBox button {
+  background-color: #fff;
+  color: #aaaaaa;
+  border: 2px #aaaaaa solid;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 200ms;
+}
+.register .registerBox button:hover {
+  background-color: #aaaaaa;
+  color: #fff;
+}
+.register .registerBox .link {
+  font-size: 10px;
+  font-weight: 400;
+}
+.register .registerBox .inputDiv {
+  gap: 5px;
+}
+.register .registerBox .inputDiv .inputError {
+  font-size: 10px;
+  color: tomato;
+}
+
+.home {
+  padding-top: 150px;
+}
+.home .welcomeHome {
+  margin: 0;
+  font-weight: 500;
+  font-size: 26px;
+}
+.home .content {
+  text-align: center;
+}
+.home .username {
+  color: #789d5e;
+  font-weight: 600;
+}
+.home .infoCards .infoCard {
+  box-shadow: 11px 10px 101px -78px rgba(120, 157, 94, 0.83);
+  -webkit-box-shadow: 11px 10px 101px -78px rgba(120, 157, 94, 0.83);
+  -moz-box-shadow: 11px 10px 101px -78px rgba(120, 157, 94, 0.83);
+  text-align: center;
+  background-color: #f6f6f6;
+  border: 1px #1a1919 solid;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  max-width: 400px;
+}
+
+.todo .todoAndCollection {
+  flex-direction: column;
+}
+.todo .activeCollection {
+  border-right: 1px #789d5e solid;
+  border-left: 1px #789d5e solid;
+  color: #789d5e;
+  background-color: #fff;
+}
+.todo .doneTodo {
+  text-decoration: line-through;
+}
+.todo .todoCard {
+  order: 2;
+}
+.todo .collectionCard {
+  order: 1;
+}
+.todo .todoCard,
+.todo .collectionCard {
+  width: 95%;
+  max-width: 400px;
+  border-radius: 8px;
+}
+.todo .upCollectionCard {
+  margin: 0;
+}
+.todo .upTodoCard,
+.todo .upCollectionCard {
+  text-align: center;
+  background-color: #f6f6f6;
+  padding: 8px;
+  border-radius: 8px;
+  width: 100%;
+}
+.todo .downTodoCard,
+.todo .downCollectionCard {
+  padding: 5px 0;
+  height: 200px;
+  overflow-y: scroll;
+  background-color: #f6f6f6;
+  border-radius: 8px;
+  position: relative;
+  width: 100%;
+}
+.todo .downTodoCard .todoItem,
+.todo .downTodoCard .collectionItem,
+.todo .downCollectionCard .todoItem,
+.todo .downCollectionCard .collectionItem {
+  cursor: pointer;
+  transition: all 200ms;
+  padding: 8px;
+  width: 100%;
+}
+.todo .downTodoCard .todoItem:hover,
+.todo .downTodoCard .collectionItem:hover,
+.todo .downCollectionCard .todoItem:hover,
+.todo .downCollectionCard .collectionItem:hover {
+  border-right: 1px #789d5e solid;
+  border-left: 1px #789d5e solid;
+}
+.todo .downTodoCard .todoItem .todoTask,
+.todo .downTodoCard .todoItem .collectionName,
+.todo .downTodoCard .collectionItem .todoTask,
+.todo .downTodoCard .collectionItem .collectionName,
+.todo .downCollectionCard .todoItem .todoTask,
+.todo .downCollectionCard .todoItem .collectionName,
+.todo .downCollectionCard .collectionItem .todoTask,
+.todo .downCollectionCard .collectionItem .collectionName {
+  margin: 0;
+}
+.todo .downTodoCard .todoItem .fa-trash,
+.todo .downTodoCard .collectionItem .fa-trash,
+.todo .downCollectionCard .todoItem .fa-trash,
+.todo .downCollectionCard .collectionItem .fa-trash {
+  color: tomato;
+}
+.todo .downTodoCard .todoItem .fa-pen-to-square,
+.todo .downTodoCard .collectionItem .fa-pen-to-square,
+.todo .downCollectionCard .todoItem .fa-pen-to-square,
+.todo .downCollectionCard .collectionItem .fa-pen-to-square {
+  color: lightseagreen;
+}
+.todo .downTodoCard .todoItem form,
+.todo .downTodoCard .collectionItem form,
+.todo .downCollectionCard .todoItem form,
+.todo .downCollectionCard .collectionItem form {
+  width: 70%;
+}
+.todo .downTodoCard .todoItem form input,
+.todo .downTodoCard .collectionItem form input,
+.todo .downCollectionCard .todoItem form input,
+.todo .downCollectionCard .collectionItem form input {
+  padding: 5px;
+  border-radius: 8px;
+}
+.todo .downTodoCard .todoItem button,
+.todo .downTodoCard .collectionItem button,
+.todo .downCollectionCard .todoItem button,
+.todo .downCollectionCard .collectionItem button {
+  border: 0;
+  background-color: transparent;
+  padding: 0;
+}
+.todo .downTodoCard .todoItem .fa-solid,
+.todo .downTodoCard .collectionItem .fa-solid,
+.todo .downCollectionCard .todoItem .fa-solid,
+.todo .downCollectionCard .collectionItem .fa-solid {
+  cursor: pointer;
+}
+.todo .downTodoCard .todoItem .fa-xmark,
+.todo .downTodoCard .collectionItem .fa-xmark,
+.todo .downCollectionCard .todoItem .fa-xmark,
+.todo .downCollectionCard .collectionItem .fa-xmark {
+  color: tomato;
+}
+.todo .downTodoCard .todoItem .fa-circle-check,
+.todo .downTodoCard .collectionItem .fa-circle-check,
+.todo .downCollectionCard .todoItem .fa-circle-check,
+.todo .downCollectionCard .collectionItem .fa-circle-check {
+  color: green;
+}
+.todo .downTodoCard .todoItem button,
+.todo .downTodoCard .todoItem span,
+.todo .downTodoCard .collectionItem button,
+.todo .downTodoCard .collectionItem span,
+.todo .downCollectionCard .todoItem button,
+.todo .downCollectionCard .todoItem span,
+.todo .downCollectionCard .collectionItem button,
+.todo .downCollectionCard .collectionItem span {
+  font-size: 15px;
+}
+.todo .todoForm,
+.todo .collectionForm {
+  background-color: #f6f6f6;
+  border-top: none;
+  border-radius: 10px;
+  padding: 5px;
+}
+.todo .todoForm input,
+.todo .collectionForm input {
+  padding: 8px;
+  border-radius: 10px;
+  background-color: #f6f6f6;
+  width: 80%;
+}
+.todo .todoForm .addTodo,
+.todo .todoForm .addCollection,
+.todo .collectionForm .addTodo,
+.todo .collectionForm .addCollection {
+  background-color: #fff;
+  padding: 6px 10px;
+  border-radius: 50%;
+  aspect-ratio: 1/1;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+}
+.todo .doneTodo:disabled i {
+  color: grey !important;
+}
+.todo .downCollectionCard::-webkit-scrollbar,
+.todo .downTodoCard::-webkit-scrollbar {
+  display: none !important;
+}
+
+@media (min-width: 1024px) {
+  .todo .todoAndCollection {
+    flex-direction: row !important;
+  }
+  .todo .todoCard {
+    order: 1 !important;
+  }
+  .todo .collectionCard {
+    order: 2 !important;
+  }
+}
+.plan .planAndCollection {
+  flex-direction: column;
+}
+.plan .activeCollection {
+  border-right: 1px #789d5e solid;
+  border-left: 1px #789d5e solid;
+  color: #789d5e;
+  background-color: #fff;
+}
+.plan .donePlan {
+  text-decoration: line-through;
+}
+.plan .planCard {
+  order: 2;
+}
+.plan .collectionCard {
+  order: 1;
+}
+.plan .planCard,
+.plan .collectionCard {
+  width: 95%;
+  max-width: 400px;
+  border-radius: 8px;
+}
+.plan .upCollectionCard {
+  margin: 0;
+}
+.plan .upPlanCard,
+.plan .upCollectionCard {
+  text-align: center;
+  background-color: #f6f6f6;
+  padding: 8px;
+  border-radius: 8px;
+  width: 100%;
+}
+.plan .downPlanCard,
+.plan .downCollectionCard {
+  padding: 10px 0;
+  height: 200px;
+  overflow-y: scroll;
+  background-color: #f6f6f6;
+  border-radius: 8px;
+  position: relative;
+  width: 100%;
+}
+.plan .downPlanCard .planItem,
+.plan .downPlanCard .collectionItem,
+.plan .downCollectionCard .planItem,
+.plan .downCollectionCard .collectionItem {
+  transition: all 200ms;
+  cursor: pointer;
+  padding: 8px;
+  width: 100%;
+}
+.plan .downPlanCard .planItem:hover,
+.plan .downPlanCard .collectionItem:hover,
+.plan .downCollectionCard .planItem:hover,
+.plan .downCollectionCard .collectionItem:hover {
+  border-right: 1px #789d5e solid;
+  border-left: 1px #789d5e solid;
+}
+.plan .downPlanCard .planItem .planTask,
+.plan .downPlanCard .planItem .collectionName,
+.plan .downPlanCard .collectionItem .planTask,
+.plan .downPlanCard .collectionItem .collectionName,
+.plan .downCollectionCard .planItem .planTask,
+.plan .downCollectionCard .planItem .collectionName,
+.plan .downCollectionCard .collectionItem .planTask,
+.plan .downCollectionCard .collectionItem .collectionName {
+  margin: 0;
+}
+.plan .downPlanCard .planItem .fa-trash,
+.plan .downPlanCard .collectionItem .fa-trash,
+.plan .downCollectionCard .planItem .fa-trash,
+.plan .downCollectionCard .collectionItem .fa-trash {
+  color: tomato;
+}
+.plan .downPlanCard .planItem .fa-pen-to-square,
+.plan .downPlanCard .collectionItem .fa-pen-to-square,
+.plan .downCollectionCard .planItem .fa-pen-to-square,
+.plan .downCollectionCard .collectionItem .fa-pen-to-square {
+  color: lightseagreen;
+}
+.plan .downPlanCard .planItem form,
+.plan .downPlanCard .collectionItem form,
+.plan .downCollectionCard .planItem form,
+.plan .downCollectionCard .collectionItem form {
+  width: 70%;
+}
+.plan .downPlanCard .planItem form input,
+.plan .downPlanCard .collectionItem form input,
+.plan .downCollectionCard .planItem form input,
+.plan .downCollectionCard .collectionItem form input {
+  padding: 5px;
+  border-radius: 8px;
+}
+.plan .downPlanCard .planItem button,
+.plan .downPlanCard .collectionItem button,
+.plan .downCollectionCard .planItem button,
+.plan .downCollectionCard .collectionItem button {
+  border: 0;
+  background-color: transparent;
+  padding: 0;
+}
+.plan .downPlanCard .planItem .fa-solid,
+.plan .downPlanCard .collectionItem .fa-solid,
+.plan .downCollectionCard .planItem .fa-solid,
+.plan .downCollectionCard .collectionItem .fa-solid {
+  cursor: pointer;
+}
+.plan .downPlanCard .planItem .fa-xmark,
+.plan .downPlanCard .collectionItem .fa-xmark,
+.plan .downCollectionCard .planItem .fa-xmark,
+.plan .downCollectionCard .collectionItem .fa-xmark {
+  color: tomato;
+}
+.plan .downPlanCard .planItem .fa-circle-check,
+.plan .downPlanCard .collectionItem .fa-circle-check,
+.plan .downCollectionCard .planItem .fa-circle-check,
+.plan .downCollectionCard .collectionItem .fa-circle-check {
+  color: green;
+}
+.plan .downPlanCard .planItem button,
+.plan .downPlanCard .planItem span,
+.plan .downPlanCard .collectionItem button,
+.plan .downPlanCard .collectionItem span,
+.plan .downCollectionCard .planItem button,
+.plan .downCollectionCard .planItem span,
+.plan .downCollectionCard .collectionItem button,
+.plan .downCollectionCard .collectionItem span {
+  font-size: 15px;
+}
+.plan .planForm,
+.plan .collectionForm {
+  background-color: #f6f6f6;
+  border-top: none;
+  border-radius: 10px;
+  padding: 5px;
+}
+.plan .planForm input,
+.plan .collectionForm input {
+  padding: 8px;
+  border-radius: 10px;
+  background-color: #f6f6f6;
+  width: 80%;
+}
+.plan .planForm .addPlan,
+.plan .planForm .addCollection,
+.plan .collectionForm .addPlan,
+.plan .collectionForm .addCollection {
+  background-color: #fff;
+  padding: 6px 10px;
+  border-radius: 50%;
+  aspect-ratio: 1/1;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+}
+.plan .donePlan:disabled i {
+  color: grey !important;
+}
+.plan .downCollectionCard::-webkit-scrollbar,
+.plan .downPlanCard::-webkit-scrollbar {
+  display: none !important;
+}
+
+@media (min-width: 1024px) {
+  .plan .planAndCollection {
+    flex-direction: row !important;
+  }
+  .plan .planCard {
+    order: 1 !important;
+  }
+  .plan .collectionCard {
+    order: 2 !important;
+  }
+}
+.about a {
+  color: blue;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.profile .profileBox {
+  background-color: #f6f6f6;
+  padding: 10px;
+  border-radius: 8px;
+  width: fit-content;
+  max-width: 500px;
+}
+.profile .profileBox .userButton button {
+  width: 200px;
+  padding: 8px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.profile .profileBox .userButton .delete {
+  background-color: tomato;
+  color: #fff;
+  border: 1px solid tomato;
+  transition: all 200ms;
+}
+.profile .profileBox .userButton .delete:hover {
+  border-color: #fff;
+}
+.profile .profileBox .userButton .update {
+  background-color: lightseagreen;
+  color: #fff;
+  border: 1px solid lightseagreen;
+  transition: all 200ms;
+}
+.profile .profileBox .userButton .update:hover {
+  border-color: #fff;
+}
+.profile .profileBox .profileImage,
+.profile .profileBox .tempUserImage {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 5px #fff solid;
+  font-size: 60px;
+}
+.profile .profileBox .tempUserImage::after,
+.profile .profileBox .profileImage::after {
+  content: "Upload Image";
+  font-size: 20px;
+  text-align: center;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transform-origin: center center;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  background-color: #222222;
+  opacity: 0;
+  transition: all 150ms linear;
+  color: #fff;
+}
+.profile .profileBox .tempUserImage:hover::after,
+.profile .profileBox .profileImage:hover::after {
+  opacity: 0.8;
+}
+.profile .profileBox .profileDetail {
+  width: 100%;
+}
+.profile .profileBox .profileDetail p {
+  margin: 2px 0;
+}
+.profile .profileBox .profileDetail span {
+  font-size: 14px;
+}
+.profile .profileBox .profileDetail input {
+  padding: 5px;
+  border-radius: 5px;
+  width: 100%;
+}
+.profile .profileBox .userButton button:disabled {
+  background-color: grey;
+  border-color: grey;
+}
+.profile .profileBox .updateImageForm .userImageButtons button {
+  width: 100px;
+  padding: 8px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: lightseagreen;
+  color: #fff;
+}
+.profile .profileBox .updateImageForm .userImageButtons span {
+  cursor: pointer;
+  font-size: 18px;
+  border: 2px solid tomato;
+  color: tomato;
+  height: 30px;
+  width: 30px;
+  text-align: center;
+  transition: all 200ms;
+}
+.profile .profileBox .updateImageForm .userImageButtons span:hover {
+  background-color: tomato;
+  color: #fff;
+}
+
+.deleteUserBox {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  width: 95%;
+  max-width: 500px;
+  border-radius: 10px;
+  height: fit-content;
+  text-align: center;
+  background-color: #fff;
+  z-index: 999;
+  padding: 20px;
+}
+.deleteUserBox .deleteOptionsButton button {
+  width: 200px;
+  padding: 8px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.deleteUserBox .deleteOptionsButton .yes {
+  background-color: tomato;
+  color: #fff;
+  border: 1px solid tomato;
+  transition: all 200ms;
+}
+.deleteUserBox .deleteOptionsButton .yes:hover {
+  border-color: #fff;
+}
+.deleteUserBox .deleteOptionsButton .no {
+  background-color: lightseagreen;
+  color: #fff;
+  border: 1px solid lightseagreen;
+  transition: all 200ms;
+}
+.deleteUserBox .deleteOptionsButton .no:hover {
+  border-color: #fff;
+}
+
+@media (pointer: coarse) {
+  .profile .profileBox .tempUserImage:hover::after,
+  .profile .profileBox .profileImage:hover::after {
+    opacity: 0;
+  }
+}
+
+/*# sourceMappingURL=output.css.map */

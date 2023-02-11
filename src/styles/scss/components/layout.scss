@@ -1,0 +1,294 @@
+@use "../util/colors.scss" as colors;
+@use "../util/hover.scss" as hover;
+@use "../animations/animation.scss" as animation;
+@use "../breakpoints.scss" as res;
+.layout {
+  .header {
+    background-color: colors.$milk;
+    border-bottom: 2px colors.$grey solid;
+    position: fixed;
+    height: 80px;
+    padding: 15px 40px;
+    z-index: 900;
+    .logo {
+      font-size: 26px;
+    }
+    .navigation {
+      .navList {
+        .navItem {
+          list-style: none;
+          cursor: pointer;
+          font-weight: 500;
+          @include hover.hover-effect(
+            200ms,
+            (
+              color: colors.$dark_green,
+            )
+          );
+        }
+      }
+    }
+    .profile {
+      border-radius: 8px;
+      background-color: colors.$white;
+      @include hover.hover-effect(
+        200ms,
+        (
+          background-color: colors.$milk,
+        )
+      );
+      border: 3px colors.$white solid;
+      padding: 8px 12px;
+      cursor: pointer;
+      .profileImage {
+        width: 2rem;
+        height: 2rem;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+      .tempUserImage {
+        width: 2rem;
+        height: 2rem;
+        object-fit: cover;
+        border-radius: 50%;
+        text-align: center;
+        background-color: colors.$milk;
+      }
+    }
+
+    .languageDiv {
+      color: colors.$black;
+      width: 68px;
+      height: 30px;
+      border: 1.5px solid colors.$black;
+      gap: 10px;
+      border-radius: 10px;
+
+      cursor: pointer;
+
+      .languageDivBox {
+        border-radius: 9px;
+        gap: 5px;
+        width: 100%;
+        height: 100%;
+
+        @include hover.hover-effect(
+          200ms,
+          (
+            color: colors.$white,
+            background-color: colors.$black,
+          )
+        );
+      }
+
+      .languagesList {
+        top: 90%;
+        background-color: colors.$milk;
+        color: colors.$black;
+        border-radius: 10px;
+
+        width: 50px;
+        padding: 5px;
+        span {
+          width: 100%;
+          text-align: center;
+          background-color: colors.$white;
+          border-radius: 6px;
+          @include hover.hover-effect(
+            200ms,
+            (
+              background-color: colors.$black,
+              color: colors.$milk,
+            )
+          );
+        }
+      }
+    }
+
+    .mobileNav {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      z-index: 999;
+      display: none !important;
+      position: absolute;
+      top: 5rem;
+      right: 0;
+      left: 0;
+      background-color: colors.$milk;
+
+      ul {
+        padding-right: 0 !important;
+        padding: 20px 0;
+        li {
+          list-style: none;
+          text-align: center;
+          width: 100%;
+          span {
+            font-size: 16px !important;
+          }
+        }
+      }
+    }
+
+    .mobNavAnim {
+      @include animation.nav-animation(nav, 250ms);
+    }
+    .xMobNav {
+      font-size: 1.5rem;
+      color: tomato;
+      cursor: pointer;
+      height: fit-content;
+    }
+    .humb {
+      display: none;
+      cursor: pointer;
+    }
+  }
+
+  .footer {
+    background-color: colors.$milk;
+    padding: 20px;
+    min-height: 70px;
+    padding: 20px 10px;
+    text-align: center;
+    p {
+      margin: 0;
+    }
+    .socials {
+      span {
+        font-size: 26px;
+        cursor: pointer;
+      }
+      .fa-facebook {
+        @include hover.hover-effect(
+          200ms,
+          (
+            color: #0c87ef,
+          )
+        );
+      }
+
+      .fa-youtube {
+        @include hover.hover-effect(
+          200ms,
+          (
+            color: #ff0000,
+          )
+        );
+      }
+
+      .fa-github {
+        @include hover.hover-effect(
+          200ms,
+          (
+            color: #babfc6,
+          )
+        );
+      }
+
+      .fa-linkedin {
+        @include hover.hover-effect(
+          200ms,
+          (
+            color: #0a66c2,
+          )
+        );
+      }
+
+      .fa-b {
+        @include hover.hover-effect(
+          200ms,
+          (
+            color: #0a66c2,
+          )
+        );
+      }
+    }
+  }
+}
+@include res.responsive(computer) {
+  .header {
+    nav {
+      display: flex !important;
+    }
+  }
+}
+
+@include res.responsive(tablet) {
+  .header {
+    .logo {
+      font-size: 20px !important;
+    }
+    .profile {
+      padding: 5px !important;
+      span {
+        font-size: 14px;
+      }
+    }
+    nav {
+      gap: 1rem !important;
+      ul {
+        li {
+          font-size: 14px !important;
+        }
+      }
+    }
+    .languageDiv {
+      width: 55px !important;
+      height: 25px !important;
+      font-size: 13px !important;
+    }
+    .activeNav::after {
+      width: 8px !important;
+      height: 8px !important;
+    }
+  }
+}
+
+@include res.responsive(mobile) {
+  .layout {
+    .header {
+      padding-inline: 20px !important;
+
+      .navList {
+        display: none !important;
+      }
+      .profile {
+        width: 100px;
+        height: 50px;
+        padding: 3px;
+        img {
+          width: 1.5rem !important;
+          height: 1.5rem !important;
+        }
+        font-size: 10px;
+      }
+
+      .mobileNav,
+      .humb {
+        display: flex !important;
+      }
+
+      .logo {
+        font-size: 16px !important;
+      }
+
+      nav {
+        gap: 1rem !important;
+        ul {
+          li {
+            font-size: 14px !important;
+          }
+        }
+      }
+
+      .activeNav::after {
+        width: 8px !important;
+        height: 8px !important;
+      }
+    }
+  }
+}

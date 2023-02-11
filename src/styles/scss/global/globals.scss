@@ -1,0 +1,196 @@
+@use "../util/typography.scss" as font;
+@use "../util/colors.scss" as colors;
+@use "../animations/animation.scss" as animation;
+@use "../breakpoints.scss" as res;
+
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400;500;600;700&family=Lora:ital,wght@1,400;1,500;1,600;1,700&family=Open+Sans:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700;900&family=Varela&family=Varela+Round&display=swap");
+
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  scroll-padding-top: 15rem !important;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: font.$poppins, sans-serif;
+  position: relative;
+  min-height: 100vh;
+}
+
+textarea::placeholder,
+input::placeholder {
+  font-family: font.$poppins, sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+textarea,
+input {
+  font-family: font.$poppins, sans-serif;
+}
+textarea {
+  resize: none;
+  border: 0;
+}
+
+input {
+  border: 0;
+}
+input:focus,
+textarea:focus {
+  outline: none;
+}
+
+a,
+Link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.active {
+  color: colors.$dark_green;
+  transition: all 200ms ease;
+  position: relative;
+}
+.active::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform-origin: bottom center;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin-left: auto;
+  margin-right: auto;
+  height: 3px;
+  background-color: colors.$dark_green;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+input[type="color"] {
+  -webkit-appearance: none;
+  border: none;
+  width: 32px;
+  height: 32px;
+}
+input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+input[type="color"]::-webkit-color-swatch {
+  border: none;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+img {
+  object-fit: cover;
+}
+
+button,
+.fa-solid {
+  cursor: pointer;
+}
+
+button:focus {
+  outline: none;
+  border: none;
+}
+
+.opaBackground {
+  background: colors.$black;
+  opacity: 0.25;
+  position: fixed;
+  z-index: 910;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.loader {
+  text-align: center;
+  animation-name: loader;
+  animation-duration: 2000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-fill-mode: both;
+  transition: all 100ms line;
+}
+
+@keyframes loader {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.headers {
+  font-weight: 500 !important;
+  font-size: 32px;
+  margin: 0;
+}
+
+//style all the sections like each other
+section {
+  padding: 20px 60px;
+  min-height: 100vh;
+  padding-top: 100px;
+}
+
+@include res.responsive(tablet) {
+  section {
+    padding-inline: 20px !important;
+  }
+
+  .headers {
+    font-weight: 500;
+    font-size: 26px !important;
+  }
+}
+@include res.responsive(mobile) {
+  section {
+    padding-inline: 20px !important;
+  }
+
+  .headers {
+    font-size: 22px !important;
+  }
+}
+
+small.error {
+  color: tomato;
+  font-size: 10px;
+  width: 100%;
+  text-align: left;
+}

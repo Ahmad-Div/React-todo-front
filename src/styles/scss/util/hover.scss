@@ -1,0 +1,15 @@
+//hover mixin
+@mixin hover-effect($duration, $properties) {
+  //we seperate the keys and the values;
+  $keys: (map-keys($properties));
+  $values: (map-values($properties));
+
+  $index: 1;
+  &:hover {
+    @each $key in $keys {
+      #{$key}: nth($values, $index);
+      $index: $index + 1;
+    }
+  }
+  transition: all $duration;
+}

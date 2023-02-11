@@ -1,0 +1,33 @@
+@use "../breakpoints.scss" as res;
+
+.grid {
+  display: grid;
+}
+
+//grid mixin
+
+@mixin grid($computerColumn: 12, $tabletColumn: 8, $mobileColumn: 6, $row, $rowFr, $gap: 20px) {
+  display: grid;
+  grid-template-rows: repeat($row, $rowFr);
+  grid-gap: $gap;
+
+  //computer
+
+  @include res.responsive(computer) {
+    grid-template-columns: repeat($computerColumn, 1fr);
+  }
+
+  //tablet
+
+  @include res.responsive(tablet) {
+    grid-template-columns: repeat($tabletColumn, 1fr);
+  }
+
+  //mobile
+
+  @include res.responsive(mobile) {
+    grid-template-columns: repeat($mobileColumn, 1fr);
+  }
+
+  @content;
+}

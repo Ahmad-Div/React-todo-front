@@ -1,0 +1,53 @@
+//we will make some breakpoints here
+
+@mixin responsive($breakpoint) {
+  //computer breakpoint
+  @if $breakpoint == computer {
+    @media (min-width: 1024px) {
+      @content;
+    }
+  }
+
+  //tablet breakpoint
+
+  @else if $breakpoint == tablet {
+    @media (min-width: 767px) and (max-width: 1023px) {
+      @content;
+    }
+  }
+
+  //mobile breakpoint
+
+  @else if $breakpoint == mobile {
+    @media (max-width: 767px) {
+      @content;
+    }
+  }
+}
+
+//height responsive
+
+@mixin height-responsive($breakpoint) {
+  //computer breakpoint
+  @if $breakpoint == large {
+    @media (min-height: 721px) {
+      @content;
+    }
+  }
+
+  //tablet breakpoint
+
+  @else if $breakpoint == medium {
+    @media (min-height: 580px) and (max-height: 720px) {
+      @content;
+    }
+  }
+
+  //mobile breakpoint
+
+  @else if $breakpoint == small {
+    @media (max-height: 580px) {
+      @content;
+    }
+  }
+}

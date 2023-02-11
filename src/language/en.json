@@ -1,0 +1,44 @@
+{
+  "nav": {
+    "home": "Home",
+    "todo": "Todo",
+    "plan": "Plan",
+    "about": "About"
+  },
+  "home": {
+    "welcome": "welcome back",
+    "desc": "The best web application to achieve your todos in daily life",
+    "todo": "Todo",
+    "todoCard": "You can write your own todo with several collections that will be deleted",
+    "plan": "Plan",
+    "planCard": "You can write your own plans and tick them whenever you wish"
+  },
+  "todo": {
+    "noCollection": "no collection selected",
+    "collections": "collections",
+    "collection": "collection",
+
+    "todoPlaceHolder": "write new todo",
+    "collectionPlaceHolder": "write new collection"
+  },
+  "plan": {
+    "noCollection": "no collection selected",
+    "collections": "collections",
+    "collection": "collection",
+    "planPlaceHolder": "write new plan"
+  },
+  "profile": {
+    "header": "Profile",
+    "name": "Name:",
+    "username": "Username:",
+    "email": "Email:",
+    "deleteBox": "are you sure you want to delete your account?",
+    "yes": "yes",
+    "no": "no",
+    "delete": "Delete",
+    "update": "Update"
+  },
+  "todos": {
+    "header": "todos"
+  }
+}

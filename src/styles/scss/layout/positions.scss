@@ -1,0 +1,158 @@
+.position {
+  &-relative {
+    position: relative;
+  }
+  &-absolute {
+    position: absolute;
+  }
+  &-sticky {
+    position: sticky;
+  }
+  &-fixed {
+    position: fixed;
+  }
+}
+
+.top {
+  &-0 {
+    top: 0;
+  }
+  &-1 {
+    top: 1rem;
+  }
+  &-2 {
+    top: 2rem;
+  }
+  &-3 {
+    top: 3rem;
+  }
+  &-4 {
+    top: 4rem;
+  }
+  &-5 {
+    top: 5rem;
+  }
+  &-6 {
+    top: 6rem;
+  }
+  &-7 {
+    top: 7rem;
+  }
+  &-8 {
+    top: 8rem;
+  }
+  &-9 {
+    top: 9rem;
+  }
+  &-10 {
+    top: 10rem;
+  }
+}
+
+.bottom {
+  &-0 {
+    bottom: 0;
+  }
+  &-1 {
+    bottom: 1rem;
+  }
+  &-2 {
+    bottom: 2rem;
+  }
+  &-3 {
+    bottom: 3rem;
+  }
+  &-4 {
+    bottom: 4rem;
+  }
+  &-5 {
+    bottom: 5rem;
+  }
+  &-6 {
+    bottom: 6rem;
+  }
+  &-7 {
+    bottom: 7rem;
+  }
+  &-8 {
+    bottom: 8rem;
+  }
+  &-9 {
+    bottom: 9rem;
+  }
+  &-10 {
+    bottom: 10rem;
+  }
+}
+
+.right {
+  &-0 {
+    right: 0;
+  }
+  &-1 {
+    right: 1rem;
+  }
+  &-2 {
+    right: 2rem;
+  }
+  &-3 {
+    right: 3rem;
+  }
+  &-4 {
+    right: 4rem;
+  }
+  &-5 {
+    right: 5rem;
+  }
+  &-6 {
+    right: 6rem;
+  }
+  &-7 {
+    right: 7rem;
+  }
+  &-8 {
+    right: 8rem;
+  }
+  &-9 {
+    right: 9rem;
+  }
+  &-10 {
+    right: 10rem;
+  }
+}
+
+.left {
+  &-0 {
+    left: 0;
+  }
+  &-1 {
+    left: 1rem;
+  }
+  &-2 {
+    left: 2rem;
+  }
+  &-3 {
+    left: 3rem;
+  }
+  &-4 {
+    left: 4rem;
+  }
+  &-5 {
+    left: 5rem;
+  }
+  &-6 {
+    left: 6rem;
+  }
+  &-7 {
+    left: 7rem;
+  }
+  &-8 {
+    left: 8rem;
+  }
+  &-9 {
+    left: 9rem;
+  }
+  &-10 {
+    left: 10rem;
+  }
+}
