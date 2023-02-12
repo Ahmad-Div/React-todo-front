@@ -5,6 +5,10 @@ import { connect } from "react-redux";
 const TodoCollection = ({ name, setCollectionName, id, auth, deleteCollection, updateCollection, setCollectionId, selectedCollection }) => {
   const [update, setUpdate] = useState(false);
   const [input, setInput] = useState(name);
+
+  useEffect(() => {
+    setInput(name);
+  }, [name]);
   const onCollectionDelete = () => {
     deleteCollection(auth.user._id, id);
   };

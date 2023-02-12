@@ -7,6 +7,10 @@ const PlanItem = ({ done, auth, collectionId, content, id, deletePlan, updatePla
   const [input, setInput] = useState(content);
   const oldPlan = content;
 
+  useEffect(() => {
+    setInput(content);
+  }, [content]);
+
   const onPlanDelete = () => {
     deletePlan(auth.user._id, collectionId, id);
   };

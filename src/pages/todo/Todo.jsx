@@ -51,6 +51,8 @@ const Todo = ({ auth, getCollections, getTodo, todo, postCollection, postTodo })
         <small>{t("todo.noCollection")}</small>
       )}
 
+      <small>{t("todo.alert")}</small>
+
       <div className="todoAndCollection flex flex-row justify-center align-center gap-3 flex-wrap w-100">
         <div className="todoCard flex flex-column justify-center align-center gap-1">
           <div className="upTodoCard">

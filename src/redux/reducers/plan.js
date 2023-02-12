@@ -30,8 +30,8 @@ import {
 } from "../../actions/types";
 
 const initialState = {
-  planLoading: null,
-  collectionLoading: null,
+  planLoading: false,
+  collectionLoading: false,
   plans: [],
   collections: [],
   planErrors: null,
@@ -160,6 +160,9 @@ export default function plan(state = initialState, action) {
     //CRUD success
     //post success
     case POST_PLAN_SUCCESS:
+      state.plans = state.plans.sort((a, b) => {
+        return a.done - b.done;
+      });
       return {
         ...state,
         planLoading: false,
@@ -173,6 +176,9 @@ export default function plan(state = initialState, action) {
       if (index !== -1) {
         state.plans.splice(index, 1, payload);
       }
+      state.plans = state.plans.sort((a, b) => {
+        return a.done - b.done;
+      });
       return {
         ...state,
         planLoading: false,
@@ -185,6 +191,9 @@ export default function plan(state = initialState, action) {
       if (index !== -1) {
         state.plans.splice(index, 1);
       }
+      state.plans = state.plans.sort((a, b) => {
+        return a.done - b.done;
+      });
       return {
         ...state,
         planErrors: null,

@@ -1,4 +1,11 @@
 {
+  "todoApp": "Todo App",
+  "about": {
+    "header": "About",
+    "p1": "This website designed and developed by Ahmad Software",
+    "p2": "Ahmad Software is a Full-Stack  developer",
+    "p3": "for more information  and contact visit my personal website"
+  },
   "nav": {
     "home": "Home",
     "todo": "Todo",
@@ -17,7 +24,7 @@
     "noCollection": "no collection selected",
     "collections": "collections",
     "collection": "collection",
-
+    "alert": "all todos will be deleted in 12am",
     "todoPlaceHolder": "write new todo",
     "collectionPlaceHolder": "write new collection"
   },

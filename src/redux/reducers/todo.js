@@ -109,6 +109,7 @@ export default function (state = initialState, action) {
       if (index !== -1) {
         state.collections.splice(index, 1);
       }
+
       return {
         ...state,
         collectionErrors: null,
@@ -160,11 +161,14 @@ export default function (state = initialState, action) {
     //CRUD success
     //post success
     case POST_TODO_SUCCESS:
+      state.todos = state.todos.sort((a, b) => {
+        return a.done - b.done;
+      });
       return {
         ...state,
         todoLoading: false,
         todoErrors: null,
-        todos: [...state.todos, payload],
+        todos: [payload, ...state.todos],
       };
     //update done success
     case UPDATE_TODO_SUCCESS:
@@ -173,6 +177,9 @@ export default function (state = initialState, action) {
       if (index !== -1) {
         state.todos.splice(index, 1, payload);
       }
+      state.todos = state.todos.sort((a, b) => {
+        return a.done - b.done;
+      });
       return {
         ...state,
         todoLoading: false,
@@ -185,6 +192,9 @@ export default function (state = initialState, action) {
       if (index !== -1) {
         state.todos.splice(index, 1);
       }
+      state.todos = state.todos.sort((a, b) => {
+        return a.done - b.done;
+      });
       return {
         ...state,
         todoErrors: null,

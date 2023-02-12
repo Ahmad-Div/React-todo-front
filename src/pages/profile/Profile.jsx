@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from "recharts";
-import useChart from "../../data/chart";
+import useChart from "../../hooks/useChart";
 import useSize from "../../hooks/useSize";
 import PropTypes from "prop-types";
 import { deleteUser, updateUser, uploadImage } from "../../actions/user";
+import { logout } from "../../actions/auth.js";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-const Profile = ({ auth, deleteUser, user, updateUser, uploadImage }) => {
-  let max = 0;
+import { getTodoChart, getPlanChart } from "../../actions/chart";
+const Profile = ({ auth, deleteUser, user, updateUser, uploadImage, logout, getTodoChart, getPlanChart, chart }) => {
+  let todoMax = 0;
+  let planMax = 0;
   const { t, i18n } = useTranslation();
-  const data = useChart();
+
   const [breakpoint, setBreakpoint] = useState(useSize());
   const [wantDelete, setWantDelete] = useState(false);
   const [update, setUpdate] = useState(false);
@@ -19,9 +22,8 @@ const Profile = ({ auth, deleteUser, user, updateUser, uploadImage }) => {
   const [imageChanged, setImageChanged] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
-    data.forEach((day) => {
-      if (day.todos > max) max = day.todos;
-    });
+    getTodoChart(auth.user.id);
+    getPlanChart(auth.user.id);
   }, []);
 
   useEffect(() => {
@@ -72,6 +74,11 @@ const Profile = ({ auth, deleteUser, user, updateUser, uploadImage }) => {
     setFile(e.target.files[0]);
     setImageChanged(true);
     setUpdate(true);
+  };
+
+  const onLogout = async () => {
+    logout();
+    return navigate("/auth/login");
   };
 
   //userImage
@@ -222,20 +229,41 @@ const Profile = ({ auth, deleteUser, user, updateUser, uploadImage }) => {
             {userImage}
             {otherFields}
             {userButtons}
+            <button onClick={onLogout} className="logout">
+              Logout
+            </button>
           </div>
         )}
+        {/* todo chart */}
+        <h3>Number of todos completed</h3>
+        <LineChart
+          fontSize={breakpoint === "xl" ? 16 : breakpoint === "lg" ? 13 : breakpoint === "md" ? 8 : breakpoint === "sm" ? 7 : null}
+          width={breakpoint === "xl" ? 850 : breakpoint === "lg" ? 700 : breakpoint === "md" ? 500 : breakpoint === "sm" ? 350 : null}
+          height={breakpoint === "xl" ? 600 : breakpoint === "lg" ? 500 : breakpoint === "md" ? 400 : breakpoint === "sm" ? 300 : null}
+          data={chart.todos}
+          title="number of todos completed"
+        >
+          <CartesianGrid strokeDasharray="4 4" />
+          <XAxis dataKey="day" />
+          <YAxis type="number" domain={[0, 10]} /> <Tooltip />
+          <Legend />
+          <Line type="monotone" dataKey="count" stroke="#8884d8" />
+        </LineChart>
+        {/* plan chart */}
+        <h3>Number of plans completed</h3>
 
         <LineChart
           fontSize={breakpoint === "xl" ? 16 : breakpoint === "lg" ? 13 : breakpoint === "md" ? 8 : breakpoint === "sm" ? 7 : null}
           width={breakpoint === "xl" ? 850 : breakpoint === "lg" ? 700 : breakpoint === "md" ? 500 : breakpoint === "sm" ? 350 : null}
           height={breakpoint === "xl" ? 600 : breakpoint === "lg" ? 500 : breakpoint === "md" ? 400 : breakpoint === "sm" ? 300 : null}
-          data={data}
+          data={chart.plans}
+          title="number of plans completed"
         >
           <CartesianGrid strokeDasharray="4 4" />
-          <XAxis dataKey="name" />
-          <YAxis type="number" domain={[0, max]} /> <Tooltip />
+          <XAxis dataKey="day" />
+          <YAxis type="number" domain={[0, planMax]} /> <Tooltip />
           <Legend />
-          <Line type="monotone" dataKey="todos" stroke="#8884d8" />
+          <Line type="monotone" dataKey="count" stroke="#8884d8" />
         </LineChart>
       </section>
     </>
@@ -248,15 +276,22 @@ Profile.propTypes = {
   deleteUser: PropTypes.func.isRequired,
   updateUser: PropTypes.func.isRequired,
   uploadImage: PropTypes.func.isRequired,
+  getTodoChart: PropTypes.func.isRequired,
+  getPlanChart: PropTypes.func.isRequired,
+  logout: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
   user: state.user,
+  chart: state.chart,
 });
 
 export default connect(mapStateToProps, {
   deleteUser,
   updateUser,
   uploadImage,
+  logout,
+  getTodoChart,
+  getPlanChart,
 })(Profile);

@@ -14,6 +14,11 @@ const PlanCollection = ({
 }) => {
   const [update, setUpdate] = useState(false);
   const [input, setInput] = useState(name);
+
+  useEffect(() => {
+    setInput(name);
+  }, [name]);
+
   const onCollectionDelete = () => {
     deletePlanCollection(auth.user._id, id);
   };

@@ -17,7 +17,7 @@ const Login = ({ login, auth, errors }) => {
 
   const onKeyPressed = (e) => {
     if (e.key === "13" && !e.shiftKey) {
-      login({ email, password });
+      onSubmit();
     }
   };
 

@@ -25,7 +25,7 @@ const Header = ({ auth }) => {
     <header className="header flex flex-row justify-between align-center w-100">
       {mobNav && <MobileNav t={t} i18n={i18n} mobNav={mobNav} setMobNav={setMobNav} />}
 
-      <h1 className="logo">Todo App</h1>
+      <h1 className="logo">{t("todoApp")}</h1>
       <nav className="navigation flex flex-row justify-center align-center  gap-3">
         <ul className="navList flex flex-row justify-right align-center gap-2">
           <NavLink to="/">

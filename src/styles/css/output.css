@@ -2088,6 +2088,14 @@ small.error {
   width: fit-content;
   max-width: 500px;
 }
+.profile .profileBox .logout {
+  width: 150px;
+  padding: 8px;
+  border-radius: 8px;
+  background-color: #1a1919;
+  color: #fff;
+  border: none;
+}
 .profile .profileBox .userButton button {
   width: 200px;
   padding: 8px;
@@ -2115,6 +2123,7 @@ small.error {
 }
 .profile .profileBox .profileImage,
 .profile .profileBox .tempUserImage {
+  cursor: pointer;
   position: relative;
   width: 200px;
   height: 200px;

@@ -7,6 +7,10 @@ const TodoItem = ({ done, auth, collectionId, content, id, deleteTodo, updateTod
   const [input, setInput] = useState(content);
   const oldTodo = content;
 
+  useEffect(() => {
+    setInput(content);
+  }, [content]);
+
   const onTodoDelete = () => {
     deleteTodo(auth.user._id, collectionId, id);
   };

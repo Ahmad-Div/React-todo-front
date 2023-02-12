@@ -10,6 +10,7 @@ import {
   LOGIN_START,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
+  LOGOUT,
 } from "./types";
 import { GET_AUTH_TOKEN, LOGIN_URL, REGISTER_URL } from "./url";
 import { config } from "../config/config";
@@ -96,3 +97,11 @@ export const login =
       }, 3000);
     }
   };
+
+export const logout = () => async (dispatch) => {
+  dispatch({
+    type: LOGOUT,
+  });
+  removeCookie("user");
+  setAuthToken(getCookie("user"));
+};

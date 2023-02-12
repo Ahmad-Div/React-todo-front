@@ -1,12 +1,14 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 const About = () => {
+  const { t, i18n } = useTranslation();
   return (
     <section className="about">
-      <h1 className="headers">About</h1>
-      <p>This website designed and developed by Ahmad Software</p>
-      <p>Ahmad Software is a Full-stack developer</p>
-      <p>for more information and contact visit my personal website</p>
+      <h1 className="headers">{t("about.header")}</h1>
+      <p>{t("about.p1")}</p>
+      <p>{t("about.p2")}</p>
+      <p>{t("about.p3")}</p>
       <a target="_blank" href="https://www.ahmad-software.com">
         ahmad-software.com
       </a>

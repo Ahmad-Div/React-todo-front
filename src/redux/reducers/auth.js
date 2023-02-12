@@ -11,6 +11,7 @@ import {
   LOGIN_FAIL,
   USER_DELETE,
   USER_UPDATE,
+  LOGOUT,
 } from "../../actions/types";
 const initialState = {
   token: getCookie("user"),
@@ -85,6 +86,15 @@ export default function (state = initialState, action) {
       return {
         ...state,
         user: payload,
+      };
+
+    case LOGOUT:
+      return {
+        ...state,
+        user: null,
+        token: null,
+        isAuthenticated: false,
+        isRegistered: false,
       };
 
     //if user updated update his account
