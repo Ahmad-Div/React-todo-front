@@ -18,21 +18,24 @@ import { getCookie } from "./data/cookie";
 import setAuthToken from "./data/setAuthToken";
 import { loadUser } from "./actions/auth";
 import PrivateRoutes from "./routers/PrivateRoutes";
+import ErrorPage from "./error/ErrorPage";
+import Error from "./error/Error";
 const routes = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route element={<PrivateRoutes />}>
         <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="todo" element={<Todo />} />
-          <Route path="plan" element={<Plan />} />
-          <Route path="about" element={<About />} />
-          <Route path="profile" element={<Profile />} />
+          <Route index errorElement={<Error />} element={<Home />} />
+          <Route path="todo" errorElement={<Error />} element={<Todo />} />
+          <Route path="plan" errorElement={<Error />} element={<Plan />} />
+          <Route path="about" errorElement={<Error />} element={<About />} />
+          <Route path="profile" errorElement={<Error />} element={<Profile />} />
         </Route>
       </Route>
 
-      <Route path="/auth/login" element={<Login />} />
-      <Route path="/auth/register" element={<Register />} />
+      <Route path="/auth/login" errorElement={<Error />} element={<Login />} />
+      <Route path="/auth/register" errorElement={<Error />} element={<Register />} />
+      <Route path="*" element={<ErrorPage />} />
     </>
   )
 );

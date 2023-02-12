@@ -1,0 +1,107 @@
+@use "../util/colors.scss" as colors;
+@use "../breakpoints.scss" as res;
+.error404Page {
+  min-height: 100vh;
+  background-color: colors.$white;
+  color: colors.$black;
+  text-align: center;
+  h1 {
+    color: colors.$black;
+    font-size: 160px;
+    font-weight: 700;
+    margin: 0 !important;
+  }
+  h3 {
+    margin: 0 !important;
+    font-size: 30px;
+    font-weight: 500;
+  }
+  button,
+  .toHome {
+    width: 150px;
+    height: 30px;
+    border-radius: 20px;
+    cursor: pointer;
+    border: none;
+  }
+
+  button {
+    color: colors.$black;
+    background-color: colors.$milk;
+  }
+  .toHome {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    color: colors.$black;
+    background-color: colors.$milk;
+  }
+  .toHome:hover {
+    text-decoration: none;
+  }
+}
+
+//error pages
+.errorPage {
+  min-height: 100vh;
+  background-color: colors.$white;
+  color: colors.$black;
+  text-align: center;
+
+  h1 {
+    font-size: 60px;
+  }
+  button,
+  .toHome {
+    width: 200px;
+    height: 50px;
+    border-radius: 20px;
+    cursor: pointer;
+    border: none;
+  }
+
+  button {
+    color: colors.$black;
+    background-color: colors.$milk;
+  }
+  .toHome {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    color: colors.$black;
+    background-color: colors.$milk;
+  }
+  .toHome:hover {
+    text-decoration: none;
+  }
+}
+
+@include res.responsive(mobile) {
+  .error404Page {
+    h1 {
+      font-size: 120px !important;
+    }
+    h3 {
+      font-size: 20px !important;
+    }
+    button,
+    .toHome {
+      width: 120px !important;
+      height: 30px !important;
+      font-size: 12px !important;
+    }
+  }
+  .errorPage {
+    h1 {
+      font-size: 40px !important;
+    }
+    button,
+    .toHome {
+      width: 120px !important;
+      height: 30px !important;
+      font-size: 12px !important;
+    }
+  }
+}

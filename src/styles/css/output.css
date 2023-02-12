@@ -2242,6 +2242,103 @@ small.error {
   border-color: #fff;
 }
 
+.error404Page {
+  min-height: 100vh;
+  background-color: #fff;
+  color: #1a1919;
+  text-align: center;
+}
+.error404Page h1 {
+  color: #1a1919;
+  font-size: 160px;
+  font-weight: 700;
+  margin: 0 !important;
+}
+.error404Page h3 {
+  margin: 0 !important;
+  font-size: 30px;
+  font-weight: 500;
+}
+.error404Page button,
+.error404Page .toHome {
+  width: 150px;
+  height: 30px;
+  border-radius: 20px;
+  cursor: pointer;
+  border: none;
+}
+.error404Page button {
+  color: #1a1919;
+  background-color: #f6f6f6;
+}
+.error404Page .toHome {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  color: #1a1919;
+  background-color: #f6f6f6;
+}
+.error404Page .toHome:hover {
+  text-decoration: none;
+}
+
+.errorPage {
+  min-height: 100vh;
+  background-color: #fff;
+  color: #1a1919;
+  text-align: center;
+}
+.errorPage h1 {
+  font-size: 60px;
+}
+.errorPage button,
+.errorPage .toHome {
+  width: 200px;
+  height: 50px;
+  border-radius: 20px;
+  cursor: pointer;
+  border: none;
+}
+.errorPage button {
+  color: #1a1919;
+  background-color: #f6f6f6;
+}
+.errorPage .toHome {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  color: #1a1919;
+  background-color: #f6f6f6;
+}
+.errorPage .toHome:hover {
+  text-decoration: none;
+}
+
+@media (max-width: 767px) {
+  .error404Page h1 {
+    font-size: 120px !important;
+  }
+  .error404Page h3 {
+    font-size: 20px !important;
+  }
+  .error404Page button,
+  .error404Page .toHome {
+    width: 120px !important;
+    height: 30px !important;
+    font-size: 12px !important;
+  }
+  .errorPage h1 {
+    font-size: 40px !important;
+  }
+  .errorPage button,
+  .errorPage .toHome {
+    width: 120px !important;
+    height: 30px !important;
+    font-size: 12px !important;
+  }
+}
 @media (pointer: coarse) {
   .profile .profileBox .tempUserImage:hover::after,
   .profile .profileBox .profileImage:hover::after {
