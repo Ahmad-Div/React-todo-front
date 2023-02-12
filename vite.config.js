@@ -17,7 +17,7 @@ export default defineConfig({
     strictPort: true,
     proxy: {
       "/api": {
-        target: "http://localhost:3001",
+        target: "https://todo-api-5e08.onrender.com",
         changeOrigin: true,
         secure: false,
         ws: true,
