@@ -199,6 +199,8 @@
     font-size: 20px !important;
   }
   .header .profile {
+    width: fit-content !important;
+    height: fit-content !important;
     padding: 5px !important;
   }
   .header .profile span {
@@ -228,8 +230,8 @@
     display: none !important;
   }
   .layout .header .profile {
-    width: 100px;
-    height: 50px;
+    width: fit-content !important;
+    height: fit-content !important;
     padding: 3px;
     font-size: 10px;
   }

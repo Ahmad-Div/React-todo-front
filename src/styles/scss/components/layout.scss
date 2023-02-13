@@ -223,6 +223,8 @@
       font-size: 20px !important;
     }
     .profile {
+      width: fit-content !important;
+      height: fit-content !important;
       padding: 5px !important;
       span {
         font-size: 14px;
@@ -257,8 +259,8 @@
         display: none !important;
       }
       .profile {
-        width: 100px;
-        height: 50px;
+        width: fit-content !important;
+        height: fit-content !important;
         padding: 3px;
         img {
           width: 1.5rem !important;
