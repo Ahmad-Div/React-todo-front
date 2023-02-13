@@ -1,6 +1,4 @@
 import { getCookie } from "../data/cookie";
-import dotenv from "dotenv";
-dotenv.config();
 export const config = {
   headers: {
     "Content-Type": "application/json",
