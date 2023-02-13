@@ -20,8 +20,8 @@ const Todo = ({ auth, getCollections, getTodo, todo, postCollection, postTodo })
   });
   useEffect(() => {
     store.dispatch(loadUser());
-    getCollections();
-    getTodo(collectionId);
+    getCollections(auth.user._id);
+    getTodo(auth.user._id, collectionId);
   }, [collectionId]);
 
   if (!auth.isAuthenticated) {

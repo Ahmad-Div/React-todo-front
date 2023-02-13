@@ -45,12 +45,12 @@ import { authConfig } from "../config/config";
 import { getCookie } from "../data/cookie";
 
 //get todos for specific collection
-export const getPlan = (collection) => async (dispatch) => {
+export const getPlan = (userId, collection) => async (dispatch) => {
   dispatch({
     type: FETCH_PLAN_START,
   });
   try {
-    const res = await axios.get(`${GET_ALL_PLAN}/${collection}`, authConfig);
+    const res = await axios.get(`${GET_ALL_PLAN}/${userId}/${collection}`, authConfig);
 
     dispatch({
       type: FETCH_PLAN_SUCCESS,
@@ -71,12 +71,12 @@ export const getPlan = (collection) => async (dispatch) => {
 
 //get all the collections that the user have
 
-export const getPlanCollections = () => async (dispatch) => {
+export const getPlanCollections = (userId) => async (dispatch) => {
   dispatch({
     type: FETCH_PLAN_COLLECTION_START,
   });
   try {
-    const res = await axios.get(`${GET_ALL_PLAN_COLLECTIONS}`, authConfig);
+    const res = await axios.get(`${GET_ALL_PLAN_COLLECTIONS}/${userId}`, authConfig);
     dispatch({
       type: FETCH_PLAN_COLLECTION_SUCCESS,
       payload: res.data,
