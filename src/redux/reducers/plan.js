@@ -12,6 +12,9 @@ import {
   DELETE_PLAN_COLLECTION_FAIL,
   DELETE_PLAN_COLLECTION_START,
   DELETE_PLAN_COLLECTION_SUCCESS,
+  DELETE_ALL_PLAN_COLLECTION_FAIL,
+  DELETE_ALL_PLAN_COLLECTION_START,
+  DELETE_ALL_PLAN_COLLECTION_SUCCESS,
   UPDATE_PLAN_COLLECTION_START,
   UPDATE_PLAN_COLLECTION_FAIL,
   UPDATE_PLAN_COLLECTION_SUCCESS,
@@ -21,6 +24,9 @@ import {
   DELETE_PLAN_FAIL,
   DELETE_PLAN_START,
   DELETE_PLAN_SUCCESS,
+  DELETE_ALL_PLAN_FAIL,
+  DELETE_ALL_PLAN_START,
+  DELETE_ALL_PLAN_SUCCESS,
   UPDATE_PLAN_START,
   UPDATE_PLAN_FAIL,
   UPDATE_PLAN_SUCCESS,
@@ -32,6 +38,8 @@ import {
 const initialState = {
   planLoading: false,
   collectionLoading: false,
+  fetchCollectionLoading: false,
+  fetchPlanLoading: false,
   plans: [],
   collections: [],
   planErrors: null,
@@ -49,6 +57,7 @@ export default function plan(state = initialState, action) {
     case FETCH_PLAN_COLLECTION_START:
       return {
         ...state,
+        fetchCollectionLoading: true,
         collectionLoading: true,
       };
     //fetch fail
@@ -56,6 +65,7 @@ export default function plan(state = initialState, action) {
       return {
         ...state,
         collections: [],
+        fetchCollectionLoading: false,
         collectionLoading: false,
         collectionErrors: payload ? payload : null,
       };
@@ -63,6 +73,7 @@ export default function plan(state = initialState, action) {
     case FETCH_PLAN_COLLECTION_SUCCESS:
       return {
         ...state,
+        fetchCollectionLoading: false,
         collections: payload,
         collectionLoading: false,
       };
@@ -70,6 +81,7 @@ export default function plan(state = initialState, action) {
     case POST_PLAN_COLLECTION_START:
     case UPDATE_PLAN_COLLECTION_START:
     case DELETE_PLAN_COLLECTION_START:
+    case DELETE_ALL_PLAN_COLLECTION_START:
       return {
         ...state,
         collectionLoading: true,
@@ -78,6 +90,7 @@ export default function plan(state = initialState, action) {
     case POST_PLAN_COLLECTION_FAIL:
     case UPDATE_PLAN_COLLECTION_FAIL:
     case DELETE_PLAN_COLLECTION_FAIL:
+    case DELETE_ALL_PLAN_COLLECTION_FAIL:
       return {
         ...state,
         collectionErrors: payload ? payload : null,
@@ -116,11 +129,20 @@ export default function plan(state = initialState, action) {
         collections: state.collections,
       };
 
+    case DELETE_ALL_PLAN_COLLECTION_SUCCESS:
+      return {
+        ...state,
+        collectionErrors: null,
+        collectionLoading: false,
+        collections: payload,
+      };
+
     //todo
     //fetch start
     case FETCH_PLAN_START:
       return {
         ...state,
+        fetchPlanLoading: true,
         planLoading: true,
       };
     //fetch fail
@@ -128,6 +150,7 @@ export default function plan(state = initialState, action) {
       return {
         ...state,
         plans: [],
+        fetchPlanLoading: false,
         planLoading: false,
         planErrors: payload ? payload : null,
       };
@@ -136,6 +159,7 @@ export default function plan(state = initialState, action) {
       return {
         ...state,
         plans: payload,
+        fetchPlanLoading: false,
         planLoading: false,
       };
     //CRUD start
@@ -143,6 +167,7 @@ export default function plan(state = initialState, action) {
     case UPDATE_PLAN_START:
     case BOOLEAN_PLAN_START:
     case DELETE_PLAN_START:
+    case DELETE_ALL_PLAN_START:
       return {
         ...state,
         planLoading: true,
@@ -152,6 +177,7 @@ export default function plan(state = initialState, action) {
     case UPDATE_PLAN_FAIL:
     case BOOLEAN_PLAN_FAIL:
     case DELETE_PLAN_FAIL:
+    case DELETE_ALL_PLAN_FAIL:
       return {
         ...state,
         planErrors: payload ? payload : null,
@@ -199,6 +225,14 @@ export default function plan(state = initialState, action) {
         planErrors: null,
         planLoading: false,
         plans: state.plans,
+      };
+
+    case DELETE_ALL_PLAN_SUCCESS:
+      return {
+        ...state,
+        planErrors: null,
+        planLoading: false,
+        plans: payload,
       };
     //remove all redux errors
     case REMOVE_PLAN_ERROR:

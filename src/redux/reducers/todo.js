@@ -12,6 +12,9 @@ import {
   DELETE_COLLECTION_FAIL,
   DELETE_COLLECTION_START,
   DELETE_COLLECTION_SUCCESS,
+  DELETE_ALL_COLLECTION_FAIL,
+  DELETE_ALL_COLLECTION_START,
+  DELETE_ALL_COLLECTION_SUCCESS,
   UPDATE_COLLECTION_START,
   UPDATE_COLLECTION_FAIL,
   UPDATE_COLLECTION_SUCCESS,
@@ -21,6 +24,9 @@ import {
   DELETE_TODO_FAIL,
   DELETE_TODO_START,
   DELETE_TODO_SUCCESS,
+  DELETE_ALL_TODO_FAIL,
+  DELETE_ALL_TODO_START,
+  DELETE_ALL_TODO_SUCCESS,
   UPDATE_TODO_START,
   UPDATE_TODO_FAIL,
   UPDATE_TODO_SUCCESS,
@@ -32,6 +38,8 @@ import {
 const initialState = {
   todoLoading: null,
   collectionLoading: null,
+  fetchCollectionLoading: false,
+  fetchTodoLoading: false,
   todos: [],
   collections: [],
   todoErrors: null,
@@ -49,6 +57,7 @@ export default function (state = initialState, action) {
     case FETCH_COLLECTION_START:
       return {
         ...state,
+        fetchCollectionLoading: true,
         collectionLoading: true,
       };
     //fetch fail
@@ -57,6 +66,7 @@ export default function (state = initialState, action) {
         ...state,
         collections: [],
         collectionLoading: false,
+        fetchCollectionLoading: false,
         collectionErrors: payload ? payload : null,
       };
     //fetch success
@@ -64,12 +74,14 @@ export default function (state = initialState, action) {
       return {
         ...state,
         collections: payload,
+        fetchCollectionLoading: false,
         collectionLoading: false,
       };
     //CRUD start
     case POST_COLLECTION_START:
     case UPDATE_COLLECTION_START:
     case DELETE_COLLECTION_START:
+    case DELETE_ALL_COLLECTION_START:
       return {
         ...state,
         collectionLoading: true,
@@ -78,6 +90,7 @@ export default function (state = initialState, action) {
     case POST_COLLECTION_FAIL:
     case UPDATE_COLLECTION_FAIL:
     case DELETE_COLLECTION_FAIL:
+    case DELETE_ALL_COLLECTION_FAIL:
       return {
         ...state,
         collectionErrors: payload ? payload : null,
@@ -117,18 +130,28 @@ export default function (state = initialState, action) {
         collections: state.collections,
       };
 
+    case DELETE_ALL_COLLECTION_SUCCESS:
+      return {
+        ...state,
+        collectionErrors: null,
+        collectionLoading: false,
+        collections: payload,
+      };
+
     //todo
     //fetch start
     case FETCH_TODO_START:
       return {
         ...state,
         todoLoading: true,
+        fetchTodoLoading: true,
       };
     //fetch fail
     case FETCH_TODO_FAIL:
       return {
         ...state,
         todos: [],
+        fetchTodoLoading: false,
         todoLoading: false,
         todoErrors: payload ? payload : null,
       };
@@ -136,6 +159,7 @@ export default function (state = initialState, action) {
     case FETCH_TODO_SUCCESS:
       return {
         ...state,
+        fetchTodoLoading: false,
         todos: payload,
         todoLoading: false,
       };
@@ -144,6 +168,7 @@ export default function (state = initialState, action) {
     case UPDATE_TODO_START:
     case BOOLEAN_TODO_START:
     case DELETE_TODO_START:
+    case DELETE_ALL_TODO_START:
       return {
         ...state,
         todoLoading: true,
@@ -153,6 +178,7 @@ export default function (state = initialState, action) {
     case UPDATE_TODO_FAIL:
     case BOOLEAN_TODO_FAIL:
     case DELETE_TODO_FAIL:
+    case DELETE_ALL_TODO_FAIL:
       return {
         ...state,
         todoErrors: payload ? payload : null,
@@ -200,6 +226,14 @@ export default function (state = initialState, action) {
         todoErrors: null,
         todoLoading: false,
         todos: state.todos,
+      };
+
+    case DELETE_ALL_TODO_SUCCESS:
+      return {
+        ...state,
+        todoErrors: null,
+        todoLoading: false,
+        todos: payload,
       };
     //remove all redux errors
     case REMOVE_TODO_ERROR:

@@ -45,6 +45,7 @@ textarea {
 input {
   border: 0;
 }
+
 input:focus,
 textarea:focus {
   outline: none;
@@ -57,7 +58,10 @@ Link {
 }
 
 .active {
-  color: colors.$dark_green;
+  background: linear-gradient(90deg, rgba(255, 193, 194, 1) 0%, rgba(212, 43, 190, 1) 53%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
   transition: all 200ms ease;
   position: relative;
 }
@@ -71,8 +75,8 @@ Link {
   left: 0;
   margin-left: auto;
   margin-right: auto;
-  height: 3px;
-  background-color: colors.$dark_green;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(255, 193, 194, 1) 0%, rgba(212, 43, 190, 1) 53%);
 }
 
 /* width */
@@ -127,7 +131,7 @@ button:focus {
 }
 
 .opaBackground {
-  background: colors.$black;
+  background: colors.$white;
   opacity: 0.25;
   position: fixed;
   z-index: 910;
@@ -146,6 +150,24 @@ button:focus {
   transition: all 100ms line;
 }
 
+.fade-enter {
+  opacity: 0;
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 300ms ease-in;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit-active {
+  opacity: 0;
+  transition: opacity 300ms ease-out;
+}
+
 @keyframes loader {
   0% {
     transform: rotate(0deg);
@@ -156,7 +178,7 @@ button:focus {
 }
 
 .headers {
-  font-weight: 500 !important;
+  font-weight: 600 !important;
   font-size: 32px;
   margin: 0;
 }
@@ -166,6 +188,9 @@ section {
   padding: 20px 60px;
   min-height: 100vh;
   padding-top: 100px;
+  padding-bottom: 100px;
+  background-color: colors.$nice_black;
+  color: colors.$white;
 }
 
 @include res.responsive(tablet) {

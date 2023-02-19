@@ -1,195 +1,213 @@
 @use "../util/colors.scss" as colors;
 @use "../util/hover.scss" as hover;
+@use "../breakpoints.scss" as res;
 .profile {
-  .profileBox {
-    background-color: colors.$milk;
-    padding: 10px;
-    border-radius: 8px;
-    width: fit-content;
-    max-width: 500px;
-
-    .logout {
-      width: 150px;
-      padding: 8px;
-      border-radius: 8px;
-      background-color: colors.$black;
-      color: colors.$white;
-      border: none;
-    }
-
-    .userButton {
-      button {
-        width: 200px;
-        padding: 8px;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-      }
-      .delete {
-        background-color: tomato;
-        color: colors.$white;
-        border: 1px solid tomato;
-
-        @include hover.hover-effect(
-          200ms,
-          (
-            border-color: colors.$white,
-          )
-        );
-      }
-
-      .update {
-        background-color: lightseagreen;
-        color: colors.$white;
-        border: 1px solid lightseagreen;
-
-        @include hover.hover-effect(
-          200ms,
-          (
-            border-color: colors.$white,
-          )
-        );
-      }
-    }
-    .profileImage,
-    .tempUserImage {
+  background-color: colors.$black;
+  .profileHeader {
+    .image {
+      border: 2px colors.$grey solid;
       cursor: pointer;
       position: relative;
-      width: 200px;
-      height: 200px;
+      width: 40px;
+      height: 40px;
       object-fit: cover;
       border-radius: 50%;
-      border: 5px colors.$white solid;
-      font-size: 60px;
+      font-size: 20px;
+      @include hover.hover-effect(
+        200ms,
+        (
+          border-color: colors.$white,
+        )
+      );
+    }
+    p {
+      text-transform: capitalize;
+      font-size: 20px;
+      font-weight: 500;
     }
 
-    .tempUserImage::after,
-    .profileImage::after {
-      content: "Upload Image";
-      font-size: 20px;
+    span {
+      text-align: right;
+      font-size: 10px;
+      small {
+        opacity: 0.8;
+      }
+    }
+    .delete {
+      width: fit-content;
+      padding: 12px;
+      height: 35px;
+      border: none;
+      gap: 6px;
+      font-size: 16px;
+      font-weight: 500;
+      border-radius: 12px;
+      background-color: #fde9e7;
+      color: #d24835;
+      span {
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      @include hover.hover-effect(
+        200ms,
+        (
+          background-color: #d24835,
+          color: #fde9e7,
+        )
+      );
+    }
+  }
+  .leftSide,
+  .rightSide {
+    width: 40%;
+    min-width: 250px;
+  }
+  .leftSide {
+    p {
+      opacity: 0.7;
+      font-size: 12px;
+      margin: 0;
+      width: 100%;
+    }
+    .image {
+      width: 200px;
+      height: 200px;
+      border-radius: 10px;
+      border: 4px colors.$grey solid;
+      font-size: 50px;
+      cursor: pointer;
+    }
+    .updateImage {
+      color: colors.$yellow;
+      font-size: 12px;
       text-align: center;
-      display: flex;
-      flex-flow: row wrap;
-      justify-content: center;
-      align-items: center;
-      border-radius: 50%;
+      width: 100%;
+      gap: 8px;
       cursor: pointer;
       width: 100%;
-      height: 100%;
-      position: absolute;
-      transform-origin: center center;
-      bottom: 0;
-      top: 0;
-      left: 0;
-      right: 0;
-      margin: auto;
-      background-color: #222222;
-      opacity: 0;
-      transition: all 150ms linear;
-      color: colors.$white;
     }
-    .tempUserImage:hover::after,
-    .profileImage:hover::after {
-      opacity: 0.8;
-    }
-    .profileDetail {
+
+    .detail {
       width: 100%;
-      p {
-        margin: 2px 0;
-      }
-      span {
-        font-size: 14px;
-      }
-      input {
-        padding: 5px;
-        border-radius: 5px;
 
+      .inputDiv {
+        padding: 12px;
+        border-radius: 10px;
+        background-color: colors.$grey;
+        max-width: 300px;
         width: 100%;
-      }
-    }
-    .userButton {
-      button:disabled {
-        background-color: grey;
-        border-color: grey;
-      }
-    }
-
-    .updateImageForm {
-      .userImageButtons {
-        button {
-          width: 100px;
-          padding: 8px;
-          border: none;
-          border-radius: 8px;
-          cursor: pointer;
-          background-color: lightseagreen;
-          color: colors.$white;
+        i {
+          font-size: 16px;
         }
         span {
-          cursor: pointer;
-          font-size: 18px;
-          border: 2px solid tomato;
-          color: tomato;
-          height: 30px;
-          width: 30px;
-          text-align: center;
-          @include hover.hover-effect(
-            200ms,
-            (
-              background-color: tomato,
-              color: colors.$white,
-            )
-          );
+          display: block;
+          font-size: 12px;
+          opacity: 0.7;
+        }
+        input:not(input[type="email"]) {
+          border: 3px colors.$nice_black solid;
+          padding: 8px;
+          border-radius: 8px;
+        }
+        input,
+        p {
+          background-color: transparent;
+          width: 100%;
+          color: colors.$white;
+          opacity: 1;
         }
       }
+    }
+    button {
+      width: 130px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 500;
+      border: none;
+      padding: 12px;
+    }
+    .save {
+      background-color: colors.$yellow;
+      color: colors.$white;
+    }
+    .update {
+      background-color: aquamarine;
+    }
+  }
+
+  .rightSide {
+    gap: 8px;
+    p {
+      opacity: 0.7;
+      font-size: 12px;
+      margin: 0;
+    }
+    .settingBox {
+      padding: 12px;
+      border-radius: 10px;
+      background-color: colors.$grey;
+      .form {
+        font-size: 14px;
+        font-weight: 600;
+      }
+    }
+    .logout {
+      padding: 8px 20px;
+      width: 200px;
+      background-color: colors.$grey;
+      color: colors.$white;
+      cursor: pointer;
+      border: none;
+      border-radius: 12px;
+      border: 1px colors.$grey solid;
+      @include hover.hover-effect(
+        200ms,
+        (
+          border-color: colors.$white,
+        )
+      );
     }
   }
 }
-
-.deleteUserBox {
+.deleteProfileBox {
   position: fixed;
   inset: 0;
   margin: auto;
-  width: 95%;
-  max-width: 500px;
-  border-radius: 10px;
+  background-color: colors.$nice_black;
+  width: fit-content;
   height: fit-content;
-  text-align: center;
-  background-color: colors.$white;
-  z-index: 999;
   padding: 20px;
-  .deleteOptionsButton {
-    button {
-      width: 200px;
-      padding: 8px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-    .yes {
-      background-color: tomato;
-      color: colors.$white;
-      border: 1px solid tomato;
+  border-radius: 12px;
+  color: colors.$white;
+  text-align: center;
+  z-index: 999;
 
-      @include hover.hover-effect(
-        200ms,
-        (
-          border-color: colors.$white,
-        )
-      );
-    }
+  button {
+    width: fit-content;
 
-    .no {
-      background-color: lightseagreen;
-      color: colors.$white;
-      border: 1px solid lightseagreen;
+    padding: 8px 30px;
+    border: none;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  .no {
+    background-color: aquamarine;
+  }
+  .yes {
+    background-color: tomato;
+    color: colors.$white;
+  }
+}
 
-      @include hover.hover-effect(
-        200ms,
-        (
-          border-color: colors.$white,
-        )
-      );
+@include res.responsive(mobile) {
+  //
+  .profile {
+    .leftSide,
+    .rightSide {
+      width: 100% !important;
     }
   }
 }

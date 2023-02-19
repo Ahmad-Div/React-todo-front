@@ -1,18 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 const ErrorPage = () => {
-  const navigate = useNavigate();
   return (
-    <section className="error404Page flex flex-column justify-center align-center w-100 gap-3">
-      <h1>404</h1>
-      <h3>Oops! Something wrong...</h3>
-      <div className="flex flex-row justify-center align-center gap-2">
-        <button onClick={() => navigate(-1)}>GO BACK</button>
-        <Link className="toHome" to="/">
-          HOME PAGE
-        </Link>
-      </div>
+    <section className="error404Page flex flex-column justify-center align-center w-100 gap-3 position-relative">
+      <h3>404 - Looks like you're lost.</h3>
+      <p>
+        Maybe this page used to exist or your just spelled something wrong.
+        <br />
+        Chances are you spelled something wrong, so can you double check the URL?
+      </p>
+
+      <Link className="toHome" to="/">
+        Return Home
+      </Link>
+      <div className="ball coloredBall big position-absolute"></div>
+      <div className="ball coloredBall small position-absolute"></div>
+      <div className="ball blackBall big position-absolute"></div>
+      <div className="ball blackBall small position-absolute"></div>
     </section>
   );
 };

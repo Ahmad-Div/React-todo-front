@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider, useLocation } from "react-router-dom";
 import Layout from "./component/layout/Layout";
 import About from "./pages/about/About";
 import Home from "./pages/home/Home";
@@ -20,22 +20,48 @@ import { loadUser } from "./actions/auth";
 import PrivateRoutes from "./routers/PrivateRoutes";
 import ErrorPage from "./error/ErrorPage";
 import Error from "./error/Error";
+import Welcome from "./pages/welcome/Welcome";
+import TodoCollectionPage from "./pages/todo/TodoCollectionPage";
+import PlanCollectionPage from "./pages/plan/PlanCollectionPage";
+import Auth from "./pages/auth/Auth";
+import EmailCode from "./pages/auth/EmailCode";
+import ForgetPassword from "./pages/auth/ForgetPassword";
+import PasswordCode from "./pages/auth/PasswordCode";
+import ChangePassword from "./pages/auth/ChangePassword";
 const routes = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route element={<PrivateRoutes />}>
-        <Route path="/" element={<Layout />}>
+        <Route path="/" errorElement={<Error />} element={<Layout />}>
           <Route index errorElement={<Error />} element={<Home />} />
           <Route path="todo" errorElement={<Error />} element={<Todo />} />
+          <Route path="todo/:id" errorElement={<Error />} element={<TodoCollectionPage />} />
+
           <Route path="plan" errorElement={<Error />} element={<Plan />} />
+          <Route path="plan/:id" errorElement={<Error />} element={<PlanCollectionPage />} />
+
           <Route path="about" errorElement={<Error />} element={<About />} />
           <Route path="profile" errorElement={<Error />} element={<Profile />} />
         </Route>
       </Route>
 
-      <Route path="/auth/login" errorElement={<Error />} element={<Login />} />
-      <Route path="/auth/register" errorElement={<Error />} element={<Register />} />
-      <Route path="*" element={<ErrorPage />} />
+      <Route path="/auth" errorElement={<Error />} element={<Layout />}>
+        <Route index errorElement={<Error />} element={<Welcome />} />
+        <Route path="login" errorElement={<Error />} element={<Login />} />
+        <Route path="authenticate" errorElement={<Error />} element={<Auth />} />
+
+        <Route path="authenticate/code" errorElement={<Error />} element={<EmailCode />} />
+
+        <Route path="password" errorElement={<Error />} element={<ForgetPassword />} />
+
+        <Route path="password/code" errorElement={<Error />} element={<PasswordCode />} />
+        <Route path="password/change" errorElement={<Error />} element={<ChangePassword />} />
+
+        <Route path="register" errorElement={<Error />} element={<Register />} />
+      </Route>
+      <Route element={<Layout />}>
+        <Route path="*" element={<ErrorPage />} />
+      </Route>
     </>
   )
 );
@@ -58,15 +84,16 @@ const ErrorBoundaryDetect = ({ children }) => {
   return children;
 };
 
-if (getCookie("user")) {
-  setAuthToken(getCookie("user"));
-}
-
 function App() {
-  const { t, i18n } = useTranslation();
   useEffect(() => {
+    if (getCookie("user")) {
+      setAuthToken(getCookie("user"));
+    }
     //check user auth
     store.dispatch(loadUser());
+  }, []);
+  const { t, i18n } = useTranslation();
+  useEffect(() => {
     if (i18n.language === "kr" || i18n.language === "ar") {
       document.body.style.direction = "rtl";
       document.body.style.fontFamily = "rabar-39";
@@ -85,6 +112,7 @@ function App() {
       clearInterval(interval);
     };
   }, []);
+
   return (
     <ErrorBoundaryDetect>
       <Provider store={store}>

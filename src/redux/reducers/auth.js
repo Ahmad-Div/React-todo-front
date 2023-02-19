@@ -12,6 +12,9 @@ import {
   USER_DELETE,
   USER_UPDATE,
   LOGOUT,
+  AUTH_EMAIL_START,
+  AUTH_EMAIL_FAIL,
+  AUTH_EMAIL_SUCCESS,
 } from "../../actions/types";
 const initialState = {
   token: getCookie("user"),
@@ -35,6 +38,7 @@ export default function (state = initialState, action) {
 
     case REGISTER_START:
     case LOGIN_START:
+    case AUTH_EMAIL_START:
       return {
         ...state,
         loading: true,
@@ -57,6 +61,7 @@ export default function (state = initialState, action) {
     case REGISTER_FAIL:
     case AUTH_ERROR:
     case LOGIN_FAIL:
+    case AUTH_EMAIL_FAIL:
       return {
         ...state,
         token: null,
@@ -65,10 +70,17 @@ export default function (state = initialState, action) {
         loading: false,
         errors: payload ? payload : null,
       };
+    case AUTH_EMAIL_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        errors: null,
+      };
     case REMOVE_ERRORS:
       return {
         ...state,
         errors: null,
+        loading: false,
       };
 
     //if the user deleted his account

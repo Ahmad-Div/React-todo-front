@@ -2,9 +2,11 @@
   "todoApp": "Todo App",
   "about": {
     "header": "About",
+    "p0": "Keep track of the daily tasks adn get that satisfaction upon completion",
     "p1": "This website designed and developed by Ahmad Software",
     "p2": "Ahmad Software is a Full-Stack  developer",
-    "p3": "for more information  and contact visit my personal website"
+    "p3": "for more information  and contact visit my personal website",
+    "visit": "Visit Website"
   },
   "nav": {
     "home": "Home",
@@ -35,17 +37,42 @@
     "planPlaceHolder": "write new plan"
   },
   "profile": {
+    "addedOn": "Added on",
+    "profileImage": "profileImage",
+    "changeImage": "Change Profile Image",
+    "setting": "SETTINGS",
+    "userStatus": "USER STATUS",
+    "userDetails": "USER DETAILS",
     "header": "Profile",
     "name": "Name:",
     "username": "Username:",
     "email": "Email:",
+    "emailAlert": "Enable email alerts",
     "deleteBox": "are you sure you want to delete your account?",
     "yes": "yes",
     "no": "no",
     "delete": "Delete",
-    "update": "Update"
+    "update": "Update",
+    "logout": "Log Out",
+    "save": "Save Changes",
+    "numOfTodo": "Number of todos completed:",
+    "numOfPlan": "Number of plans completed:"
   },
   "todos": {
     "header": "todos"
-  }
+  },
+  "filter": {
+    "all": "All Collections",
+    "allTodo": "All Todos",
+    "fav": "Favorites",
+    "done": "Done",
+    "remain": "Remain"
+  },
+  "add": "Add",
+  "cancel": "Cancel",
+  "update": "Update",
+  "done": "done",
+  "deleteAllCollection": "delete all collections",
+  "deleteAllTodos": "delete all todos",
+  "learnMore": "Learn More"
 }

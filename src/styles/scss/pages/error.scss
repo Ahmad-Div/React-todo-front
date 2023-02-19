@@ -1,107 +1,128 @@
 @use "../util/colors.scss" as colors;
 @use "../breakpoints.scss" as res;
-.error404Page {
-  min-height: 100vh;
-  background-color: colors.$white;
-  color: colors.$black;
-  text-align: center;
-  h1 {
-    color: colors.$black;
-    font-size: 160px;
-    font-weight: 700;
-    margin: 0 !important;
-  }
-  h3 {
-    margin: 0 !important;
-    font-size: 30px;
-    font-weight: 500;
-  }
-  button,
-  .toHome {
-    width: 150px;
-    height: 30px;
-    border-radius: 20px;
-    cursor: pointer;
-    border: none;
-  }
-
-  button {
-    color: colors.$black;
-    background-color: colors.$milk;
-  }
-  .toHome {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    align-items: center;
-    color: colors.$black;
-    background-color: colors.$milk;
-  }
-  .toHome:hover {
-    text-decoration: none;
-  }
-}
-
-//error pages
+.error404Page,
 .errorPage {
   min-height: 100vh;
-  background-color: colors.$white;
-  color: colors.$black;
+  background-color: colors.$nice_black;
+  color: colors.$white;
   text-align: center;
+  z-index: 10;
+  overflow: hidden;
 
-  h1 {
-    font-size: 60px;
+  h3 {
+    margin: 0 !important;
+    font-size: 36px;
+    z-index: 10;
+    font-weight: 500;
   }
-  button,
+  p,
   .toHome {
-    width: 200px;
-    height: 50px;
-    border-radius: 20px;
+    z-index: 10;
+  }
+  p {
+    font-size: 12px;
+    opacity: 0.7;
+    line-height: 24px;
+  }
+
+  .toHome,
+  button {
+    width: 150px;
+    height: 40px;
+    border-radius: 8px;
     cursor: pointer;
     border: none;
-  }
-
-  button {
-    color: colors.$black;
-    background-color: colors.$milk;
-  }
-  .toHome {
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
+    font-size: 14px;
     align-items: center;
-    color: colors.$black;
-    background-color: colors.$milk;
+    color: colors.$white;
+    background: colors.$color-gradient;
   }
-  .toHome:hover {
+
+  .toHome:hover,
+  button:hover {
     text-decoration: none;
+  }
+
+  .ball {
+    border-radius: 50%;
+    z-index: 5;
+  }
+  .big {
+    width: 200px;
+    height: 200px;
+  }
+  .small {
+    width: 75px;
+    height: 75px;
+  }
+  .coloredBall {
+    background: colors.$color-gradient;
+  }
+  .blackBall {
+    background: colors.$black-gradient;
+  }
+
+  .coloredBall.big {
+    transform: rotate(180deg);
+    left: -100px;
+    width: 150px;
+    height: 150px;
+    bottom: 180px;
+  }
+  .coloredBall.small {
+    width: 400px !important;
+    height: 400px !important;
+    right: -250px;
+    top: -250px;
+    transform: rotate(180deg);
+  }
+
+  .blackBall.big {
+    width: 400px !important;
+    height: 400px !important;
+    left: -250px;
+    bottom: -250px;
+    transform: rotate(180deg);
+  }
+  .blackBall.small {
+    right: -100px;
+    width: 150px;
+    height: 150px;
+    top: 210px;
   }
 }
 
-@include res.responsive(mobile) {
-  .error404Page {
-    h1 {
-      font-size: 120px !important;
-    }
-    h3 {
-      font-size: 20px !important;
-    }
-    button,
-    .toHome {
-      width: 120px !important;
-      height: 30px !important;
-      font-size: 12px !important;
-    }
-  }
+@include res.responsive(computer) {
+  .error404Page,
   .errorPage {
-    h1 {
-      font-size: 40px !important;
+    .coloredBall.big {
+      left: -50px;
+      width: 150px;
+      height: 150px;
     }
-    button,
-    .toHome {
-      width: 120px !important;
-      height: 30px !important;
-      font-size: 12px !important;
+    .coloredBall.small {
+      width: 400px !important;
+      height: 400px !important;
+      right: -150px;
+      top: -150px;
+      transform: rotate(180deg);
+    }
+
+    .blackBall.big {
+      width: 400px !important;
+      height: 400px !important;
+      left: -150px;
+      bottom: -150px;
+      transform: rotate(180deg);
+    }
+    .blackBall.small {
+      right: -50px;
+      width: 150px;
+      top: 210px;
+      height: 150px;
     }
   }
 }

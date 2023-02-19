@@ -24,6 +24,9 @@ import {
   DELETE_COLLECTION_START,
   DELETE_COLLECTION_SUCCESS,
   DELETE_COLLECTION_FAIL,
+  DELETE_ALL_COLLECTION_FAIL,
+  DELETE_ALL_COLLECTION_START,
+  DELETE_ALL_COLLECTION_SUCCESS,
   UPDATE_COLLECTION_START,
   UPDATE_COLLECTION_SUCCESS,
   UPDATE_COLLECTION_FAIL,
@@ -33,6 +36,9 @@ import {
   DELETE_TODO_START,
   DELETE_TODO_SUCCESS,
   DELETE_TODO_FAIL,
+  DELETE_ALL_TODO_FAIL,
+  DELETE_ALL_TODO_START,
+  DELETE_ALL_TODO_SUCCESS,
   UPDATE_TODO_START,
   UPDATE_TODO_SUCCESS,
   UPDATE_TODO_FAIL,
@@ -86,41 +92,42 @@ export const getCollections = (userId) => async (dispatch) => {
 };
 
 //post new collection
-export const postCollection = (userId, name) => async (dispatch) => {
-  dispatch({
-    type: POST_COLLECTION_START,
-  });
-  try {
-    const res = await axios.post(`${POST_COLLECTION}/${userId}`, { name: name }, authConfig);
-
+export const postCollection =
+  (userId, { collection, icon }) =>
+  async (dispatch) => {
     dispatch({
-      type: POST_COLLECTION_SUCCESS,
-      payload: res.data,
+      type: POST_COLLECTION_START,
     });
-  } catch (error) {
-    dispatch({
-      type: POST_COLLECTION_FAIL,
+    try {
+      const res = await axios.post(`${POST_COLLECTION}/${userId}`, { name: collection, icon: icon }, authConfig);
 
-      payload: error.response.data.error,
-    });
-
-    setTimeout(() => {
       dispatch({
-        type: REMOVE_TODO_ERROR,
+        type: POST_COLLECTION_SUCCESS,
+        payload: res.data,
       });
-    }, 3000);
-  }
-};
+    } catch (error) {
+      dispatch({
+        type: POST_COLLECTION_FAIL,
+
+        payload: error.response.data.error,
+      });
+
+      setTimeout(() => {
+        dispatch({
+          type: REMOVE_TODO_ERROR,
+        });
+      }, 3000);
+    }
+  };
 
 //put  collection
-export const updateCollection = (userId, collectionId, name) => async (dispatch) => {
+export const updateCollection = (userId, collectionId, name, icon) => async (dispatch) => {
   dispatch({
     type: UPDATE_COLLECTION_START,
   });
   try {
-    const res = await axios.put(`${UPDATE_COLLECTION}/${userId}/${collectionId}`, { name: name }, authConfig);
+    const res = await axios.put(`${UPDATE_COLLECTION}/${userId}/${collectionId}`, { name: name, icon: icon }, authConfig);
 
-    console.log(res.data);
     dispatch({
       type: UPDATE_COLLECTION_SUCCESS,
       payload: res.data,
@@ -139,13 +146,65 @@ export const updateCollection = (userId, collectionId, name) => async (dispatch)
   }
 };
 
+//put  collection favorite
+export const favoriteCollection = (userId, collectionId) => async (dispatch) => {
+  dispatch({
+    type: UPDATE_COLLECTION_START,
+  });
+  try {
+    const res = await axios.put(`${UPDATE_COLLECTION}/favorite/${userId}/${collectionId}`, authConfig);
+
+    dispatch({
+      type: UPDATE_COLLECTION_SUCCESS,
+      payload: res.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: UPDATE_COLLECTION_FAIL,
+      payload: error.response.data.error,
+    });
+
+    setTimeout(() => {
+      dispatch({
+        type: REMOVE_TODO_ERROR,
+      });
+    }, 3000);
+  }
+};
+
+//delete all  collection
+export const deleteAllCollection = (userId) => async (dispatch) => {
+  dispatch({
+    type: DELETE_ALL_COLLECTION_START,
+  });
+  try {
+    const res = await axios.delete(`${DELETE_COLLECTION}/all/${userId}`, authConfig);
+
+    dispatch({
+      type: DELETE_ALL_COLLECTION_SUCCESS,
+      payload: res.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: DELETE_ALL_COLLECTION_FAIL,
+      payload: error.response.data.error,
+    });
+
+    setTimeout(() => {
+      dispatch({
+        type: REMOVE_TODO_ERROR,
+      });
+    }, 3000);
+  }
+};
+
 //delete  collection
 export const deleteCollection = (userId, collectionId) => async (dispatch) => {
   dispatch({
     type: DELETE_COLLECTION_START,
   });
   try {
-    const res = await axios.delete(`${DELETE_COLLECTION}/${userId}/${collectionId}`, authConfig);
+    const res = await axios.delete(`${DELETE_COLLECTION}/one/${userId}/${collectionId}`, authConfig);
 
     dispatch({
       type: DELETE_COLLECTION_SUCCESS,
@@ -166,13 +225,13 @@ export const deleteCollection = (userId, collectionId) => async (dispatch) => {
 };
 
 //post new todo
-export const postTodo = (userId, collection_id, todoItem) => async (dispatch) => {
+export const postTodo = (userId, collection_id, todoItem, icon) => async (dispatch) => {
   dispatch({
     type: POST_TODO_START,
   });
 
   try {
-    const res = await axios.post(`${POST_TODO}/${userId}/${collection_id}`, { todoItem: todoItem }, authConfig);
+    const res = await axios.post(`${POST_TODO}/${userId}/${collection_id}`, { todoItem: todoItem, icon: icon }, authConfig);
 
     dispatch({
       type: POST_TODO_SUCCESS,
@@ -195,13 +254,17 @@ export const postTodo = (userId, collection_id, todoItem) => async (dispatch) =>
 
 //put  todo
 export const updateTodo =
-  (userId, collectionId, { todoItem, oldTodo }) =>
+  (userId, collectionId, { todoItem, oldTodo, icon }) =>
   async (dispatch) => {
     dispatch({
       type: UPDATE_TODO_START,
     });
     try {
-      const res = await axios.put(`${UPDATE_TODO}/${userId}/${collectionId}`, { todoItem: todoItem, oldTodo: oldTodo }, authConfig);
+      const res = await axios.put(
+        `${UPDATE_TODO}/${userId}/${collectionId}`,
+        { todoItem: todoItem, oldTodo: oldTodo, icon: icon },
+        authConfig
+      );
 
       dispatch({
         type: UPDATE_TODO_SUCCESS,
@@ -247,13 +310,39 @@ export const doneTodo = (userId, collectionId, todoId) => async (dispatch) => {
   }
 };
 
+//delete  all todo
+export const deleteAllTodo = (userId, collectionId) => async (dispatch) => {
+  dispatch({
+    type: DELETE_ALL_TODO_START,
+  });
+  try {
+    const res = await axios.delete(`${DELETE_TODO}/all/${userId}/${collectionId}`, authConfig);
+
+    dispatch({
+      type: DELETE_ALL_TODO_SUCCESS,
+      payload: res.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: DELETE_ALL_TODO_FAIL,
+      payload: error.response.data.error,
+    });
+
+    setTimeout(() => {
+      dispatch({
+        type: REMOVE_TODO_ERROR,
+      });
+    }, 3000);
+  }
+};
+
 //delete  todo
 export const deleteTodo = (userId, collectionId, todoId) => async (dispatch) => {
   dispatch({
     type: DELETE_TODO_START,
   });
   try {
-    const res = await axios.delete(`${DELETE_TODO}/${userId}/${collectionId}/${todoId}`, authConfig);
+    const res = await axios.delete(`${DELETE_TODO}/one/${userId}/${collectionId}/${todoId}`, authConfig);
 
     dispatch({
       type: DELETE_TODO_SUCCESS,

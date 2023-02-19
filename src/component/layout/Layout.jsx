@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
 import Footer from "./Footer";
 import Header from "./Header";
+import PropTypes from "prop-types";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
-const Layout = () => {
+import { connect } from "react-redux";
+const Layout = ({ auth }) => {
   const location = useLocation();
   const navigate = useNavigate();
   useEffect(() => {
@@ -11,8 +13,10 @@ const Layout = () => {
     }
     window.scrollTo(0, 0);
   }, [location]);
+
   return (
     <div className="layout">
+      {" "}
       <Header />
       <Outlet />
       <Footer />
@@ -20,4 +24,12 @@ const Layout = () => {
   );
 };
 
-export default Layout;
+Layout.propTypes = {
+  auth: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps)(Layout);

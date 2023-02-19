@@ -1,13 +1,44 @@
 @use "../util/colors.scss" as colors;
 @use "../util/hover.scss" as hover;
+@use "../animations/animation.scss" as animation;
+@use "../breakpoints.scss" as res;
 .login {
+  overflow: hidden;
   min-height: 100vh;
-  background-color: colors.$milk;
+  background-color: colors.$black;
+  color: colors.$white;
+  text-align: center;
+  .headers {
+    margin-bottom: 20px;
+  }
+  .registerWithGoogle,
+  .registerWithFacebook {
+    background-color: colors.$black;
+    z-index: 10;
+    width: 95%;
+    max-width: 300px;
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 1rem;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 12px;
+    border-radius: 12px;
+    border: 3px colors.$grey solid;
+    cursor: pointer;
+    @include hover.hover-effect(
+      200ms,
+      (
+        background-color: colors.$grey,
+      )
+    );
+  }
+
+  .or {
+    opacity: 0.8;
+  }
   .loginBox {
-    background-color: colors.$white;
-    border-radius: 8px;
-    padding: 16px;
-    border: 1px colors.$black solid;
     width: 95%;
     max-width: 300px;
     .inputDivs {
@@ -15,35 +46,54 @@
     }
     input,
     .input {
-      padding: 5px;
-      border-radius: 4px;
-      border: 1px colors.$black solid;
+      padding: 8px 12px;
+      border-radius: 12px;
+      color: colors.$white;
+      background-color: transparent;
+      border: 2px colors.$grey solid;
       width: 100%;
     }
+    input::placeholder,
+    .input::placeholder {
+      color: colors.$white;
+    }
     .input {
+      position: relative;
       padding: 0;
-      padding-right: 5px;
     }
     .input input {
+      width: 100%;
       border: 0;
     }
+    .input i {
+      position: absolute;
+      font-size: 12px;
+      right: 6px;
+      color: colors.$white;
+    }
     button {
-      background-color: colors.$white;
-      color: colors.$grey;
-      border: 2px colors.$grey solid;
-      padding: 8px 16px;
-      border-radius: 8px;
+      width: 100%;
+      background: colors.$color-gradient;
+      color: colors.$black;
+      border: none;
+      color: colors.$white;
+      padding: 12px 16px;
+      border-radius: 12px;
       font-size: 16px;
       @include hover.hover-effect(
         200ms,
         (
-          background-color: colors.$grey,
+          background-color: colors.$purple,
           color: colors.$white,
         )
       );
     }
+    .linkDiv {
+      font-size: 12px;
+    }
     .link {
-      font-size: 10px;
+      font-weight: 600;
+      font-size: 14px;
     }
     .inputDiv {
       gap: 5px;
@@ -51,6 +101,52 @@
         font-size: 10px;
         color: tomato;
       }
+    }
+  }
+
+  .error {
+    margin-left: 10px;
+  }
+
+  .ball {
+    border-radius: 50%;
+    z-index: 5;
+  }
+  .big {
+    width: 200px;
+    height: 200px;
+  }
+  .small {
+    width: 75px;
+    height: 75px;
+  }
+  .coloredBall {
+    background: colors.$color-gradient;
+  }
+  .blackBall {
+    background: colors.$black-gradient;
+  }
+
+  .coloredBall.big {
+    top: 10px;
+    left: -100px;
+  }
+
+  .blackBall.small {
+    right: -30px;
+    top: 10px;
+  }
+}
+
+@include res.responsive(computer) {
+  .login {
+    .coloredBall.big {
+      top: -10px;
+      left: 100px;
+    }
+    .blackBall.small {
+      right: 200px;
+      top: 160px;
     }
   }
 }

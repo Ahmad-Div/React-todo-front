@@ -10,16 +10,14 @@ const Home = ({ auth }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    store.dispatch(loadUser());
-  }, []);
-  if (!auth.isAuthenticated) {
-    return navigate("/auth/login");
-  }
+    if (!auth.isAuthenticated) {
+      return navigate("/auth");
+    }
+  }, [auth.isAuthenticated]);
 
   return (
     <section className="home flex flex-column justify-left align-center w-100 gap-3">
       <div className="content w-100">
-        <h1 className="headers">{t("nav.home")}</h1>
         <p className="welcomeHome headers">
           {t("home.welcome")} <span className="username">{auth.user.username}</span>
         </p>
@@ -28,10 +26,12 @@ const Home = ({ auth }) => {
       <div className="infoCards flex flex-row justify-center align-center gap-2 w-100 flex-wrap">
         <Link to="/todo" className="infoCard flex flex-column justify-center align-center gap-1">
           <h3>{t("home.todo")}</h3>
+          <i className="fa-solid fa-clipboard-check"></i>
           <p>{t("home.todoCard")}</p>
         </Link>
         <Link to="/plan" className="infoCard flex flex-column justify-center align-center gap-1">
           <h3>{t("home.plan")}</h3>
+          <i className="fa-regular fa-map"></i>
           <p>{t("home.planCard")}</p>
         </Link>
       </div>

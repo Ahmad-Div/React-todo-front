@@ -1,11 +1,111 @@
 //those things not when touch
 @use "./util/colors.scss" as colors;
 @media (pointer: coarse) {
+  .layout {
+    .header {
+      .profileImage:hover,
+      .tempUserImage:hover {
+        border-color: colors.$grey;
+      }
+      .languageDiv {
+        .languageDivBox:hover {
+          color: colors.$white;
+          background-color: transparent;
+        }
+        .languagesList {
+          background-color: colors.$white;
+          span {
+            background-color: colors.$nice_black;
+            color: colors.$white;
+          }
+          span:hover {
+            background-color: colors.$nice_black;
+            color: colors.$white;
+          }
+        }
+      }
+
+      .loginButton:hover,
+      .loginButton {
+        border-color: colors.$grey;
+      }
+      .registerButton:hover {
+        background-color: transparent;
+      }
+    }
+  }
+  .login,
+  .register {
+    .registerWithFacebook:hover,
+    .registerWithGoogle:hover {
+      background-color: colors.$black;
+    }
+    .loginBox,
+    .registerBox {
+      button:hover {
+        background: colors.$color-gradient;
+        color: colors.$white;
+      }
+    }
+  }
+  .todo,
+  .singleCollection,
+  .plan {
+    .todoHeader,
+    .planHeader {
+      i:hover {
+        border-color: colors.$grey;
+      }
+    }
+    .favAndAllCollectionButton {
+      .fav:hover,
+      .all:hover,
+      .done:hover,
+      .remain:hover {
+        background-color: transparent;
+      }
+    }
+    .collectionItem {
+      .updateCollectionForm {
+        .updateCollection:hover {
+          background-color: transparent;
+        }
+      }
+    }
+    .todoCards,
+    .planCards {
+      .todoItem,
+      .planItem,
+      .collectionItem {
+        .updateCollectionForm {
+          .updateCollection:hover {
+            background-color: transparent;
+          }
+        }
+      }
+    }
+    .openCollectionForm:hover {
+      background-color: transparent;
+    }
+    .collectionForm {
+      button:hover {
+        background-color: transparent;
+      }
+    }
+  }
   .profile {
-    .profileBox {
-      .tempUserImage:hover::after,
-      .profileImage:hover::after {
-        opacity: 0;
+    .profileHeader {
+      .image:hover {
+        background-color: none;
+      }
+      .delete:hover {
+        background-color: #fde9e7;
+        color: #d24835;
+      }
+    }
+    .rightSide {
+      .logout:hover {
+        background-color: colors.$grey;
       }
     }
   }

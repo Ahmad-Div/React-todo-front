@@ -4,63 +4,68 @@
 @use "../breakpoints.scss" as res;
 .layout {
   .header {
-    background-color: colors.$milk;
-    border-bottom: 2px colors.$grey solid;
+    background-color: colors.$nice_black;
+    color: colors.$white;
     position: fixed;
     height: 80px;
     padding: 15px 40px;
     z-index: 900;
     .logo {
-      font-size: 26px;
+      width: 70px;
+      height: 70px;
+      object-fit: cover;
+      cursor: pointer;
     }
     .navigation {
       .navList {
         .navItem {
           list-style: none;
           cursor: pointer;
-          font-weight: 500;
-          @include hover.hover-effect(
-            200ms,
-            (
-              color: colors.$dark_green,
-            )
-          );
+          font-weight: 400;
+          transition: all 200ms linear;
+        }
+        .navItem:hover {
+          background: linear-gradient(90deg, rgba(255, 193, 194, 1) 0%, rgba(212, 43, 190, 1) 53%);
+          background-clip: text;
+          -webkit-background-clip: text;
+          color: transparent;
         }
       }
     }
-    .profile {
-      border-radius: 8px;
-      background-color: colors.$white;
+
+    .profileImage {
+      width: 2.5rem;
+      height: 2.5rem;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 2px colors.$grey solid;
+      cursor: pointer;
+    }
+    .tempUserImage {
+      width: 2.5rem;
+      height: 2.5rem;
+      object-fit: cover;
+      border-radius: 50%;
+      text-align: center;
+      border: 2px colors.$grey solid;
+      background-color: colors.$black;
+      cursor: pointer;
+    }
+    .profileImage,
+    .tempUserImage {
       @include hover.hover-effect(
         200ms,
         (
-          background-color: colors.$milk,
+          border-color: colors.$white,
         )
       );
-      border: 3px colors.$white solid;
-      padding: 8px 12px;
-      cursor: pointer;
-      .profileImage {
-        width: 2rem;
-        height: 2rem;
-        object-fit: cover;
-        border-radius: 50%;
-      }
-      .tempUserImage {
-        width: 2rem;
-        height: 2rem;
-        object-fit: cover;
-        border-radius: 50%;
-        text-align: center;
-        background-color: colors.$milk;
-      }
     }
 
     .languageDiv {
-      color: colors.$black;
+      color: colors.$white;
       width: 68px;
       height: 30px;
-      border: 1.5px solid colors.$black;
+      border: 1.5px solid colors.$white;
       gap: 10px;
       border-radius: 10px;
 
@@ -75,15 +80,15 @@
         @include hover.hover-effect(
           200ms,
           (
-            color: colors.$white,
-            background-color: colors.$black,
+            color: colors.$nice_black,
+            background-color: colors.$white,
           )
         );
       }
 
       .languagesList {
         top: 90%;
-        background-color: colors.$milk;
+        background-color: colors.$nice_black;
         color: colors.$black;
         border-radius: 10px;
 
@@ -97,8 +102,8 @@
           @include hover.hover-effect(
             200ms,
             (
-              background-color: colors.$black,
-              color: colors.$milk,
+              background-color: colors.$nice_black,
+              color: colors.$white,
             )
           );
         }
@@ -117,7 +122,7 @@
       top: 5rem;
       right: 0;
       left: 0;
-      background-color: colors.$milk;
+      background-color: colors.$nice_black;
 
       ul {
         padding-right: 0 !important;
@@ -146,10 +151,42 @@
       display: none;
       cursor: pointer;
     }
+
+    //welcome header
+
+    .loginButton,
+    .registerButton {
+      text-align: center;
+      width: 100px;
+
+      padding: 8px;
+      border-radius: 8px;
+    }
+    .loginButton {
+      background-color: transparent;
+      border: 2px colors.$nice_black solid;
+
+      @include hover.hover-effect(
+        200ms,
+        (
+          border: 2px colors.$grey solid,
+        )
+      );
+    }
+    .registerButton {
+      border: 2px colors.$grey solid;
+      @include hover.hover-effect(
+        200ms,
+        (
+          background-color: colors.$grey,
+        )
+      );
+    }
   }
 
   .footer {
-    background-color: colors.$milk;
+    background-color: colors.$nice_black;
+    color: colors.$white;
     padding: 20px;
     min-height: 70px;
     padding: 20px 10px;

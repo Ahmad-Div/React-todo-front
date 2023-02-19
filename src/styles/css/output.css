@@ -1,54 +1,61 @@
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400;500;600;700&family=Lora:ital,wght@1,400;1,500;1,600;1,700&family=Open+Sans:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700;900&family=Varela&family=Varela+Round&display=swap");
 .layout .header {
-  background-color: #f6f6f6;
-  border-bottom: 2px #aaaaaa solid;
+  background-color: #1d1e26;
+  color: #fff;
   position: fixed;
   height: 80px;
   padding: 15px 40px;
   z-index: 900;
 }
 .layout .header .logo {
-  font-size: 26px;
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  cursor: pointer;
 }
 .layout .header .navigation .navList .navItem {
   list-style: none;
   cursor: pointer;
-  font-weight: 500;
-  transition: all 200ms;
+  font-weight: 400;
+  transition: all 200ms linear;
 }
 .layout .header .navigation .navList .navItem:hover {
-  color: #789d5e;
+  background: linear-gradient(90deg, rgb(255, 193, 194) 0%, rgb(212, 43, 190) 53%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
 }
-.layout .header .profile {
-  border-radius: 8px;
-  background-color: #fff;
-  transition: all 200ms;
-  border: 3px #fff solid;
-  padding: 8px 12px;
-  cursor: pointer;
-}
-.layout .header .profile:hover {
-  background-color: #f6f6f6;
-}
-.layout .header .profile .profileImage {
-  width: 2rem;
-  height: 2rem;
+.layout .header .profileImage {
+  width: 2.5rem;
+  height: 2.5rem;
   object-fit: cover;
   border-radius: 50%;
+  border: 2px #30303d solid;
+  cursor: pointer;
 }
-.layout .header .profile .tempUserImage {
-  width: 2rem;
-  height: 2rem;
+.layout .header .tempUserImage {
+  width: 2.5rem;
+  height: 2.5rem;
   object-fit: cover;
   border-radius: 50%;
   text-align: center;
-  background-color: #f6f6f6;
+  border: 2px #30303d solid;
+  background-color: #181820;
+  cursor: pointer;
+}
+.layout .header .profileImage,
+.layout .header .tempUserImage {
+  transition: all 200ms;
+}
+.layout .header .profileImage:hover,
+.layout .header .tempUserImage:hover {
+  border-color: #fff;
 }
 .layout .header .languageDiv {
-  color: #1a1919;
+  color: #fff;
   width: 68px;
   height: 30px;
-  border: 1.5px solid #1a1919;
+  border: 1.5px solid #fff;
   gap: 10px;
   border-radius: 10px;
   cursor: pointer;
@@ -61,13 +68,13 @@
   transition: all 200ms;
 }
 .layout .header .languageDiv .languageDivBox:hover {
-  color: #fff;
-  background-color: #1a1919;
+  color: #1d1e26;
+  background-color: #fff;
 }
 .layout .header .languageDiv .languagesList {
   top: 90%;
-  background-color: #f6f6f6;
-  color: #1a1919;
+  background-color: #1d1e26;
+  color: #181820;
   border-radius: 10px;
   width: 50px;
   padding: 5px;
@@ -80,8 +87,8 @@
   transition: all 200ms;
 }
 .layout .header .languageDiv .languagesList span:hover {
-  background-color: #1a1919;
-  color: #f6f6f6;
+  background-color: #1d1e26;
+  color: #fff;
 }
 .layout .header .mobileNav {
   display: flex;
@@ -95,7 +102,7 @@
   top: 5rem;
   right: 0;
   left: 0;
-  background-color: #f6f6f6;
+  background-color: #1d1e26;
 }
 .layout .header .mobileNav ul {
   padding-right: 0 !important;
@@ -144,8 +151,31 @@
   display: none;
   cursor: pointer;
 }
+.layout .header .loginButton,
+.layout .header .registerButton {
+  text-align: center;
+  width: 100px;
+  padding: 8px;
+  border-radius: 8px;
+}
+.layout .header .loginButton {
+  background-color: transparent;
+  border: 2px #1d1e26 solid;
+  transition: all 200ms;
+}
+.layout .header .loginButton:hover {
+  border: 2px #30303d solid;
+}
+.layout .header .registerButton {
+  border: 2px #30303d solid;
+  transition: all 200ms;
+}
+.layout .header .registerButton:hover {
+  background-color: #30303d;
+}
 .layout .footer {
-  background-color: #f6f6f6;
+  background-color: #1d1e26;
+  color: #fff;
   padding: 20px;
   min-height: 70px;
   padding: 20px 10px;
@@ -333,7 +363,10 @@ Link {
 }
 
 .active {
-  color: #789d5e;
+  background: linear-gradient(90deg, rgb(255, 193, 194) 0%, rgb(212, 43, 190) 53%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
   transition: all 200ms ease;
   position: relative;
 }
@@ -348,8 +381,8 @@ Link {
   left: 0;
   margin-left: auto;
   margin-right: auto;
-  height: 3px;
-  background-color: #789d5e;
+  height: 2px;
+  background: linear-gradient(90deg, rgb(255, 193, 194) 0%, rgb(212, 43, 190) 53%);
 }
 
 /* width */
@@ -407,7 +440,7 @@ button:focus {
 }
 
 .opaBackground {
-  background: #1a1919;
+  background: #fff;
   opacity: 0.25;
   position: fixed;
   z-index: 910;
@@ -426,6 +459,24 @@ button:focus {
   transition: all 100ms line;
 }
 
+.fade-enter {
+  opacity: 0;
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 300ms ease-in;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit-active {
+  opacity: 0;
+  transition: opacity 300ms ease-out;
+}
+
 @keyframes loader {
   0% {
     transform: rotate(0deg);
@@ -435,7 +486,7 @@ button:focus {
   }
 }
 .headers {
-  font-weight: 500 !important;
+  font-weight: 600 !important;
   font-size: 32px;
   margin: 0;
 }
@@ -444,6 +495,9 @@ section {
   padding: 20px 60px;
   min-height: 100vh;
   padding-top: 100px;
+  padding-bottom: 100px;
+  background-color: #1d1e26;
+  color: #fff;
 }
 
 @media (min-width: 767px) and (max-width: 1023px) {
@@ -1589,14 +1643,41 @@ small.error {
 }
 
 .login {
+  overflow: hidden;
   min-height: 100vh;
-  background-color: #f6f6f6;
+  background-color: #181820;
+  color: #fff;
+  text-align: center;
+}
+.login .headers {
+  margin-bottom: 20px;
+}
+.login .registerWithGoogle,
+.login .registerWithFacebook {
+  background-color: #181820;
+  z-index: 10;
+  width: 95%;
+  max-width: 300px;
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 1rem;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 12px;
+  border: 3px #30303d solid;
+  cursor: pointer;
+  transition: all 200ms;
+}
+.login .registerWithGoogle:hover,
+.login .registerWithFacebook:hover {
+  background-color: #30303d;
+}
+.login .or {
+  opacity: 0.8;
 }
 .login .loginBox {
-  background-color: #fff;
-  border-radius: 8px;
-  padding: 16px;
-  border: 1px #1a1919 solid;
   width: 95%;
   max-width: 300px;
 }
@@ -1605,33 +1686,52 @@ small.error {
 }
 .login .loginBox input,
 .login .loginBox .input {
-  padding: 5px;
-  border-radius: 4px;
-  border: 1px #1a1919 solid;
+  padding: 8px 12px;
+  border-radius: 12px;
+  color: #fff;
+  background-color: transparent;
+  border: 2px #30303d solid;
   width: 100%;
 }
+.login .loginBox input::placeholder,
+.login .loginBox .input::placeholder {
+  color: #fff;
+}
 .login .loginBox .input {
+  position: relative;
   padding: 0;
-  padding-right: 5px;
 }
 .login .loginBox .input input {
+  width: 100%;
   border: 0;
 }
+.login .loginBox .input i {
+  position: absolute;
+  font-size: 12px;
+  right: 6px;
+  color: #fff;
+}
 .login .loginBox button {
-  background-color: #fff;
-  color: #aaaaaa;
-  border: 2px #aaaaaa solid;
-  padding: 8px 16px;
-  border-radius: 8px;
+  width: 100%;
+  background: linear-gradient(90deg, rgb(255, 193, 194) 0%, rgb(212, 43, 190) 53%);
+  color: #181820;
+  border: none;
+  color: #fff;
+  padding: 12px 16px;
+  border-radius: 12px;
   font-size: 16px;
   transition: all 200ms;
 }
 .login .loginBox button:hover {
-  background-color: #aaaaaa;
+  background-color: #707aff;
   color: #fff;
 }
+.login .loginBox .linkDiv {
+  font-size: 12px;
+}
 .login .loginBox .link {
-  font-size: 10px;
+  font-weight: 600;
+  font-size: 14px;
 }
 .login .loginBox .inputDiv {
   gap: 5px;
@@ -1640,52 +1740,133 @@ small.error {
   font-size: 10px;
   color: tomato;
 }
+.login .error {
+  margin-left: 10px;
+}
+.login .ball {
+  border-radius: 50%;
+  z-index: 5;
+}
+.login .big {
+  width: 200px;
+  height: 200px;
+}
+.login .small {
+  width: 75px;
+  height: 75px;
+}
+.login .coloredBall {
+  background: linear-gradient(90deg, rgb(255, 193, 194) 0%, rgb(212, 43, 190) 53%);
+}
+.login .blackBall {
+  background: linear-gradient(90deg, rgb(47, 47, 62) 0%, rgb(17, 17, 22) 53%);
+}
+.login .coloredBall.big {
+  top: 10px;
+  left: -100px;
+}
+.login .blackBall.small {
+  right: -30px;
+  top: 10px;
+}
 
+@media (min-width: 1024px) {
+  .login .coloredBall.big {
+    top: -10px;
+    left: 100px;
+  }
+  .login .blackBall.small {
+    right: 200px;
+    top: 160px;
+  }
+}
 .register {
+  overflow: hidden;
   min-height: 100vh;
-  background-color: #f6f6f6;
+  background-color: #181820;
+  color: #fff;
+  text-align: center;
+}
+.register .headers {
+  margin-bottom: 20px;
+}
+.register .registerWithGoogle,
+.register .registerWithFacebook {
+  background-color: #181820;
+  z-index: 10;
+  width: 95%;
+  max-width: 300px;
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 1rem;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 12px;
+  border: 3px #30303d solid;
+  cursor: pointer;
+  transition: all 200ms;
+}
+.register .registerWithGoogle:hover,
+.register .registerWithFacebook:hover {
+  background-color: #30303d;
+}
+.register .or {
+  opacity: 0.8;
 }
 .register .registerBox {
-  background-color: #fff;
-  border-radius: 8px;
-  padding: 16px;
-  border: 1px #1a1919 solid;
   width: 95%;
   max-width: 300px;
 }
-.register .registerBox .inputDivs {
-  gap: 12px;
-}
 .register .registerBox input,
 .register .registerBox .input {
-  padding: 5px;
-  border-radius: 4px;
-  border: 1px #1a1919 solid;
+  padding: 8px 12px;
+  border-radius: 12px;
+  color: #fff;
+  background-color: transparent;
+  border: 2px #30303d solid;
   width: 100%;
 }
+.register .registerBox input::placeholder,
+.register .registerBox .input::placeholder {
+  color: #fff;
+}
 .register .registerBox .input {
+  position: relative;
   padding: 0;
-  padding-inline: 5px;
 }
 .register .registerBox .input input {
+  width: 100%;
   border: 0;
 }
+.register .registerBox .input i {
+  position: absolute;
+  font-size: 12px;
+  right: 6px;
+  color: #fff;
+}
 .register .registerBox button {
-  background-color: #fff;
-  color: #aaaaaa;
-  border: 2px #aaaaaa solid;
-  padding: 8px 16px;
-  border-radius: 8px;
+  width: 100%;
+  background: linear-gradient(90deg, rgb(255, 193, 194) 0%, rgb(212, 43, 190) 53%);
+  color: #181820;
+  border: none;
+  color: #fff;
+  padding: 12px 16px;
+  border-radius: 12px;
   font-size: 16px;
   transition: all 200ms;
 }
 .register .registerBox button:hover {
-  background-color: #aaaaaa;
+  background-color: #707aff;
   color: #fff;
 }
+.register .registerBox .linkDiv {
+  font-size: 12px;
+}
 .register .registerBox .link {
-  font-size: 10px;
-  font-weight: 400;
+  font-weight: 600;
+  font-size: 14px;
 }
 .register .registerBox .inputDiv {
   gap: 5px;
@@ -1694,7 +1875,46 @@ small.error {
   font-size: 10px;
   color: tomato;
 }
+.register .error {
+  margin-left: 10px;
+}
+.register .ball {
+  border-radius: 50%;
+  z-index: 5;
+}
+.register .big {
+  width: 200px;
+  height: 200px;
+}
+.register .small {
+  width: 75px;
+  height: 75px;
+}
+.register .coloredBall {
+  background: linear-gradient(90deg, rgb(255, 193, 194) 0%, rgb(212, 43, 190) 53%);
+}
+.register .blackBall {
+  background: linear-gradient(90deg, rgb(47, 47, 62) 0%, rgb(17, 17, 22) 53%);
+}
+.register .coloredBall.big {
+  top: 10px;
+  left: -100px;
+}
+.register .blackBall.small {
+  right: -30px;
+  top: 10px;
+}
 
+@media (min-width: 1024px) {
+  .register .coloredBall.big {
+    top: -10px;
+    left: 100px;
+  }
+  .register .blackBall.small {
+    right: 200px;
+    top: 160px;
+  }
+}
 .home {
   padding-top: 150px;
 }
@@ -1707,644 +1927,1291 @@ small.error {
   text-align: center;
 }
 .home .username {
-  color: #789d5e;
+  background: linear-gradient(90deg, rgb(255, 193, 194) 0%, rgb(212, 43, 190) 53%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
   font-weight: 600;
 }
 .home .infoCards .infoCard {
-  box-shadow: 11px 10px 101px -78px rgba(120, 157, 94, 0.83);
-  -webkit-box-shadow: 11px 10px 101px -78px rgba(120, 157, 94, 0.83);
-  -moz-box-shadow: 11px 10px 101px -78px rgba(120, 157, 94, 0.83);
+  box-shadow: 2px 10px 58px -28px rgba(212, 43, 190, 0.56);
+  -webkit-box-shadow: 2px 10px 58px -28px rgba(212, 43, 190, 0.56);
+  -moz-box-shadow: 2px 10px 58px -28px rgba(212, 43, 190, 0.56);
   text-align: center;
-  background-color: #f6f6f6;
-  border: 1px #1a1919 solid;
-  padding: 10px;
+  background-color: #1d1e26;
+  padding: 20px;
+  height: 200px;
   border-radius: 8px;
   cursor: pointer;
   max-width: 400px;
+}
+.home .infoCards .infoCard h3,
+.home .infoCards .infoCard p {
+  margin: 0;
 }
 
-.todo .todoAndCollection {
-  flex-direction: column;
+.todo,
+.singleCollection {
+  overflow: hidden;
+  padding-top: 150px;
+  background-color: #181820 !important;
+  padding-inline: 40px;
+  color: #fff;
 }
-.todo .activeCollection {
-  border-right: 1px #789d5e solid;
-  border-left: 1px #789d5e solid;
-  color: #789d5e;
-  background-color: #fff;
+.todo .todoHeader h1,
+.singleCollection .todoHeader h1 {
+  font-weight: 400 !important;
+  font-size: 40px;
+  margin: 0;
 }
-.todo .doneTodo {
+.todo .todoHeader h1 small,
+.singleCollection .todoHeader h1 small {
+  font-size: 12px;
+  opacity: 0.8;
+  display: block;
+}
+.todo .todoHeader i,
+.singleCollection .todoHeader i {
+  font-size: 18px;
+  opacity: 0.8;
+  padding: 10px;
+  background-color: #30303d;
+  border-radius: 8px;
+  border: 2px #30303d solid;
+  transition: all 200ms;
+}
+.todo .todoHeader i:hover,
+.singleCollection .todoHeader i:hover {
+  border-color: #fff;
+}
+.todo .types span,
+.singleCollection .types span {
+  cursor: pointer;
+  font-size: 14px;
+  padding: 6px;
+  border: 2px #30303d solid;
+  border-radius: 8px;
+  transition: all 200ms;
+}
+.todo .types span:hover,
+.singleCollection .types span:hover {
+  background-color: #30303d;
+}
+.todo .types .activeType,
+.singleCollection .types .activeType {
+  background-color: #30303d;
+}
+.todo .deleteAllBox,
+.singleCollection .deleteAllBox {
+  position: absolute;
+  bottom: -2.4rem;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #30303d;
+  border: 1px #fff solid;
+}
+.todo .fa-square-caret-left,
+.todo .fa-square-caret-right,
+.singleCollection .fa-square-caret-left,
+.singleCollection .fa-square-caret-right {
+  font-size: 30px;
+  margin: 0;
+}
+.todo .favAndAllCollectionButton .fav,
+.todo .favAndAllCollectionButton .all,
+.todo .favAndAllCollectionButton .done,
+.todo .favAndAllCollectionButton .remain,
+.singleCollection .favAndAllCollectionButton .fav,
+.singleCollection .favAndAllCollectionButton .all,
+.singleCollection .favAndAllCollectionButton .done,
+.singleCollection .favAndAllCollectionButton .remain {
+  border: none;
+  width: 120px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 12px;
+  padding: 12px;
+  border-radius: 12px;
+  color: #fff;
+  border: 2px #30303d solid;
+  background-color: transparent;
+  transition: all 200ms;
+}
+.todo .favAndAllCollectionButton .fav:hover,
+.todo .favAndAllCollectionButton .all:hover,
+.todo .favAndAllCollectionButton .done:hover,
+.todo .favAndAllCollectionButton .remain:hover,
+.singleCollection .favAndAllCollectionButton .fav:hover,
+.singleCollection .favAndAllCollectionButton .all:hover,
+.singleCollection .favAndAllCollectionButton .done:hover,
+.singleCollection .favAndAllCollectionButton .remain:hover {
+  background-color: #30303d;
+}
+.todo .favAndAllCollectionButton .activeSection,
+.singleCollection .favAndAllCollectionButton .activeSection {
+  background-color: #30303d !important;
+}
+.todo .doneTodo,
+.singleCollection .doneTodo {
   text-decoration: line-through;
 }
-.todo .todoCard {
-  order: 2;
+.todo .collectionCards .collectionItem,
+.todo .collectionCards .todoItem,
+.todo .todoCards .collectionItem,
+.todo .todoCards .todoItem,
+.singleCollection .collectionCards .collectionItem,
+.singleCollection .collectionCards .todoItem,
+.singleCollection .todoCards .collectionItem,
+.singleCollection .todoCards .todoItem {
+  min-width: 250px;
+  width: fit-content;
+  height: fit-content;
+  border-radius: 16px;
+  background-color: #1d1e26;
+  padding: 20px;
 }
-.todo .collectionCard {
-  order: 1;
+.todo .collectionCards .collectionItem .boxItemContent,
+.todo .collectionCards .todoItem .boxItemContent,
+.todo .todoCards .collectionItem .boxItemContent,
+.todo .todoCards .todoItem .boxItemContent,
+.singleCollection .collectionCards .collectionItem .boxItemContent,
+.singleCollection .collectionCards .todoItem .boxItemContent,
+.singleCollection .todoCards .collectionItem .boxItemContent,
+.singleCollection .todoCards .todoItem .boxItemContent {
+  height: 100%;
 }
-.todo .todoCard,
-.todo .collectionCard {
-  width: 95%;
-  max-width: 400px;
-  border-radius: 8px;
+.todo .collectionCards .collectionItem .cardIcon,
+.todo .collectionCards .todoItem .cardIcon,
+.todo .todoCards .collectionItem .cardIcon,
+.todo .todoCards .todoItem .cardIcon,
+.singleCollection .collectionCards .collectionItem .cardIcon,
+.singleCollection .collectionCards .todoItem .cardIcon,
+.singleCollection .todoCards .collectionItem .cardIcon,
+.singleCollection .todoCards .todoItem .cardIcon {
+  font-size: 40px;
 }
-.todo .upCollectionCard {
+.todo .collectionCards .collectionItem .fa-star,
+.todo .collectionCards .todoItem .fa-star,
+.todo .todoCards .collectionItem .fa-star,
+.todo .todoCards .todoItem .fa-star,
+.singleCollection .collectionCards .collectionItem .fa-star,
+.singleCollection .collectionCards .todoItem .fa-star,
+.singleCollection .todoCards .collectionItem .fa-star,
+.singleCollection .todoCards .todoItem .fa-star {
+  color: #ffc700;
+  font-size: 20px;
+  cursor: pointer;
+}
+.todo .collectionCards .collectionItem .collectionName,
+.todo .collectionCards .todoItem .collectionName,
+.todo .todoCards .collectionItem .collectionName,
+.todo .todoCards .todoItem .collectionName,
+.singleCollection .collectionCards .collectionItem .collectionName,
+.singleCollection .collectionCards .todoItem .collectionName,
+.singleCollection .todoCards .collectionItem .collectionName,
+.singleCollection .todoCards .todoItem .collectionName {
+  font-size: 20px;
   margin: 0;
+  font-weight: 500;
+  transition: all 200ms;
 }
-.todo .upTodoCard,
-.todo .upCollectionCard {
-  text-align: center;
-  background-color: #f6f6f6;
+.todo .collectionCards .collectionItem .collectionName:hover,
+.todo .collectionCards .todoItem .collectionName:hover,
+.todo .todoCards .collectionItem .collectionName:hover,
+.todo .todoCards .todoItem .collectionName:hover,
+.singleCollection .collectionCards .collectionItem .collectionName:hover,
+.singleCollection .collectionCards .todoItem .collectionName:hover,
+.singleCollection .todoCards .collectionItem .collectionName:hover,
+.singleCollection .todoCards .todoItem .collectionName:hover {
+  color: #ffc700;
+}
+.todo .collectionCards .collectionItem .doneNumber,
+.todo .collectionCards .todoItem .doneNumber,
+.todo .todoCards .collectionItem .doneNumber,
+.todo .todoCards .todoItem .doneNumber,
+.singleCollection .collectionCards .collectionItem .doneNumber,
+.singleCollection .collectionCards .todoItem .doneNumber,
+.singleCollection .todoCards .collectionItem .doneNumber,
+.singleCollection .todoCards .todoItem .doneNumber {
+  opacity: 0.8;
+  font-size: 12px;
+}
+.todo .collectionCards .collectionItem .fa-trash,
+.todo .collectionCards .todoItem .fa-trash,
+.todo .todoCards .collectionItem .fa-trash,
+.todo .todoCards .todoItem .fa-trash,
+.singleCollection .collectionCards .collectionItem .fa-trash,
+.singleCollection .collectionCards .todoItem .fa-trash,
+.singleCollection .todoCards .collectionItem .fa-trash,
+.singleCollection .todoCards .todoItem .fa-trash {
+  color: tomato;
+}
+.todo .collectionCards .collectionItem .fa-pen,
+.todo .collectionCards .todoItem .fa-pen,
+.todo .todoCards .collectionItem .fa-pen,
+.todo .todoCards .todoItem .fa-pen,
+.singleCollection .collectionCards .collectionItem .fa-pen,
+.singleCollection .collectionCards .todoItem .fa-pen,
+.singleCollection .todoCards .collectionItem .fa-pen,
+.singleCollection .todoCards .todoItem .fa-pen {
+  color: aquamarine;
+}
+.todo .collectionCards .updateCollectionForm input,
+.todo .todoCards .updateCollectionForm input,
+.singleCollection .collectionCards .updateCollectionForm input,
+.singleCollection .todoCards .updateCollectionForm input {
+  padding: 8px;
+  color: #fff;
+  background-color: #1d1e26;
+  border: 3px #30303d solid;
+  border-radius: 8px;
+  width: 100%;
+}
+.todo .collectionCards .updateCollectionForm .fa-xmark,
+.todo .todoCards .updateCollectionForm .fa-xmark,
+.singleCollection .collectionCards .updateCollectionForm .fa-xmark,
+.singleCollection .todoCards .updateCollectionForm .fa-xmark {
+  color: tomato;
+}
+.todo .collectionCards .updateCollectionForm .updateCollection,
+.todo .todoCards .updateCollectionForm .updateCollection,
+.singleCollection .collectionCards .updateCollectionForm .updateCollection,
+.singleCollection .todoCards .updateCollectionForm .updateCollection {
+  background-color: #1d1e26;
   padding: 8px;
   border-radius: 8px;
-  width: 100%;
+  border: 2px #30303d solid;
+  color: #fff;
+  transition: all 200ms;
 }
-.todo .downTodoCard,
-.todo .downCollectionCard {
-  padding: 5px 0;
-  height: 200px;
-  overflow-y: scroll;
-  background-color: #f6f6f6;
-  border-radius: 8px;
-  position: relative;
-  width: 100%;
+.todo .collectionCards .updateCollectionForm .updateCollection:hover,
+.todo .todoCards .updateCollectionForm .updateCollection:hover,
+.singleCollection .collectionCards .updateCollectionForm .updateCollection:hover,
+.singleCollection .todoCards .updateCollectionForm .updateCollection:hover {
+  background-color: #30303d;
 }
-.todo .downTodoCard .todoItem,
-.todo .downTodoCard .collectionItem,
-.todo .downCollectionCard .todoItem,
-.todo .downCollectionCard .collectionItem {
+.todo .openCollectionForm,
+.singleCollection .openCollectionForm {
+  width: 250px;
+  height: 185px;
+  border-radius: 16px;
+  background-color: transparent;
+  border: 6px #1d1e26 solid;
+  padding: 20px;
   cursor: pointer;
   transition: all 200ms;
-  padding: 8px;
-  width: 100%;
 }
-.todo .downTodoCard .todoItem:hover,
-.todo .downTodoCard .collectionItem:hover,
-.todo .downCollectionCard .todoItem:hover,
-.todo .downCollectionCard .collectionItem:hover {
-  border-right: 1px #789d5e solid;
-  border-left: 1px #789d5e solid;
+.todo .openCollectionForm:hover,
+.singleCollection .openCollectionForm:hover {
+  background-color: #1d1e26;
 }
-.todo .downTodoCard .todoItem .todoTask,
-.todo .downTodoCard .todoItem .collectionName,
-.todo .downTodoCard .collectionItem .todoTask,
-.todo .downTodoCard .collectionItem .collectionName,
-.todo .downCollectionCard .todoItem .todoTask,
-.todo .downCollectionCard .todoItem .collectionName,
-.todo .downCollectionCard .collectionItem .todoTask,
-.todo .downCollectionCard .collectionItem .collectionName {
-  margin: 0;
-}
-.todo .downTodoCard .todoItem .fa-trash,
-.todo .downTodoCard .collectionItem .fa-trash,
-.todo .downCollectionCard .todoItem .fa-trash,
-.todo .downCollectionCard .collectionItem .fa-trash {
-  color: tomato;
-}
-.todo .downTodoCard .todoItem .fa-pen-to-square,
-.todo .downTodoCard .collectionItem .fa-pen-to-square,
-.todo .downCollectionCard .todoItem .fa-pen-to-square,
-.todo .downCollectionCard .collectionItem .fa-pen-to-square {
-  color: lightseagreen;
-}
-.todo .downTodoCard .todoItem form,
-.todo .downTodoCard .collectionItem form,
-.todo .downCollectionCard .todoItem form,
-.todo .downCollectionCard .collectionItem form {
-  width: 70%;
-}
-.todo .downTodoCard .todoItem form input,
-.todo .downTodoCard .collectionItem form input,
-.todo .downCollectionCard .todoItem form input,
-.todo .downCollectionCard .collectionItem form input {
-  padding: 5px;
-  border-radius: 8px;
-}
-.todo .downTodoCard .todoItem button,
-.todo .downTodoCard .collectionItem button,
-.todo .downCollectionCard .todoItem button,
-.todo .downCollectionCard .collectionItem button {
-  border: 0;
-  background-color: transparent;
-  padding: 0;
-}
-.todo .downTodoCard .todoItem .fa-solid,
-.todo .downTodoCard .collectionItem .fa-solid,
-.todo .downCollectionCard .todoItem .fa-solid,
-.todo .downCollectionCard .collectionItem .fa-solid {
-  cursor: pointer;
-}
-.todo .downTodoCard .todoItem .fa-xmark,
-.todo .downTodoCard .collectionItem .fa-xmark,
-.todo .downCollectionCard .todoItem .fa-xmark,
-.todo .downCollectionCard .collectionItem .fa-xmark {
-  color: tomato;
-}
-.todo .downTodoCard .todoItem .fa-circle-check,
-.todo .downTodoCard .collectionItem .fa-circle-check,
-.todo .downCollectionCard .todoItem .fa-circle-check,
-.todo .downCollectionCard .collectionItem .fa-circle-check {
-  color: green;
-}
-.todo .downTodoCard .todoItem button,
-.todo .downTodoCard .todoItem span,
-.todo .downTodoCard .collectionItem button,
-.todo .downTodoCard .collectionItem span,
-.todo .downCollectionCard .todoItem button,
-.todo .downCollectionCard .todoItem span,
-.todo .downCollectionCard .collectionItem button,
-.todo .downCollectionCard .collectionItem span {
-  font-size: 15px;
+.todo .openCollectionForm i,
+.singleCollection .openCollectionForm i {
+  opacity: 0.7;
+  font-size: 20px;
 }
 .todo .todoForm,
-.todo .collectionForm {
-  background-color: #f6f6f6;
-  border-top: none;
-  border-radius: 10px;
-  padding: 5px;
+.todo .collectionForm,
+.singleCollection .todoForm,
+.singleCollection .collectionForm {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  margin: auto;
+  width: 300px;
+  height: fit-content;
+  border-radius: 16px;
+  background-color: #1d1e26;
+  padding: 20px;
 }
 .todo .todoForm input,
-.todo .collectionForm input {
+.todo .collectionForm input,
+.singleCollection .todoForm input,
+.singleCollection .collectionForm input {
   padding: 8px;
-  border-radius: 10px;
-  background-color: #f6f6f6;
-  width: 80%;
+  color: #fff;
+  background-color: #1d1e26;
+  width: 100%;
+  border-radius: 8px;
+  border: 3px #30303d solid;
 }
-.todo .todoForm .addTodo,
-.todo .todoForm .addCollection,
-.todo .collectionForm .addTodo,
-.todo .collectionForm .addCollection {
-  background-color: #fff;
-  padding: 6px 10px;
-  border-radius: 50%;
-  aspect-ratio: 1/1;
-  font-size: 14px;
-  cursor: pointer;
-  border: none;
+.todo .todoForm button,
+.todo .collectionForm button,
+.singleCollection .todoForm button,
+.singleCollection .collectionForm button {
+  background-color: #1d1e26;
+  padding: 8px;
+  border-radius: 8px;
+  border: 2px #30303d solid;
+  color: #fff;
+  transition: all 200ms;
 }
-.todo .doneTodo:disabled i {
+.todo .todoForm button:hover,
+.todo .collectionForm button:hover,
+.singleCollection .todoForm button:hover,
+.singleCollection .collectionForm button:hover {
+  background-color: #30303d;
+}
+.todo .doneTodo:disabled i,
+.singleCollection .doneTodo:disabled i {
   color: grey !important;
-}
-.todo .downCollectionCard::-webkit-scrollbar,
-.todo .downTodoCard::-webkit-scrollbar {
-  display: none !important;
 }
 
 @media (min-width: 1024px) {
-  .todo .todoAndCollection {
-    flex-direction: row !important;
-  }
-  .todo .todoCard {
-    order: 1 !important;
-  }
-  .todo .collectionCard {
-    order: 2 !important;
+  .todo,
+  .singleCollection {
+    padding-inline: 200px !important;
   }
 }
-.plan .planAndCollection {
-  flex-direction: column;
+@media (max-width: 767px) {
+  .todo .favAndAllCollectionButton .fav,
+  .todo .favAndAllCollectionButton .all,
+  .todo .favAndAllCollectionButton .done,
+  .todo .favAndAllCollectionButton .remain,
+  .singleCollection .favAndAllCollectionButton .fav,
+  .singleCollection .favAndAllCollectionButton .all,
+  .singleCollection .favAndAllCollectionButton .done,
+  .singleCollection .favAndAllCollectionButton .remain {
+    width: 90px;
+    font-weight: 600;
+    font-size: 10px;
+    padding: 6px;
+  }
 }
-.plan .activeCollection {
-  border-right: 1px #789d5e solid;
-  border-left: 1px #789d5e solid;
-  color: #789d5e;
-  background-color: #fff;
+.plan,
+.singleCollection {
+  padding-top: 150px;
+  background-color: #181820 !important;
+  padding-inline: 40px;
+  color: #fff;
 }
-.plan .donePlan {
+.plan .planHeader h1,
+.singleCollection .planHeader h1 {
+  font-weight: 400 !important;
+  font-size: 40px;
+  margin: 0;
+}
+.plan .planHeader h1 small,
+.singleCollection .planHeader h1 small {
+  font-size: 12px;
+  opacity: 0.8;
+  display: block;
+}
+.plan .planHeader i,
+.singleCollection .planHeader i {
+  font-size: 18px;
+  opacity: 0.8;
+  padding: 10px;
+  background-color: #30303d;
+  border-radius: 8px;
+  border: 2px #30303d solid;
+  transition: all 200ms;
+}
+.plan .planHeader i:hover,
+.singleCollection .planHeader i:hover {
+  border-color: #fff;
+}
+.plan .types span,
+.singleCollection .types span {
+  cursor: pointer;
+  font-size: 14px;
+  padding: 6px;
+  border: 2px #30303d solid;
+  border-radius: 8px;
+  transition: all 200ms;
+}
+.plan .types span:hover,
+.singleCollection .types span:hover {
+  background-color: #30303d;
+}
+.plan .types .activeType,
+.singleCollection .types .activeType {
+  background-color: #30303d;
+}
+.plan .deleteAllBox,
+.singleCollection .deleteAllBox {
+  position: absolute;
+  bottom: -2.4rem;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #30303d;
+  border: 1px #fff solid;
+}
+.plan .fa-square-caret-left,
+.plan .fa-square-caret-right,
+.singleCollection .fa-square-caret-left,
+.singleCollection .fa-square-caret-right {
+  font-size: 30px;
+  margin: 0;
+}
+.plan .favAndAllCollectionButton .fav,
+.plan .favAndAllCollectionButton .all,
+.plan .favAndAllCollectionButton .done,
+.plan .favAndAllCollectionButton .remain,
+.singleCollection .favAndAllCollectionButton .fav,
+.singleCollection .favAndAllCollectionButton .all,
+.singleCollection .favAndAllCollectionButton .done,
+.singleCollection .favAndAllCollectionButton .remain {
+  border: none;
+  width: 120px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 12px;
+  padding: 12px;
+  border-radius: 12px;
+  color: #fff;
+  border: 2px #30303d solid;
+  background-color: transparent;
+  transition: all 200ms;
+}
+.plan .favAndAllCollectionButton .fav:hover,
+.plan .favAndAllCollectionButton .all:hover,
+.plan .favAndAllCollectionButton .done:hover,
+.plan .favAndAllCollectionButton .remain:hover,
+.singleCollection .favAndAllCollectionButton .fav:hover,
+.singleCollection .favAndAllCollectionButton .all:hover,
+.singleCollection .favAndAllCollectionButton .done:hover,
+.singleCollection .favAndAllCollectionButton .remain:hover {
+  background-color: #30303d;
+}
+.plan .favAndAllCollectionButton .activeSection,
+.singleCollection .favAndAllCollectionButton .activeSection {
+  background-color: #30303d !important;
+}
+.plan .donePlan,
+.singleCollection .donePlan {
   text-decoration: line-through;
 }
-.plan .planCard {
-  order: 2;
+.plan .collectionCards .collectionItem,
+.plan .collectionCards .planItem,
+.plan .planCards .collectionItem,
+.plan .planCards .planItem,
+.singleCollection .collectionCards .collectionItem,
+.singleCollection .collectionCards .planItem,
+.singleCollection .planCards .collectionItem,
+.singleCollection .planCards .planItem {
+  min-width: 250px;
+  width: fit-content;
+  height: fit-content;
+  border-radius: 16px;
+  background-color: #1d1e26;
+  padding: 20px;
 }
-.plan .collectionCard {
-  order: 1;
+.plan .collectionCards .collectionItem .boxItemContent,
+.plan .collectionCards .planItem .boxItemContent,
+.plan .planCards .collectionItem .boxItemContent,
+.plan .planCards .planItem .boxItemContent,
+.singleCollection .collectionCards .collectionItem .boxItemContent,
+.singleCollection .collectionCards .planItem .boxItemContent,
+.singleCollection .planCards .collectionItem .boxItemContent,
+.singleCollection .planCards .planItem .boxItemContent {
+  height: 100%;
 }
-.plan .planCard,
-.plan .collectionCard {
-  width: 95%;
-  max-width: 400px;
-  border-radius: 8px;
+.plan .collectionCards .collectionItem .cardIcon,
+.plan .collectionCards .planItem .cardIcon,
+.plan .planCards .collectionItem .cardIcon,
+.plan .planCards .planItem .cardIcon,
+.singleCollection .collectionCards .collectionItem .cardIcon,
+.singleCollection .collectionCards .planItem .cardIcon,
+.singleCollection .planCards .collectionItem .cardIcon,
+.singleCollection .planCards .planItem .cardIcon {
+  font-size: 40px;
 }
-.plan .upCollectionCard {
+.plan .collectionCards .collectionItem .fa-star,
+.plan .collectionCards .planItem .fa-star,
+.plan .planCards .collectionItem .fa-star,
+.plan .planCards .planItem .fa-star,
+.singleCollection .collectionCards .collectionItem .fa-star,
+.singleCollection .collectionCards .planItem .fa-star,
+.singleCollection .planCards .collectionItem .fa-star,
+.singleCollection .planCards .planItem .fa-star {
+  color: #ffc700;
+  font-size: 20px;
+  cursor: pointer;
+}
+.plan .collectionCards .collectionItem .collectionName,
+.plan .collectionCards .planItem .collectionName,
+.plan .planCards .collectionItem .collectionName,
+.plan .planCards .planItem .collectionName,
+.singleCollection .collectionCards .collectionItem .collectionName,
+.singleCollection .collectionCards .planItem .collectionName,
+.singleCollection .planCards .collectionItem .collectionName,
+.singleCollection .planCards .planItem .collectionName {
+  font-size: 20px;
   margin: 0;
-}
-.plan .upPlanCard,
-.plan .upCollectionCard {
-  text-align: center;
-  background-color: #f6f6f6;
-  padding: 8px;
-  border-radius: 8px;
-  width: 100%;
-}
-.plan .downPlanCard,
-.plan .downCollectionCard {
-  padding: 10px 0;
-  height: 200px;
-  overflow-y: scroll;
-  background-color: #f6f6f6;
-  border-radius: 8px;
-  position: relative;
-  width: 100%;
-}
-.plan .downPlanCard .planItem,
-.plan .downPlanCard .collectionItem,
-.plan .downCollectionCard .planItem,
-.plan .downCollectionCard .collectionItem {
+  font-weight: 500;
   transition: all 200ms;
-  cursor: pointer;
+}
+.plan .collectionCards .collectionItem .collectionName:hover,
+.plan .collectionCards .planItem .collectionName:hover,
+.plan .planCards .collectionItem .collectionName:hover,
+.plan .planCards .planItem .collectionName:hover,
+.singleCollection .collectionCards .collectionItem .collectionName:hover,
+.singleCollection .collectionCards .planItem .collectionName:hover,
+.singleCollection .planCards .collectionItem .collectionName:hover,
+.singleCollection .planCards .planItem .collectionName:hover {
+  color: #ffc700;
+}
+.plan .collectionCards .collectionItem .doneNumber,
+.plan .collectionCards .planItem .doneNumber,
+.plan .planCards .collectionItem .doneNumber,
+.plan .planCards .planItem .doneNumber,
+.singleCollection .collectionCards .collectionItem .doneNumber,
+.singleCollection .collectionCards .planItem .doneNumber,
+.singleCollection .planCards .collectionItem .doneNumber,
+.singleCollection .planCards .planItem .doneNumber {
+  opacity: 0.8;
+  font-size: 12px;
+}
+.plan .collectionCards .collectionItem .fa-trash,
+.plan .collectionCards .planItem .fa-trash,
+.plan .planCards .collectionItem .fa-trash,
+.plan .planCards .planItem .fa-trash,
+.singleCollection .collectionCards .collectionItem .fa-trash,
+.singleCollection .collectionCards .planItem .fa-trash,
+.singleCollection .planCards .collectionItem .fa-trash,
+.singleCollection .planCards .planItem .fa-trash {
+  color: tomato;
+}
+.plan .collectionCards .collectionItem .fa-pen,
+.plan .collectionCards .planItem .fa-pen,
+.plan .planCards .collectionItem .fa-pen,
+.plan .planCards .planItem .fa-pen,
+.singleCollection .collectionCards .collectionItem .fa-pen,
+.singleCollection .collectionCards .planItem .fa-pen,
+.singleCollection .planCards .collectionItem .fa-pen,
+.singleCollection .planCards .planItem .fa-pen {
+  color: aquamarine;
+}
+.plan .collectionCards .updateCollectionForm input,
+.plan .planCards .updateCollectionForm input,
+.singleCollection .collectionCards .updateCollectionForm input,
+.singleCollection .planCards .updateCollectionForm input {
   padding: 8px;
+  color: #fff;
+  background-color: #1d1e26;
   width: 100%;
 }
-.plan .downPlanCard .planItem:hover,
-.plan .downPlanCard .collectionItem:hover,
-.plan .downCollectionCard .planItem:hover,
-.plan .downCollectionCard .collectionItem:hover {
-  border-right: 1px #789d5e solid;
-  border-left: 1px #789d5e solid;
-}
-.plan .downPlanCard .planItem .planTask,
-.plan .downPlanCard .planItem .collectionName,
-.plan .downPlanCard .collectionItem .planTask,
-.plan .downPlanCard .collectionItem .collectionName,
-.plan .downCollectionCard .planItem .planTask,
-.plan .downCollectionCard .planItem .collectionName,
-.plan .downCollectionCard .collectionItem .planTask,
-.plan .downCollectionCard .collectionItem .collectionName {
-  margin: 0;
-}
-.plan .downPlanCard .planItem .fa-trash,
-.plan .downPlanCard .collectionItem .fa-trash,
-.plan .downCollectionCard .planItem .fa-trash,
-.plan .downCollectionCard .collectionItem .fa-trash {
+.plan .collectionCards .updateCollectionForm .fa-xmark,
+.plan .planCards .updateCollectionForm .fa-xmark,
+.singleCollection .collectionCards .updateCollectionForm .fa-xmark,
+.singleCollection .planCards .updateCollectionForm .fa-xmark {
   color: tomato;
 }
-.plan .downPlanCard .planItem .fa-pen-to-square,
-.plan .downPlanCard .collectionItem .fa-pen-to-square,
-.plan .downCollectionCard .planItem .fa-pen-to-square,
-.plan .downCollectionCard .collectionItem .fa-pen-to-square {
-  color: lightseagreen;
-}
-.plan .downPlanCard .planItem form,
-.plan .downPlanCard .collectionItem form,
-.plan .downCollectionCard .planItem form,
-.plan .downCollectionCard .collectionItem form {
-  width: 70%;
-}
-.plan .downPlanCard .planItem form input,
-.plan .downPlanCard .collectionItem form input,
-.plan .downCollectionCard .planItem form input,
-.plan .downCollectionCard .collectionItem form input {
-  padding: 5px;
+.plan .collectionCards .updateCollectionForm .updateCollection,
+.plan .planCards .updateCollectionForm .updateCollection,
+.singleCollection .collectionCards .updateCollectionForm .updateCollection,
+.singleCollection .planCards .updateCollectionForm .updateCollection {
+  background-color: #1d1e26;
+  padding: 8px;
   border-radius: 8px;
+  border: 2px #30303d solid;
+  color: #fff;
+  transition: all 200ms;
 }
-.plan .downPlanCard .planItem button,
-.plan .downPlanCard .collectionItem button,
-.plan .downCollectionCard .planItem button,
-.plan .downCollectionCard .collectionItem button {
-  border: 0;
+.plan .collectionCards .updateCollectionForm .updateCollection:hover,
+.plan .planCards .updateCollectionForm .updateCollection:hover,
+.singleCollection .collectionCards .updateCollectionForm .updateCollection:hover,
+.singleCollection .planCards .updateCollectionForm .updateCollection:hover {
+  background-color: #30303d;
+}
+.plan .openCollectionForm,
+.singleCollection .openCollectionForm {
+  width: 250px;
+  height: 185px;
+  border-radius: 16px;
   background-color: transparent;
-  padding: 0;
-}
-.plan .downPlanCard .planItem .fa-solid,
-.plan .downPlanCard .collectionItem .fa-solid,
-.plan .downCollectionCard .planItem .fa-solid,
-.plan .downCollectionCard .collectionItem .fa-solid {
+  border: 6px #1d1e26 solid;
+  padding: 20px;
   cursor: pointer;
+  transition: all 200ms;
 }
-.plan .downPlanCard .planItem .fa-xmark,
-.plan .downPlanCard .collectionItem .fa-xmark,
-.plan .downCollectionCard .planItem .fa-xmark,
-.plan .downCollectionCard .collectionItem .fa-xmark {
-  color: tomato;
+.plan .openCollectionForm:hover,
+.singleCollection .openCollectionForm:hover {
+  background-color: #1d1e26;
 }
-.plan .downPlanCard .planItem .fa-circle-check,
-.plan .downPlanCard .collectionItem .fa-circle-check,
-.plan .downCollectionCard .planItem .fa-circle-check,
-.plan .downCollectionCard .collectionItem .fa-circle-check {
-  color: green;
-}
-.plan .downPlanCard .planItem button,
-.plan .downPlanCard .planItem span,
-.plan .downPlanCard .collectionItem button,
-.plan .downPlanCard .collectionItem span,
-.plan .downCollectionCard .planItem button,
-.plan .downCollectionCard .planItem span,
-.plan .downCollectionCard .collectionItem button,
-.plan .downCollectionCard .collectionItem span {
-  font-size: 15px;
+.plan .openCollectionForm i,
+.singleCollection .openCollectionForm i {
+  opacity: 0.7;
+  font-size: 20px;
 }
 .plan .planForm,
-.plan .collectionForm {
-  background-color: #f6f6f6;
-  border-top: none;
-  border-radius: 10px;
-  padding: 5px;
+.plan .collectionForm,
+.singleCollection .planForm,
+.singleCollection .collectionForm {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  margin: auto;
+  width: 300px;
+  height: fit-content;
+  border-radius: 16px;
+  background-color: #1d1e26;
+  padding: 20px;
 }
 .plan .planForm input,
-.plan .collectionForm input {
+.plan .collectionForm input,
+.singleCollection .planForm input,
+.singleCollection .collectionForm input {
   padding: 8px;
-  border-radius: 10px;
-  background-color: #f6f6f6;
-  width: 80%;
+  color: #fff;
+  background-color: #1d1e26;
+  width: 100%;
+  border-radius: 8px;
+  border: 3px #30303d solid;
 }
-.plan .planForm .addPlan,
-.plan .planForm .addCollection,
-.plan .collectionForm .addPlan,
-.plan .collectionForm .addCollection {
-  background-color: #fff;
-  padding: 6px 10px;
-  border-radius: 50%;
-  aspect-ratio: 1/1;
-  font-size: 14px;
-  cursor: pointer;
-  border: none;
+.plan .planForm button,
+.plan .collectionForm button,
+.singleCollection .planForm button,
+.singleCollection .collectionForm button {
+  background-color: #1d1e26;
+  padding: 8px;
+  border-radius: 8px;
+  border: 2px #30303d solid;
+  color: #fff;
+  transition: all 200ms;
 }
-.plan .donePlan:disabled i {
+.plan .planForm button:hover,
+.plan .collectionForm button:hover,
+.singleCollection .planForm button:hover,
+.singleCollection .collectionForm button:hover {
+  background-color: #30303d;
+}
+.plan .donePlan:disabled i,
+.singleCollection .donePlan:disabled i {
   color: grey !important;
-}
-.plan .downCollectionCard::-webkit-scrollbar,
-.plan .downPlanCard::-webkit-scrollbar {
-  display: none !important;
 }
 
 @media (min-width: 1024px) {
-  .plan .planAndCollection {
-    flex-direction: row !important;
-  }
-  .plan .planCard {
-    order: 1 !important;
-  }
-  .plan .collectionCard {
-    order: 2 !important;
+  .plan,
+  .singleCollection {
+    padding-inline: 200px !important;
   }
 }
-.about a {
-  color: blue;
-  font-weight: 700;
-  font-size: 14px;
+@media (max-width: 767px) {
+  .plan .favAndAllCollectionButton .fav,
+  .plan .favAndAllCollectionButton .all,
+  .plan .favAndAllCollectionButton .done,
+  .plan .favAndAllCollectionButton .remain,
+  .singleCollection .favAndAllCollectionButton .fav,
+  .singleCollection .favAndAllCollectionButton .all,
+  .singleCollection .favAndAllCollectionButton .done,
+  .singleCollection .favAndAllCollectionButton .remain {
+    width: 90px;
+    font-weight: 600;
+    font-size: 10px;
+    padding: 6px;
+  }
 }
-
-.profile .profileBox {
-  background-color: #f6f6f6;
-  padding: 10px;
-  border-radius: 8px;
-  width: fit-content;
-  max-width: 500px;
+.about {
+  overflow: hidden;
+  padding-top: 200px;
+  background-color: #1d1e26;
+  color: #fff;
+  text-align: center;
 }
-.profile .profileBox .logout {
+.about h1 {
+  z-index: 10;
+  font-size: 50px !important;
+}
+.about .dot {
+  color: rgb(255, 193, 194);
+}
+.about .aboutParagraph {
+  max-width: 300px;
+  color: #adadc1;
+  z-index: 10;
+}
+.about .getStartButton,
+.about .learnMoreButton {
+  z-index: 10;
+  padding: 8px 16px;
   width: 150px;
-  padding: 8px;
+  height: 40px;
   border-radius: 8px;
-  background-color: #1a1919;
-  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
   border: none;
 }
-.profile .profileBox .userButton button {
-  width: 200px;
-  padding: 8px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
+.about .getStartButton {
+  background: linear-gradient(90deg, rgb(255, 193, 194) 0%, rgb(212, 43, 190) 53%);
 }
-.profile .profileBox .userButton .delete {
-  background-color: tomato;
+.about .learnMoreButton {
+  background-color: #30303d;
   color: #fff;
-  border: 1px solid tomato;
-  transition: all 200ms;
 }
-.profile .profileBox .userButton .delete:hover {
-  border-color: #fff;
+.about .ball {
+  border-radius: 50%;
+  z-index: 5;
 }
-.profile .profileBox .userButton .update {
-  background-color: lightseagreen;
-  color: #fff;
-  border: 1px solid lightseagreen;
-  transition: all 200ms;
-}
-.profile .profileBox .userButton .update:hover {
-  border-color: #fff;
-}
-.profile .profileBox .profileImage,
-.profile .profileBox .tempUserImage {
-  cursor: pointer;
-  position: relative;
+.about .big {
   width: 200px;
   height: 200px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 5px #fff solid;
-  font-size: 60px;
 }
-.profile .profileBox .tempUserImage::after,
-.profile .profileBox .profileImage::after {
-  content: "Upload Image";
-  font-size: 20px;
-  text-align: center;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  cursor: pointer;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  transform-origin: center center;
-  bottom: 0;
-  top: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-  background-color: #222222;
-  opacity: 0;
-  transition: all 150ms linear;
-  color: #fff;
+.about .small {
+  width: 75px;
+  height: 75px;
 }
-.profile .profileBox .tempUserImage:hover::after,
-.profile .profileBox .profileImage:hover::after {
-  opacity: 0.8;
+.about .coloredBall {
+  background: linear-gradient(90deg, rgb(255, 193, 194) 0%, rgb(212, 43, 190) 53%);
 }
-.profile .profileBox .profileDetail {
-  width: 100%;
+.about .blackBall {
+  background: linear-gradient(90deg, rgb(47, 47, 62) 0%, rgb(17, 17, 22) 53%);
 }
-.profile .profileBox .profileDetail p {
-  margin: 2px 0;
+.about .coloredBall.big {
+  left: -100px;
 }
-.profile .profileBox .profileDetail span {
-  font-size: 14px;
+.about .coloredBall.small {
+  right: -30px;
+  top: 30rem;
 }
-.profile .profileBox .profileDetail input {
-  padding: 5px;
-  border-radius: 5px;
-  width: 100%;
+.about .blackBall.big {
+  right: -100px;
 }
-.profile .profileBox .userButton button:disabled {
-  background-color: grey;
-  border-color: grey;
-}
-.profile .profileBox .updateImageForm .userImageButtons button {
-  width: 100px;
-  padding: 8px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  background-color: lightseagreen;
-  color: #fff;
-}
-.profile .profileBox .updateImageForm .userImageButtons span {
-  cursor: pointer;
-  font-size: 18px;
-  border: 2px solid tomato;
-  color: tomato;
-  height: 30px;
-  width: 30px;
-  text-align: center;
-  transition: all 200ms;
-}
-.profile .profileBox .updateImageForm .userImageButtons span:hover {
-  background-color: tomato;
-  color: #fff;
+.about .blackBall.small {
+  left: -30px;
+  top: 30rem;
 }
 
-.deleteUserBox {
+@media (min-width: 1024px) {
+  .about .coloredBall.big {
+    left: 10%;
+  }
+  .about .coloredBall.small {
+    right: 10%;
+    top: 30rem;
+  }
+  .about .blackBall.big {
+    right: 20%;
+  }
+  .about .blackBall.small {
+    left: 20%;
+    top: 30rem;
+  }
+}
+.profile {
+  background-color: #181820;
+}
+.profile .profileHeader .image {
+  border: 2px #30303d solid;
+  cursor: pointer;
+  position: relative;
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+  font-size: 20px;
+  transition: all 200ms;
+}
+.profile .profileHeader .image:hover {
+  border-color: #fff;
+}
+.profile .profileHeader p {
+  text-transform: capitalize;
+  font-size: 20px;
+  font-weight: 500;
+}
+.profile .profileHeader span {
+  text-align: right;
+  font-size: 10px;
+}
+.profile .profileHeader span small {
+  opacity: 0.8;
+}
+.profile .profileHeader .delete {
+  width: fit-content;
+  padding: 12px;
+  height: 35px;
+  border: none;
+  gap: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 12px;
+  background-color: #fde9e7;
+  color: #d24835;
+  transition: all 200ms;
+}
+.profile .profileHeader .delete span {
+  font-size: 12px;
+  font-weight: 600;
+}
+.profile .profileHeader .delete:hover {
+  background-color: #d24835;
+  color: #fde9e7;
+}
+.profile .leftSide,
+.profile .rightSide {
+  width: 40%;
+  min-width: 250px;
+}
+.profile .leftSide p {
+  opacity: 0.7;
+  font-size: 12px;
+  margin: 0;
+  width: 100%;
+}
+.profile .leftSide .image {
+  width: 200px;
+  height: 200px;
+  border-radius: 10px;
+  border: 4px #30303d solid;
+  font-size: 50px;
+  cursor: pointer;
+}
+.profile .leftSide .updateImage {
+  color: #ffc700;
+  font-size: 12px;
+  text-align: center;
+  width: 100%;
+  gap: 8px;
+  cursor: pointer;
+  width: 100%;
+}
+.profile .leftSide .detail {
+  width: 100%;
+}
+.profile .leftSide .detail .inputDiv {
+  padding: 12px;
+  border-radius: 10px;
+  background-color: #30303d;
+  max-width: 300px;
+  width: 100%;
+}
+.profile .leftSide .detail .inputDiv i {
+  font-size: 16px;
+}
+.profile .leftSide .detail .inputDiv span {
+  display: block;
+  font-size: 12px;
+  opacity: 0.7;
+}
+.profile .leftSide .detail .inputDiv input:not(input[type=email]) {
+  border: 3px #1d1e26 solid;
+  padding: 8px;
+  border-radius: 8px;
+}
+.profile .leftSide .detail .inputDiv input,
+.profile .leftSide .detail .inputDiv p {
+  background-color: transparent;
+  width: 100%;
+  color: #fff;
+  opacity: 1;
+}
+.profile .leftSide button {
+  width: 130px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  padding: 12px;
+}
+.profile .leftSide .save {
+  background-color: #ffc700;
+  color: #fff;
+}
+.profile .leftSide .update {
+  background-color: aquamarine;
+}
+.profile .rightSide {
+  gap: 8px;
+}
+.profile .rightSide p {
+  opacity: 0.7;
+  font-size: 12px;
+  margin: 0;
+}
+.profile .rightSide .settingBox {
+  padding: 12px;
+  border-radius: 10px;
+  background-color: #30303d;
+}
+.profile .rightSide .settingBox .form {
+  font-size: 14px;
+  font-weight: 600;
+}
+.profile .rightSide .logout {
+  padding: 8px 20px;
+  width: 200px;
+  background-color: #30303d;
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  border-radius: 12px;
+  border: 1px #30303d solid;
+  transition: all 200ms;
+}
+.profile .rightSide .logout:hover {
+  border-color: #fff;
+}
+
+.deleteProfileBox {
   position: fixed;
   inset: 0;
   margin: auto;
-  width: 95%;
-  max-width: 500px;
-  border-radius: 10px;
+  background-color: #1d1e26;
+  width: fit-content;
   height: fit-content;
-  text-align: center;
-  background-color: #fff;
-  z-index: 999;
   padding: 20px;
+  border-radius: 12px;
+  color: #fff;
+  text-align: center;
+  z-index: 999;
 }
-.deleteUserBox .deleteOptionsButton button {
-  width: 200px;
-  padding: 8px;
+.deleteProfileBox button {
+  width: fit-content;
+  padding: 8px 30px;
   border: none;
+  font-size: 14px;
+  font-weight: 500;
   border-radius: 8px;
   cursor: pointer;
 }
-.deleteUserBox .deleteOptionsButton .yes {
+.deleteProfileBox .no {
+  background-color: aquamarine;
+}
+.deleteProfileBox .yes {
   background-color: tomato;
   color: #fff;
-  border: 1px solid tomato;
-  transition: all 200ms;
-}
-.deleteUserBox .deleteOptionsButton .yes:hover {
-  border-color: #fff;
-}
-.deleteUserBox .deleteOptionsButton .no {
-  background-color: lightseagreen;
-  color: #fff;
-  border: 1px solid lightseagreen;
-  transition: all 200ms;
-}
-.deleteUserBox .deleteOptionsButton .no:hover {
-  border-color: #fff;
-}
-
-.error404Page {
-  min-height: 100vh;
-  background-color: #fff;
-  color: #1a1919;
-  text-align: center;
-}
-.error404Page h1 {
-  color: #1a1919;
-  font-size: 160px;
-  font-weight: 700;
-  margin: 0 !important;
-}
-.error404Page h3 {
-  margin: 0 !important;
-  font-size: 30px;
-  font-weight: 500;
-}
-.error404Page button,
-.error404Page .toHome {
-  width: 150px;
-  height: 30px;
-  border-radius: 20px;
-  cursor: pointer;
-  border: none;
-}
-.error404Page button {
-  color: #1a1919;
-  background-color: #f6f6f6;
-}
-.error404Page .toHome {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  align-items: center;
-  color: #1a1919;
-  background-color: #f6f6f6;
-}
-.error404Page .toHome:hover {
-  text-decoration: none;
-}
-
-.errorPage {
-  min-height: 100vh;
-  background-color: #fff;
-  color: #1a1919;
-  text-align: center;
-}
-.errorPage h1 {
-  font-size: 60px;
-}
-.errorPage button,
-.errorPage .toHome {
-  width: 200px;
-  height: 50px;
-  border-radius: 20px;
-  cursor: pointer;
-  border: none;
-}
-.errorPage button {
-  color: #1a1919;
-  background-color: #f6f6f6;
-}
-.errorPage .toHome {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  align-items: center;
-  color: #1a1919;
-  background-color: #f6f6f6;
-}
-.errorPage .toHome:hover {
-  text-decoration: none;
 }
 
 @media (max-width: 767px) {
-  .error404Page h1 {
-    font-size: 120px !important;
+  .profile .leftSide,
+  .profile .rightSide {
+    width: 100% !important;
   }
-  .error404Page h3 {
-    font-size: 20px !important;
+}
+.error404Page,
+.errorPage {
+  min-height: 100vh;
+  background-color: #1d1e26;
+  color: #fff;
+  text-align: center;
+  z-index: 10;
+  overflow: hidden;
+}
+.error404Page h3,
+.errorPage h3 {
+  margin: 0 !important;
+  font-size: 36px;
+  z-index: 10;
+  font-weight: 500;
+}
+.error404Page p,
+.error404Page .toHome,
+.errorPage p,
+.errorPage .toHome {
+  z-index: 10;
+}
+.error404Page p,
+.errorPage p {
+  font-size: 12px;
+  opacity: 0.7;
+  line-height: 24px;
+}
+.error404Page .toHome,
+.error404Page button,
+.errorPage .toHome,
+.errorPage button {
+  width: 150px;
+  height: 40px;
+  border-radius: 8px;
+  cursor: pointer;
+  border: none;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  font-size: 14px;
+  align-items: center;
+  color: #fff;
+  background: linear-gradient(90deg, rgb(255, 193, 194) 0%, rgb(212, 43, 190) 53%);
+}
+.error404Page .toHome:hover,
+.error404Page button:hover,
+.errorPage .toHome:hover,
+.errorPage button:hover {
+  text-decoration: none;
+}
+.error404Page .ball,
+.errorPage .ball {
+  border-radius: 50%;
+  z-index: 5;
+}
+.error404Page .big,
+.errorPage .big {
+  width: 200px;
+  height: 200px;
+}
+.error404Page .small,
+.errorPage .small {
+  width: 75px;
+  height: 75px;
+}
+.error404Page .coloredBall,
+.errorPage .coloredBall {
+  background: linear-gradient(90deg, rgb(255, 193, 194) 0%, rgb(212, 43, 190) 53%);
+}
+.error404Page .blackBall,
+.errorPage .blackBall {
+  background: linear-gradient(90deg, rgb(47, 47, 62) 0%, rgb(17, 17, 22) 53%);
+}
+.error404Page .coloredBall.big,
+.errorPage .coloredBall.big {
+  transform: rotate(180deg);
+  left: -100px;
+  width: 150px;
+  height: 150px;
+  bottom: 180px;
+}
+.error404Page .coloredBall.small,
+.errorPage .coloredBall.small {
+  width: 400px !important;
+  height: 400px !important;
+  right: -250px;
+  top: -250px;
+  transform: rotate(180deg);
+}
+.error404Page .blackBall.big,
+.errorPage .blackBall.big {
+  width: 400px !important;
+  height: 400px !important;
+  left: -250px;
+  bottom: -250px;
+  transform: rotate(180deg);
+}
+.error404Page .blackBall.small,
+.errorPage .blackBall.small {
+  right: -100px;
+  width: 150px;
+  height: 150px;
+  top: 210px;
+}
+
+@media (min-width: 1024px) {
+  .error404Page .coloredBall.big,
+  .errorPage .coloredBall.big {
+    left: -50px;
+    width: 150px;
+    height: 150px;
   }
-  .error404Page button,
-  .error404Page .toHome {
-    width: 120px !important;
-    height: 30px !important;
-    font-size: 12px !important;
+  .error404Page .coloredBall.small,
+  .errorPage .coloredBall.small {
+    width: 400px !important;
+    height: 400px !important;
+    right: -150px;
+    top: -150px;
+    transform: rotate(180deg);
   }
-  .errorPage h1 {
-    font-size: 40px !important;
+  .error404Page .blackBall.big,
+  .errorPage .blackBall.big {
+    width: 400px !important;
+    height: 400px !important;
+    left: -150px;
+    bottom: -150px;
+    transform: rotate(180deg);
   }
-  .errorPage button,
-  .errorPage .toHome {
-    width: 120px !important;
-    height: 30px !important;
-    font-size: 12px !important;
+  .error404Page .blackBall.small,
+  .errorPage .blackBall.small {
+    right: -50px;
+    width: 150px;
+    top: 210px;
+    height: 150px;
+  }
+}
+.welcome {
+  overflow: hidden;
+  padding-top: 200px;
+  background-color: #1d1e26;
+  color: #fff;
+  text-align: center;
+  z-index: 10;
+}
+.welcome h1 {
+  z-index: 10;
+  font-size: 50px !important;
+}
+.welcome .dot {
+  color: rgb(255, 193, 194);
+}
+.welcome .welcomeParagraph {
+  max-width: 300px;
+  color: #adadc1;
+  z-index: 10;
+}
+.welcome .getStartButton,
+.welcome .learnMoreButton {
+  z-index: 10;
+  padding: 8px 16px;
+  width: 150px;
+  height: 40px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  border: none;
+}
+.welcome .getStartButton {
+  background: linear-gradient(90deg, rgb(255, 193, 194) 0%, rgb(212, 43, 190) 53%);
+}
+.welcome .learnMoreButton {
+  background-color: #30303d;
+  color: #fff;
+}
+.welcome .ball {
+  border-radius: 50%;
+  z-index: 5;
+}
+.welcome .big {
+  width: 200px;
+  height: 200px;
+}
+.welcome .small {
+  width: 75px;
+  height: 75px;
+}
+.welcome .coloredBall {
+  background: linear-gradient(90deg, rgb(255, 193, 194) 0%, rgb(212, 43, 190) 53%);
+}
+.welcome .blackBall {
+  background: linear-gradient(90deg, rgb(47, 47, 62) 0%, rgb(17, 17, 22) 53%);
+}
+.welcome .coloredBall.big {
+  left: -100px;
+}
+.welcome .coloredBall.small {
+  right: -30px;
+  top: 30rem;
+}
+.welcome .blackBall.big {
+  right: -100px;
+}
+.welcome .blackBall.small {
+  left: -30px;
+  top: 30rem;
+}
+
+@media (min-width: 1024px) {
+  .welcome .coloredBall.big {
+    left: 10%;
+  }
+  .welcome .coloredBall.small {
+    right: 10%;
+    top: 30rem;
+  }
+  .welcome .blackBall.big {
+    right: 20%;
+  }
+  .welcome .blackBall.small {
+    left: 20%;
+    top: 30rem;
   }
 }
 @media (pointer: coarse) {
-  .profile .profileBox .tempUserImage:hover::after,
-  .profile .profileBox .profileImage:hover::after {
-    opacity: 0;
+  .layout .header .profileImage:hover,
+  .layout .header .tempUserImage:hover {
+    border-color: #30303d;
+  }
+  .layout .header .languageDiv .languageDivBox:hover {
+    color: #fff;
+    background-color: transparent;
+  }
+  .layout .header .languageDiv .languagesList {
+    background-color: #fff;
+  }
+  .layout .header .languageDiv .languagesList span {
+    background-color: #1d1e26;
+    color: #fff;
+  }
+  .layout .header .languageDiv .languagesList span:hover {
+    background-color: #1d1e26;
+    color: #fff;
+  }
+  .layout .header .loginButton:hover,
+  .layout .header .loginButton {
+    border-color: #30303d;
+  }
+  .layout .header .registerButton:hover {
+    background-color: transparent;
+  }
+  .login .registerWithFacebook:hover,
+  .login .registerWithGoogle:hover,
+  .register .registerWithFacebook:hover,
+  .register .registerWithGoogle:hover {
+    background-color: #181820;
+  }
+  .login .loginBox button:hover,
+  .login .registerBox button:hover,
+  .register .loginBox button:hover,
+  .register .registerBox button:hover {
+    background: linear-gradient(90deg, rgb(255, 193, 194) 0%, rgb(212, 43, 190) 53%);
+    color: #fff;
+  }
+  .todo .todoHeader i:hover,
+  .todo .planHeader i:hover,
+  .singleCollection .todoHeader i:hover,
+  .singleCollection .planHeader i:hover,
+  .plan .todoHeader i:hover,
+  .plan .planHeader i:hover {
+    border-color: #30303d;
+  }
+  .todo .favAndAllCollectionButton .fav:hover,
+  .todo .favAndAllCollectionButton .all:hover,
+  .todo .favAndAllCollectionButton .done:hover,
+  .todo .favAndAllCollectionButton .remain:hover,
+  .singleCollection .favAndAllCollectionButton .fav:hover,
+  .singleCollection .favAndAllCollectionButton .all:hover,
+  .singleCollection .favAndAllCollectionButton .done:hover,
+  .singleCollection .favAndAllCollectionButton .remain:hover,
+  .plan .favAndAllCollectionButton .fav:hover,
+  .plan .favAndAllCollectionButton .all:hover,
+  .plan .favAndAllCollectionButton .done:hover,
+  .plan .favAndAllCollectionButton .remain:hover {
+    background-color: transparent;
+  }
+  .todo .collectionItem .updateCollectionForm .updateCollection:hover,
+  .singleCollection .collectionItem .updateCollectionForm .updateCollection:hover,
+  .plan .collectionItem .updateCollectionForm .updateCollection:hover {
+    background-color: transparent;
+  }
+  .todo .todoCards .todoItem .updateCollectionForm .updateCollection:hover,
+  .todo .todoCards .planItem .updateCollectionForm .updateCollection:hover,
+  .todo .todoCards .collectionItem .updateCollectionForm .updateCollection:hover,
+  .todo .planCards .todoItem .updateCollectionForm .updateCollection:hover,
+  .todo .planCards .planItem .updateCollectionForm .updateCollection:hover,
+  .todo .planCards .collectionItem .updateCollectionForm .updateCollection:hover,
+  .singleCollection .todoCards .todoItem .updateCollectionForm .updateCollection:hover,
+  .singleCollection .todoCards .planItem .updateCollectionForm .updateCollection:hover,
+  .singleCollection .todoCards .collectionItem .updateCollectionForm .updateCollection:hover,
+  .singleCollection .planCards .todoItem .updateCollectionForm .updateCollection:hover,
+  .singleCollection .planCards .planItem .updateCollectionForm .updateCollection:hover,
+  .singleCollection .planCards .collectionItem .updateCollectionForm .updateCollection:hover,
+  .plan .todoCards .todoItem .updateCollectionForm .updateCollection:hover,
+  .plan .todoCards .planItem .updateCollectionForm .updateCollection:hover,
+  .plan .todoCards .collectionItem .updateCollectionForm .updateCollection:hover,
+  .plan .planCards .todoItem .updateCollectionForm .updateCollection:hover,
+  .plan .planCards .planItem .updateCollectionForm .updateCollection:hover,
+  .plan .planCards .collectionItem .updateCollectionForm .updateCollection:hover {
+    background-color: transparent;
+  }
+  .todo .openCollectionForm:hover,
+  .singleCollection .openCollectionForm:hover,
+  .plan .openCollectionForm:hover {
+    background-color: transparent;
+  }
+  .todo .collectionForm button:hover,
+  .singleCollection .collectionForm button:hover,
+  .plan .collectionForm button:hover {
+    background-color: transparent;
+  }
+  .profile .profileHeader .image:hover {
+    background-color: none;
+  }
+  .profile .profileHeader .delete:hover {
+    background-color: #fde9e7;
+    color: #d24835;
+  }
+  .profile .rightSide .logout:hover {
+    background-color: #30303d;
   }
 }
 

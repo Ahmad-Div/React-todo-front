@@ -1,23 +1,30 @@
 import React, { useEffect, useState } from "react";
 import { deleteTodo, updateTodo, doneTodo } from "../../actions/todo";
+import { Spinner } from "@chakra-ui/react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-const TodoItem = ({ done, auth, collectionId, content, id, deleteTodo, updateTodo, doneTodo }) => {
+import { useTranslation } from "react-i18next";
+import Icons from "../Icons";
+const TodoItem = ({ done, auth, collectionId, content, id, deleteTodo, updateTodo, doneTodo, todo, icon }) => {
+  const { t, i18n } = useTranslation();
   const [update, setUpdate] = useState(false);
   const [input, setInput] = useState(content);
+  const [theIcon, setTheIcon] = useState(icon);
+
   const oldTodo = content;
 
   useEffect(() => {
+    setTheIcon(icon);
     setInput(content);
-  }, [content]);
+  }, [content, icon]);
 
   const onTodoDelete = () => {
     deleteTodo(auth.user._id, collectionId, id);
   };
 
   const onUpdate = async () => {
-    await updateTodo(auth.user._id, collectionId, { todoItem: input, oldTodo: oldTodo });
-    setUpdate((prev) => !prev);
+    await updateTodo(auth.user._id, collectionId, { todoItem: input, oldTodo: oldTodo, icon: theIcon });
+    setUpdate(false);
   };
 
   const onDoneTodo = () => {
@@ -26,25 +33,17 @@ const TodoItem = ({ done, auth, collectionId, content, id, deleteTodo, updateTod
 
   //if the todo is done so line through
 
-  let className;
-  if (done) {
-    className = `todoItem flex flex-row justify-between align-center w-100 doneTodo`;
-  } else {
-    className = `todoItem flex flex-row justify-between align-center w-100`;
-  }
-
   const text = update ? (
     <form
       onSubmit={(e) => {
         e.preventDefault();
         onUpdate();
       }}
-      className="flex flex-row justify-left align-center gap-1"
+      className="updateCollectionForm flex flex-column justify-left align-start w-100 gap-1"
     >
       <input
         type="text"
-        className="w-100"
-        autoFocus
+        name="name"
         value={input}
         onChange={(e) => setInput(e.target.value)}
         onKeyDown={(e) => {
@@ -52,41 +51,63 @@ const TodoItem = ({ done, auth, collectionId, content, id, deleteTodo, updateTod
             onUpdate();
           }
         }}
-      />{" "}
-      <button disabled={input === ""} type="submit" className="doneTodo">
-        <i className="fa-solid fa-circle-check"></i>
-      </button>
+        autoFocus
+      />
+      <Icons activeIcon={theIcon} setActiveIcon={setTheIcon} />
+      <div className="flex flex-row justify-between align-center w-100">
+        <button type="submit" className="updateCollection">
+          {todo.todoLoading ? <Spinner /> : t("update")}
+        </button>
+
+        <button
+          onClick={() => {
+            setUpdate(false);
+            setInput(content);
+          }}
+          className="updateCollection"
+        >
+          {t("cancel")}
+        </button>
+      </div>
     </form>
   ) : (
-    <p className="todoTask">{content}</p>
+    <p className={done ? "doneTodo" : ""}>{content}</p>
   );
 
-  const operation = update ? (
-    <span
-      onClick={() => {
-        setInput(content);
-        setUpdate((prev) => !prev);
-      }}
-    >
-      <i className="fa-solid fa-xmark"></i>
-    </span>
-  ) : (
-    <div className="flex flex-row justify-center align-center gap-1">
-      <span onClick={onDoneTodo}>
-        <i className="fa-solid fa-circle-check"></i>
-      </span>
+  const operation = !update && (
+    <div className="flex flex-row justify-between align-center w-100">
       <span onClick={onTodoDelete}>
         <i className="fa-solid fa-trash"></i>
       </span>
-      <span onClick={() => setUpdate((prev) => !prev)}>
-        <i className="fa-solid fa-pen-to-square"></i>
+      <span onClick={() => setUpdate(true)}>
+        <i className="fa-solid fa-pen"></i>
       </span>
     </div>
   );
 
   return (
-    <div className={className}>
-      {text} {operation}
+    <div className="todoItem flex flex-column justify-left align-start w-100 position-relative gap-1 pointer">
+      <div className="boxItemContent flex flex-column flex-wrap justify-center gap-1 align-start w-100">
+        <div className="flex flex-row justify-between align-center w-100">
+          <span>
+            <i className={`fa-solid ${icon} cardIcon`}></i>
+          </span>
+        </div>
+
+        <div className="flex flex-row justify-between align-center w-100">
+          {text}
+          {!update && (
+            <>
+              {done ? (
+                <i onClick={onDoneTodo} className="fa-solid fa-circle-check"></i>
+              ) : (
+                <i onClick={onDoneTodo} className="fa-regular fa-circle-check"></i>
+              )}
+            </>
+          )}
+        </div>
+      </div>
+      {operation}
     </div>
   );
 };
@@ -96,6 +117,7 @@ TodoItem.propTypes = {
   updateTodo: PropTypes.func.isRequired,
   doneTodo: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
+  todo: PropTypes.object.isRequired,
 };
 
 export default connect(null, {

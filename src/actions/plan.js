@@ -24,6 +24,9 @@ import {
   DELETE_PLAN_COLLECTION_START,
   DELETE_PLAN_COLLECTION_SUCCESS,
   DELETE_PLAN_COLLECTION_FAIL,
+  DELETE_ALL_PLAN_COLLECTION_FAIL,
+  DELETE_ALL_PLAN_COLLECTION_START,
+  DELETE_ALL_PLAN_COLLECTION_SUCCESS,
   UPDATE_PLAN_COLLECTION_START,
   UPDATE_PLAN_COLLECTION_SUCCESS,
   UPDATE_PLAN_COLLECTION_FAIL,
@@ -33,6 +36,9 @@ import {
   DELETE_PLAN_START,
   DELETE_PLAN_SUCCESS,
   DELETE_PLAN_FAIL,
+  DELETE_ALL_PLAN_FAIL,
+  DELETE_ALL_PLAN_START,
+  DELETE_ALL_PLAN_SUCCESS,
   UPDATE_PLAN_START,
   UPDATE_PLAN_SUCCESS,
   UPDATE_PLAN_FAIL,
@@ -96,12 +102,12 @@ export const getPlanCollections = (userId) => async (dispatch) => {
 };
 
 //post new collection
-export const postPlanCollection = (userId, name) => async (dispatch) => {
+export const postPlanCollection = (userId, name, icon) => async (dispatch) => {
   dispatch({
     type: POST_PLAN_COLLECTION_START,
   });
   try {
-    const res = await axios.post(`${POST_PLAN_COLLECTION}/${userId}`, { name: name }, authConfig);
+    const res = await axios.post(`${POST_PLAN_COLLECTION}/${userId}`, { name: name, icon: icon }, authConfig);
 
     dispatch({
       type: POST_PLAN_COLLECTION_SUCCESS,
@@ -123,12 +129,38 @@ export const postPlanCollection = (userId, name) => async (dispatch) => {
 };
 
 //put  collection
-export const updatePlanCollection = (userId, collectionId, name) => async (dispatch) => {
+export const updatePlanCollection = (userId, collectionId, name, icon) => async (dispatch) => {
   dispatch({
     type: UPDATE_PLAN_COLLECTION_START,
   });
   try {
-    const res = await axios.put(`${UPDATE_PLAN_COLLECTION}/${userId}/${collectionId}`, { name: name }, authConfig);
+    const res = await axios.put(`${UPDATE_PLAN_COLLECTION}/${userId}/${collectionId}`, { name: name, icon: icon }, authConfig);
+
+    dispatch({
+      type: UPDATE_PLAN_COLLECTION_SUCCESS,
+      payload: res.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: UPDATE_PLAN_COLLECTION_FAIL,
+      payload: error.response.data.error,
+    });
+
+    setTimeout(() => {
+      dispatch({
+        type: REMOVE_PLAN_ERROR,
+      });
+    }, 3000);
+  }
+};
+
+//put  collection favorite
+export const favoriteCollection = (userId, collectionId) => async (dispatch) => {
+  dispatch({
+    type: UPDATE_PLAN_COLLECTION_START,
+  });
+  try {
+    const res = await axios.put(`${UPDATE_PLAN_COLLECTION}/favorite/${userId}/${collectionId}`, authConfig);
 
     dispatch({
       type: UPDATE_PLAN_COLLECTION_SUCCESS,
@@ -154,7 +186,7 @@ export const deletePlanCollection = (userId, collectionId) => async (dispatch) =
     type: DELETE_PLAN_COLLECTION_START,
   });
   try {
-    const res = await axios.delete(`${DELETE_PLAN_COLLECTION}/${userId}/${collectionId}`, authConfig);
+    const res = await axios.delete(`${DELETE_PLAN_COLLECTION}/one/${userId}/${collectionId}`, authConfig);
 
     dispatch({
       type: DELETE_PLAN_COLLECTION_SUCCESS,
@@ -174,14 +206,40 @@ export const deletePlanCollection = (userId, collectionId) => async (dispatch) =
   }
 };
 
+//delete  collection
+export const deleteAllPlanCollection = (userId) => async (dispatch) => {
+  dispatch({
+    type: DELETE_ALL_PLAN_COLLECTION_START,
+  });
+  try {
+    const res = await axios.delete(`${DELETE_PLAN_COLLECTION}/all/${userId}`, authConfig);
+
+    dispatch({
+      type: DELETE_ALL_PLAN_COLLECTION_SUCCESS,
+      payload: res.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: DELETE_ALL_PLAN_COLLECTION_FAIL,
+      payload: error.response.data.error,
+    });
+
+    setTimeout(() => {
+      dispatch({
+        type: REMOVE_PLAN_ERROR,
+      });
+    }, 3000);
+  }
+};
+
 //post new todo
-export const postPlan = (userId, collection_id, planItem) => async (dispatch) => {
+export const postPlan = (userId, collection_id, planItem, icon) => async (dispatch) => {
   dispatch({
     type: POST_PLAN_START,
   });
 
   try {
-    const res = await axios.post(`${POST_PLAN}/${userId}/${collection_id}`, { planItem: planItem }, authConfig);
+    const res = await axios.post(`${POST_PLAN}/${userId}/${collection_id}`, { planItem: planItem, icon: icon }, authConfig);
 
     dispatch({
       type: POST_PLAN_SUCCESS,
@@ -204,13 +262,17 @@ export const postPlan = (userId, collection_id, planItem) => async (dispatch) =>
 
 //put  todo
 export const updatePlan =
-  (userId, collectionId, { planItem, oldPlan }) =>
+  (userId, collectionId, { planItem, oldPlan, icon }) =>
   async (dispatch) => {
     dispatch({
       type: UPDATE_PLAN_START,
     });
     try {
-      const res = await axios.put(`${UPDATE_PLAN}/${userId}/${collectionId}`, { planItem: planItem, oldPlan: oldPlan }, authConfig);
+      const res = await axios.put(
+        `${UPDATE_PLAN}/${userId}/${collectionId}`,
+        { planItem: planItem, oldPlan: oldPlan, icon: icon },
+        authConfig
+      );
 
       dispatch({
         type: UPDATE_PLAN_SUCCESS,
@@ -262,7 +324,7 @@ export const deletePlan = (userId, collectionId, planId) => async (dispatch) => 
     type: DELETE_PLAN_START,
   });
   try {
-    const res = await axios.delete(`${DELETE_PLAN}/${userId}/${collectionId}/${planId}`, authConfig);
+    const res = await axios.delete(`${DELETE_PLAN}/one/${userId}/${collectionId}/${planId}`, authConfig);
 
     dispatch({
       type: DELETE_PLAN_SUCCESS,
@@ -271,6 +333,32 @@ export const deletePlan = (userId, collectionId, planId) => async (dispatch) => 
   } catch (error) {
     dispatch({
       type: DELETE_PLAN_FAIL,
+      payload: error.response.data.error,
+    });
+
+    setTimeout(() => {
+      dispatch({
+        type: REMOVE_PLAN_ERROR,
+      });
+    }, 3000);
+  }
+};
+
+//delete  todo
+export const deleteAllPlan = (userId, collectionId, planId) => async (dispatch) => {
+  dispatch({
+    type: DELETE_ALL_PLAN_START,
+  });
+  try {
+    const res = await axios.delete(`${DELETE_PLAN}/all/${userId}/${collectionId}`, authConfig);
+
+    dispatch({
+      type: DELETE_ALL_PLAN_SUCCESS,
+      payload: res.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: DELETE_ALL_PLAN_FAIL,
       payload: error.response.data.error,
     });
 

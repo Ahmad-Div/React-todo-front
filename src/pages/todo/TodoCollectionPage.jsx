@@ -1,45 +1,49 @@
+import { connect } from "react-redux";
 import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
+import { getTodo, postTodo, getCollections, deleteAllTodo } from "../../actions/todo";
 import { useTranslation } from "react-i18next";
 import moment from "moment";
+import { useParams } from "react-router-dom";
 import TodoItem from "../../component/todo/TodoItem";
-import TodoCollection from "../../component/todo/TodoCollection";
 import { Spinner } from "@chakra-ui/react";
-import store from "../../redux/store";
-import { connect } from "react-redux";
-import { loadUser } from "../../actions/auth";
-import { useNavigate } from "react-router-dom";
-import PropTypes from "prop-types";
-import { getCollections, postCollection, deleteAllCollection } from "../../actions/todo";
+import { Link } from "react-router-dom";
 import Icons from "../../component/Icons";
-const Todo = ({ auth, getCollections, todo, deleteAllCollection, postCollection }) => {
-  const navigate = useNavigate();
+const TodoCollectionPage = ({ auth, todo, getTodo, getCollections, postTodo, deleteAllTodo }) => {
   const { t, i18n } = useTranslation();
+  const { id } = useParams();
+  const [input, setInput] = useState("");
   const [open, setOpen] = useState(false);
   const [fav, setFav] = useState("all");
-  const [collection, setInput] = useState("");
   const [showDelete, setShowDelete] = useState(false);
   const [activeIcon, setActiveIcon] = useState("fa-house");
+
   useEffect(() => {
-    getCollections(auth.user._id);
     if (!auth.isAuthenticated) {
       return navigate("/auth");
     }
-  }, [auth]);
+    getCollections(auth.user._id);
+    getTodo(auth.user._id, id);
+  }, [id, auth]);
 
-  const onCollectionSubmit = () => {
-    postCollection(auth.user._id, { collection: collection, icon: activeIcon });
+  const onTodoSubmit = async (e) => {
+    postTodo(auth.user._id, id, input, activeIcon);
     setInput("");
   };
 
   return (
     <>
       {open && <div className="opaBackground"></div>}
-      <section className="todo flex flex-column justify-left align-start w-100 gap-2 position-relative">
+
+      <section className="singleCollection flex flex-column justify-left align-start w-100 gap-2">
+        <Link to="/todo">
+          {i18n.language === "en" ? <i className="fa-solid fa-square-caret-left"></i> : <i className="fa-solid fa-square-caret-right"></i>}
+        </Link>
         <div className="todoHeader flex flex-row justify-between align-center justify-center w-100 position-relative">
           <h1 className="headers w-100">
-            {t("todo.collections")}
+            {todo.collections.find((collection) => collection._id === id)?.name} &nbsp;
+            {t("todo.collection")}
             <small>
-              {" "}
               {moment(Date.now()).format("MMMM Do YYYY")} {moment(Date.now()).format("dddd")}
             </small>
           </h1>
@@ -49,13 +53,13 @@ const Todo = ({ auth, getCollections, todo, deleteAllCollection, postCollection 
           {showDelete && (
             <div
               onClick={() => {
-                deleteAllCollection(auth.user._id);
                 setShowDelete(false);
+                deleteAllTodo(auth.user._id, id);
               }}
               style={i18n.language === "en" ? { right: "0" } : { left: "0" }}
               className="deleteAllBox"
             >
-              <small>{t("deleteAllCollection")}</small>
+              <small>{t("deleteAllTodos")}</small>
             </div>
           )}
         </div>
@@ -69,10 +73,7 @@ const Todo = ({ auth, getCollections, todo, deleteAllCollection, postCollection 
         >
           {" "}
           <button onClick={() => setFav("all")} className={fav === "all" ? "fav activeSection" : "fav"}>
-            {t("filter.all")}
-          </button>
-          <button onClick={() => setFav("fav")} className={fav === "fav" ? "fav activeSection" : "fav"}>
-            {t("filter.fav")}
+            {t("filter.allTodo")}
           </button>
           <button onClick={() => setFav("done")} className={fav === "done" ? "fav activeSection" : "fav"}>
             {t("filter.done")}
@@ -85,88 +86,71 @@ const Todo = ({ auth, getCollections, todo, deleteAllCollection, postCollection 
         <div
           className={
             i18n.language === "en"
-              ? "collectionCards flex flex-row justify-left align-start flex-wrap gap-1 w-100"
-              : "collectionCards flex flex-row justify-right align-start flex-wrap gap-1 w-100"
+              ? "todoCards flex flex-row justify-left align-start flex-wrap gap-1 w-100"
+              : "todoCards flex flex-row justify-right align-start flex-wrap gap-1 w-100"
           }
         >
+          {" "}
           <div onClick={() => setOpen(true)} className="openCollectionForm flex flex-row justify-center align-center">
             <i className="fa-solid fa-plus"></i>
           </div>
-          {todo.fetchCollectionLoading ? (
+          {todo.fetchTodoLoading ? (
             <div className="w-100 flex flex-row justify-center align-center">
               <Spinner thickness="5px" speed="0.65s" emptyColor="gray.200" color="blue.500" size="xl" />
             </div>
           ) : (
             <>
-              {fav === "fav" ? (
+              {fav === "done" ? (
                 <>
-                  {" "}
-                  {todo.collections?.map((collection, index) => {
+                  {todo.todos?.map((item, index) => {
                     return (
-                      collection.isFav && (
-                        <TodoCollection
-                          auth={auth}
-                          todos={collection.todos}
-                          id={collection._id}
-                          key={index}
-                          icon={collection.icon}
-                          fav={collection.isFav}
-                          name={collection.name}
+                      item.done && (
+                        <TodoItem
                           todo={todo}
+                          done={item.done}
+                          collectionId={id}
+                          icon={item.icon}
+                          auth={auth}
+                          id={item._id}
+                          key={index}
+                          content={item.content}
                         />
                       )
                     );
                   })}
                 </>
-              ) : fav === "done" ? (
-                <>
-                  {todo.collections?.map((collection, index) => {
-                    return collection.todos.length === collection.todos.filter((todo) => todo.done).length &&
-                      collection.todos.length !== 0 ? (
-                      <TodoCollection
-                        auth={auth}
-                        id={collection._id}
-                        todos={collection.todos}
-                        key={index}
-                        icon={collection.icon}
-                        fav={collection.isFav}
-                        name={collection.name}
-                        todo={todo}
-                      />
-                    ) : null;
-                  })}
-                </>
               ) : fav === "remain" ? (
                 <>
-                  {todo.collections?.map((collection, index) => {
-                    return collection.todos.length > collection.todos.filter((todo) => todo.done).length ||
-                      collection.todos.length === 0 ? (
-                      <TodoCollection
-                        auth={auth}
-                        id={collection._id}
-                        todos={collection.todos}
-                        key={index}
-                        icon={collection.icon}
-                        fav={collection.isFav}
-                        name={collection.name}
-                        todo={todo}
-                      />
-                    ) : null;
+                  {todo.todos?.map((item, index) => {
+                    return (
+                      !item.done && (
+                        <TodoItem
+                          todo={todo}
+                          done={item.done}
+                          icon={item.icon}
+                          collectionId={id}
+                          auth={auth}
+                          id={item._id}
+                          key={index}
+                          content={item.content}
+                        />
+                      )
+                    );
                   })}
                 </>
               ) : (
                 <>
-                  {todo.collections?.map((collection, index) => {
+                  {todo.todos?.map((item, index) => {
                     return (
-                      <TodoCollection
-                        auth={auth}
-                        id={collection._id}
-                        icon={collection.icon}
-                        todos={collection.todos}
-                        key={index}
-                        fav={collection.isFav}
-                        name={collection.name}
+                      <TodoItem
                         todo={todo}
+                        done={item.done}
+                        icon={item.icon}
+                        collectionId={id}
+                        auth={auth}
+                        id={item._id}
+                        key={index}
+                        content={item.content}
                       />
                     );
                   })}
@@ -174,31 +158,30 @@ const Todo = ({ auth, getCollections, todo, deleteAllCollection, postCollection 
               )}
             </>
           )}
-
           {open && (
             <form
               className="collectionForm flex flex-column gap-1"
               onSubmit={(e) => {
                 e.preventDefault();
-                onCollectionSubmit();
+                onTodoSubmit();
               }}
             >
               <input
+                value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => {
                   if (e.key === "13" && !e.shiftKey) {
-                    onCollectionSubmit();
+                    onTodoSubmit();
                   }
                 }}
-                autoFocus
-                value={collection}
-                placeholder={t("todo.collectionPlaceHolder")}
+                placeholder={t("todo.todoPlaceHolder")}
                 type="text"
-                name="collection"
-                id="collection"
+                name="todoBox"
+                id="todo"
               />
               <Icons setActiveIcon={setActiveIcon} activeIcon={activeIcon} />
-              {todo.collectionErrors && (
+
+              {todo.todoErrors && (
                 <small
                   style={{
                     textAlign: "center",
@@ -206,12 +189,13 @@ const Todo = ({ auth, getCollections, todo, deleteAllCollection, postCollection 
                   }}
                   className="error"
                 >
-                  {todo.collectionErrors}
+                  {todo.todoErrors}
                 </small>
               )}
+
               <div className="flex flex-row justify-between align-center w-100">
-                <button disabled={todo.collectionLoading} type="submit" className="addCollection">
-                  {todo.collectionLoading ? <Spinner /> : t("add")}
+                <button disabled={todo.todoLoading} type="submit" className="addCollection">
+                  {todo.todoLoading ? <Spinner /> : t("add")}
                 </button>
                 <button onClick={() => setOpen(false)} type="button" className="addCollection">
                   {t("cancel")}
@@ -225,11 +209,11 @@ const Todo = ({ auth, getCollections, todo, deleteAllCollection, postCollection 
   );
 };
 
-Todo.propTypes = {
+TodoCollectionPage.propTypes = {
+  getTodo: PropTypes.func.isRequired,
+  postTodo: PropTypes.func.isRequired,
   getCollections: PropTypes.func.isRequired,
-  postCollection: PropTypes.func.isRequired,
-  deleteAllCollection: PropTypes.func.isRequired,
-
+  deleteAllTodo: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   todo: PropTypes.object.isRequired,
 };
@@ -238,8 +222,10 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
   todo: state.todo,
 });
+
 export default connect(mapStateToProps, {
+  getTodo,
+  postTodo,
   getCollections,
-  deleteAllCollection,
-  postCollection,
-})(Todo);
+  deleteAllTodo,
+})(TodoCollectionPage);

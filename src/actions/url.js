@@ -1,8 +1,18 @@
-export const BACKEND_HOST = import.meta.env.VITE_BACKEND_HOST;
+export const BACKEND_HOST = import.meta.env.VITE_BACKEND_LOCAL_HOST;
 export const GET_TOKEN_URL = `${BACKEND_HOST}/api/user/jwt_token`;
 
 export const REGISTER_URL = `${BACKEND_HOST}/api/auth/`;
 export const LOGIN_URL = `${BACKEND_HOST}/api/auth/login`;
+export const AUTH_EMAIL_URL = `${BACKEND_HOST}/api/auth/authentication`;
+export const RE_EMAIL_URL = `${BACKEND_HOST}/api/auth/re_send`;
+
+export const SEND_CODE_URL = `${BACKEND_HOST}/api/auth/code`;
+
+export const AUTH_EMAIL_FORGET_PASSWORD_URL = `${BACKEND_HOST}/api/auth/password`;
+export const RE_EMAIL_FORGET_PASSWORD_URL = `${BACKEND_HOST}/api/auth/password_re_send`;
+
+export const SEND_CODE_FORGET_PASSWORD_URL = `${BACKEND_HOST}/api/auth/password_code`;
+export const CHANGE_PASSWORD_URL = `${BACKEND_HOST}/api/auth/change_password`;
 
 export const GET_AUTH_TOKEN = `${BACKEND_HOST}/api/user/jwt_token`;
 export const GET_ALL_TODO = `${BACKEND_HOST}/api/todo/get/me`;
@@ -42,3 +52,5 @@ export const UPLOAD_USER_IMAGE = `${BACKEND_HOST}/api/upload/userImage`;
 
 export const TODO_CHART = `${BACKEND_HOST}/api/result/todo`;
 export const PLAN_CHART = `${BACKEND_HOST}/api/result/plan`;
+
+//google

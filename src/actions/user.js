@@ -75,6 +75,35 @@ export const updateUser = (userId, body) => async (dispatch) => {
   }
 };
 
+export const updateNotificationUser = (userId) => async (dispatch) => {
+  dispatch({
+    type: UPDATE_USER_START,
+  });
+  try {
+    const res = await axios.put(`${UPDATE_USER}/notification/${userId}`, authConfig);
+
+    dispatch({
+      type: UPDATE_USER_SUCCESS,
+    });
+
+    //update the user from auth reducer
+    dispatch({
+      type: USER_UPDATE,
+      payload: res.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: UPDATE_USER_FAIL,
+      payload: error.response.data.error,
+    });
+    setTimeout(() => {
+      dispatch({
+        type: REMOVE_USER_ERRORS,
+      });
+    }, 3000);
+  }
+};
+
 export const uploadImage = (file, userId) => async (dispatch) => {
   try {
     const res = await axios.post(`${UPLOAD_USER_IMAGE}/${userId}`, file, fileAuthConfig);

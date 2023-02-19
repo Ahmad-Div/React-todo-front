@@ -1,47 +1,49 @@
+import { connect } from "react-redux";
 import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
+import { getPlan, postPlan, getPlanCollections, deleteAllPlan } from "../../actions/plan";
 import { useTranslation } from "react-i18next";
 import moment from "moment";
-import PlanCollection from "../../component/plan/PlanColllection";
-import { connect } from "react-redux";
-import { loadUser } from "../../actions/auth";
-import { useNavigate } from "react-router-dom";
-import PropTypes from "prop-types";
-import { getPlanCollections, postPlanCollection, deleteAllPlanCollection } from "../../actions/plan";
+import { useParams } from "react-router-dom";
 import { Spinner } from "@chakra-ui/react";
-import store from "../../redux/store";
+import { Link } from "react-router-dom";
+import PlanItem from "../../component/plan/PlanItem";
 import Icons from "../../component/Icons";
-const Plan = ({ auth, plan, getPlanCollections, postPlanCollection, deleteAllPlanCollection }) => {
-  const navigate = useNavigate();
+const PlanCollectionPage = ({ auth, plan, getPlan, getPlanCollections, postPlan, deleteAllPlan }) => {
   const { t, i18n } = useTranslation();
-  const [collection, setInput] = useState("");
+  const { id } = useParams();
+  const [input, setInput] = useState("");
   const [open, setOpen] = useState(false);
   const [fav, setFav] = useState("all");
   const [showDelete, setShowDelete] = useState(false);
   const [activeIcon, setActiveIcon] = useState("fa-house");
 
   useEffect(() => {
-    getPlanCollections(auth.user._id);
     if (!auth.isAuthenticated) {
       return navigate("/auth");
     }
-  }, [auth]);
-  //post collection
+    getPlanCollections(auth.user._id);
+    getPlan(auth.user._id, id);
+  }, [id, auth]);
 
-  const onCollectionSubmit = () => {
+  const onPlanSubmit = async (e) => {
+    postPlan(auth.user._id, id, input, activeIcon);
     setInput("");
-    postPlanCollection(auth.user._id, collection, activeIcon);
   };
 
   return (
     <>
       {open && <div className="opaBackground"></div>}
 
-      <section className="plan flex flex-column justify-left align-start w-100 gap-2">
+      <section className="singleCollection flex flex-column justify-left align-start w-100 gap-2">
+        <Link to="/plan">
+          {i18n.language === "en" ? <i className="fa-solid fa-square-caret-left"></i> : <i className="fa-solid fa-square-caret-right"></i>}
+        </Link>
         <div className="planHeader flex flex-row justify-between align-center justify-center w-100 position-relative">
           <h1 className="headers w-100">
-            {t("plan.collections")}
+            {plan.collections.find((collection) => collection._id === id)?.name} &nbsp;
+            {t("plan.collection")}
             <small>
-              {" "}
               {moment(Date.now()).format("MMMM Do YYYY")} {moment(Date.now()).format("dddd")}
             </small>
           </h1>
@@ -51,13 +53,13 @@ const Plan = ({ auth, plan, getPlanCollections, postPlanCollection, deleteAllPla
           {showDelete && (
             <div
               onClick={() => {
-                deleteAllPlanCollection(auth.user._id);
                 setShowDelete(false);
+                deleteAllPlan(auth.user._id, id);
               }}
               style={i18n.language === "en" ? { right: "0" } : { left: "0" }}
               className="deleteAllBox"
             >
-              <small>{t("deleteAllCollection")}</small>
+              <small>{t("deleteAllTodos")}</small>
             </div>
           )}
         </div>
@@ -71,10 +73,7 @@ const Plan = ({ auth, plan, getPlanCollections, postPlanCollection, deleteAllPla
         >
           {" "}
           <button onClick={() => setFav("all")} className={fav === "all" ? "fav activeSection" : "fav"}>
-            {t("filter.all")}
-          </button>
-          <button onClick={() => setFav("fav")} className={fav === "fav" ? "fav activeSection" : "fav"}>
-            {t("filter.fav")}
+            {t("filter.allTodo")}
           </button>
           <button onClick={() => setFav("done")} className={fav === "done" ? "fav activeSection" : "fav"}>
             {t("filter.done")}
@@ -87,88 +86,71 @@ const Plan = ({ auth, plan, getPlanCollections, postPlanCollection, deleteAllPla
         <div
           className={
             i18n.language === "en"
-              ? "collectionCards flex flex-row justify-left align-start flex-wrap gap-1 w-100"
-              : "collectionCards flex flex-row justify-right align-start flex-wrap gap-1 w-100"
+              ? "planCards flex flex-row justify-left align-start flex-wrap gap-1 w-100"
+              : "planCards flex flex-row justify-right align-start flex-wrap gap-1 w-100"
           }
         >
           {" "}
           <div onClick={() => setOpen(true)} className="openCollectionForm flex flex-row justify-center align-center">
             <i className="fa-solid fa-plus"></i>
           </div>
-          {plan.fetchCollectionLoading ? (
+          {plan.fetchPlanLoading ? (
             <div className="w-100 flex flex-row justify-center align-center">
               <Spinner thickness="5px" speed="0.65s" emptyColor="gray.200" color="blue.500" size="xl" />
             </div>
           ) : (
             <>
-              {fav === "fav" ? (
+              {fav === "done" ? (
                 <>
-                  {plan.collections?.map((collection, index) => {
+                  {plan.plans?.map((item, index) => {
                     return (
-                      collection.isFav && (
-                        <PlanCollection
-                          auth={auth}
-                          plans={collection.plans}
-                          id={collection._id}
-                          icon={collection.icon}
-                          key={index}
-                          fav={collection.isFav}
-                          name={collection.name}
+                      item.done && (
+                        <PlanItem
                           plan={plan}
+                          done={item.done}
+                          collectionId={id}
+                          auth={auth}
+                          id={item._id}
+                          icon={item.icon}
+                          key={index}
+                          content={item.content}
                         />
                       )
                     );
                   })}
                 </>
-              ) : fav === "done" ? (
-                <>
-                  {plan.collections?.map((collection, index) => {
-                    return collection.plans.length === collection.plans.filter((plan) => plan.done).length &&
-                      collection.plans.length !== 0 ? (
-                      <PlanCollection
-                        auth={auth}
-                        id={collection._id}
-                        icon={collection.icon}
-                        plans={collection.plans}
-                        key={index}
-                        fav={collection.isFav}
-                        name={collection.name}
-                        plan={plan}
-                      />
-                    ) : null;
-                  })}
-                </>
               ) : fav === "remain" ? (
                 <>
-                  {plan.collections?.map((collection, index) => {
-                    return collection.plans.length > collection.plans.filter((plan) => plan.done).length ||
-                      collection.plans.length === 0 ? (
-                      <PlanCollection
-                        auth={auth}
-                        plans={collection.plans}
-                        id={collection._id}
-                        key={index}
-                        icon={collection.icon}
-                        fav={collection.isFav}
-                        name={collection.name}
-                        plan={plan}
-                      />
-                    ) : null;
+                  {plan.plans?.map((item, index) => {
+                    return (
+                      !item.done && (
+                        <PlanItem
+                          icon={item.icon}
+                          plan={plan}
+                          done={item.done}
+                          collectionId={id}
+                          auth={auth}
+                          id={item._id}
+                          key={index}
+                          content={item.content}
+                        />
+                      )
+                    );
                   })}
                 </>
               ) : (
                 <>
-                  {plan.collections?.map((collection, index) => {
+                  {plan.plans?.map((item, index) => {
                     return (
-                      <PlanCollection
-                        auth={auth}
-                        plans={collection.plans}
-                        id={collection._id}
-                        key={index}
-                        icon={collection.icon}
-                        fav={collection.isFav}
-                        name={collection.name}
+                      <PlanItem
                         plan={plan}
+                        icon={item.icon}
+                        done={item.done}
+                        collectionId={id}
+                        auth={auth}
+                        id={item._id}
+                        key={index}
+                        content={item.content}
                       />
                     );
                   })}
@@ -181,25 +163,25 @@ const Plan = ({ auth, plan, getPlanCollections, postPlanCollection, deleteAllPla
               className="collectionForm flex flex-column gap-1"
               onSubmit={(e) => {
                 e.preventDefault();
-                onCollectionSubmit();
+                onPlanSubmit();
               }}
             >
               <input
+                value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => {
                   if (e.key === "13" && !e.shiftKey) {
-                    onCollectionSubmit();
+                    onPlanSubmit();
                   }
                 }}
-                autoFocus
-                value={collection}
-                placeholder={t("todo.collectionPlaceHolder")}
+                placeholder={t("plan.planPlaceHolder")}
                 type="text"
-                name="collection"
-                id="collection"
+                name="planBox"
+                id="plan"
               />
               <Icons setActiveIcon={setActiveIcon} activeIcon={activeIcon} />
-              {plan.collectionErrors && (
+
+              {plan.planErrors && (
                 <small
                   style={{
                     textAlign: "center",
@@ -207,12 +189,13 @@ const Plan = ({ auth, plan, getPlanCollections, postPlanCollection, deleteAllPla
                   }}
                   className="error"
                 >
-                  {plan.collectionErrors}
+                  {plan.planErrors}
                 </small>
               )}
+
               <div className="flex flex-row justify-between align-center w-100">
-                <button disabled={plan.collectionLoading} type="submit" className="addCollection">
-                  {plan.collectionLoading ? <Spinner /> : t("add")}
+                <button disabled={plan.planLoading} type="submit" className="addCollection">
+                  {plan.planLoading ? <Spinner /> : t("add")}
                 </button>
                 <button onClick={() => setOpen(false)} type="button" className="addCollection">
                   {t("cancel")}
@@ -226,10 +209,11 @@ const Plan = ({ auth, plan, getPlanCollections, postPlanCollection, deleteAllPla
   );
 };
 
-Plan.propTypes = {
+PlanCollectionPage.propTypes = {
+  getPlan: PropTypes.func.isRequired,
+  postPlan: PropTypes.func.isRequired,
   getPlanCollections: PropTypes.func.isRequired,
-  postPlanCollection: PropTypes.func.isRequired,
-  deleteAllPlanCollection: PropTypes.func.isRequired,
+  deleteAllPlan: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   plan: PropTypes.object.isRequired,
 };
@@ -240,7 +224,8 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
+  getPlan,
+  postPlan,
   getPlanCollections,
-  postPlanCollection,
-  deleteAllPlanCollection,
-})(Plan);
+  deleteAllPlan,
+})(PlanCollectionPage);
