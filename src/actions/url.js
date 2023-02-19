@@ -1,4 +1,4 @@
-export const BACKEND_HOST = import.meta.env.VITE_BACKEND_LOCAL_HOST;
+export const BACKEND_HOST = import.meta.env.VITE_BACKEND_HOST;
 export const GET_TOKEN_URL = `${BACKEND_HOST}/api/user/jwt_token`;
 
 export const REGISTER_URL = `${BACKEND_HOST}/api/auth/`;
