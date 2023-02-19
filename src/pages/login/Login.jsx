@@ -27,7 +27,8 @@ const Login = ({ login, auth, errors }) => {
 
   useEffect(() => {
     if (auth.isAuthenticated) {
-      return navigate("/");
+      navigate("/");
+      window.location.reload();
     }
   }, [auth.isAuthenticated]);
 
