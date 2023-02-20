@@ -19,7 +19,7 @@ const Home = ({ auth }) => {
       });
       window.location.reload();
     }
-  }, [auth, dispatch, REFRESH]);
+  }, [auth.refresh]);
 
   useEffect(() => {
     if (!auth.isAuthenticated) {
