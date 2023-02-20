@@ -53,7 +53,7 @@ const Login = ({ login, auth, errors }) => {
             onKeyDown={onKeyPressed}
             value={email}
             placeholder="Email or Username"
-            type="email"
+            type="text"
             name="email"
             id="email"
           />{" "}
