@@ -3,11 +3,23 @@ import { useTranslation } from "react-i18next";
 import { connect } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
-import store from "../../redux/store";
-import { loadUser } from "../../actions/auth";
+import { useDispatch } from "react-redux";
+import { REFRESH } from "../../actions/types";
 const Home = ({ auth }) => {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  //to reload the page
+
+  useEffect(() => {
+    if (!auth.refresh) {
+      dispatch({
+        tpye: REFRESH,
+      });
+      window.location.reload();
+    }
+  }, [auth]);
 
   useEffect(() => {
     if (!auth.isAuthenticated) {

@@ -15,6 +15,7 @@ export const LOGOUT = "LOGOUT";
 export const AUTH_EMAIL_START = "AUTH_EMAIL_START";
 export const AUTH_EMAIL_SUCCESS = "AUTH_EMAIL_SUCCESS";
 export const AUTH_EMAIL_FAIL = "AUTH_EMAIL_FAIL";
+export const REFRESH = "REFRESH";
 
 //todo and collections
 export const FETCH_TODO_START = "FETCH_TODO_START";
