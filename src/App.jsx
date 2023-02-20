@@ -86,9 +86,6 @@ const ErrorBoundaryDetect = ({ children }) => {
 
 function App() {
   useEffect(() => {
-    if (getCookie("user")) {
-      setAuthToken(getCookie("user"));
-    }
     //check user auth
     store.dispatch(loadUser());
   }, []);

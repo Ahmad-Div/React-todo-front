@@ -3,23 +3,9 @@ import { useTranslation } from "react-i18next";
 import { connect } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
-import { useDispatch } from "react-redux";
-import { REFRESH } from "../../actions/types";
 const Home = ({ auth }) => {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  //to reload the page
-
-  useEffect(() => {
-    if (!auth.refresh) {
-      dispatch({
-        type: REFRESH,
-      });
-      window.location.reload();
-    }
-  }, []);
 
   useEffect(() => {
     if (!auth.isAuthenticated) {

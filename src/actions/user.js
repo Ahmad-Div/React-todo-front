@@ -22,7 +22,7 @@ export const deleteUser = (userId) => async (dispatch) => {
     type: DELETE_USER_START,
   });
   try {
-    const res = await axios.delete(`${DELETE_USER}/${userId}`, authConfig);
+    const res = await axios.delete(`${DELETE_USER}/${userId}`, authConfig(getCookie("user")));
 
     dispatch({
       type: DELETE_USER_SUCCESS,
@@ -51,7 +51,7 @@ export const updateUser = (userId, body) => async (dispatch) => {
     type: UPDATE_USER_START,
   });
   try {
-    const res = await axios.put(`${UPDATE_USER}/${userId}`, body, authConfig);
+    const res = await axios.put(`${UPDATE_USER}/${userId}`, body, authConfig(getCookie("user")));
 
     dispatch({
       type: UPDATE_USER_SUCCESS,
@@ -80,7 +80,7 @@ export const updateNotificationUser = (userId) => async (dispatch) => {
     type: UPDATE_USER_START,
   });
   try {
-    const res = await axios.put(`${UPDATE_USER}/notification/${userId}`, authConfig);
+    const res = await axios.put(`${UPDATE_USER}/notification/${userId}`, authConfig(getCookie("user")));
 
     dispatch({
       type: UPDATE_USER_SUCCESS,
@@ -106,7 +106,7 @@ export const updateNotificationUser = (userId) => async (dispatch) => {
 
 export const uploadImage = (file, userId) => async (dispatch) => {
   try {
-    const res = await axios.post(`${UPLOAD_USER_IMAGE}/${userId}`, file, fileAuthConfig);
+    const res = await axios.post(`${UPLOAD_USER_IMAGE}/${userId}`, file, fileAuthConfig(getCookie("user")));
     return res;
   } catch (error) {
     dispatch({

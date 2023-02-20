@@ -56,7 +56,7 @@ export const getPlan = (userId, collection) => async (dispatch) => {
     type: FETCH_PLAN_START,
   });
   try {
-    const res = await axios.get(`${GET_ALL_PLAN}/${userId}/${collection}`, authConfig);
+    const res = await axios.get(`${GET_ALL_PLAN}/${userId}/${collection}`, authConfig(getCookie("user")));
 
     dispatch({
       type: FETCH_PLAN_SUCCESS,
@@ -82,7 +82,7 @@ export const getPlanCollections = (userId) => async (dispatch) => {
     type: FETCH_PLAN_COLLECTION_START,
   });
   try {
-    const res = await axios.get(`${GET_ALL_PLAN_COLLECTIONS}/${userId}`, authConfig);
+    const res = await axios.get(`${GET_ALL_PLAN_COLLECTIONS}/${userId}`, authConfig(getCookie("user")));
     dispatch({
       type: FETCH_PLAN_COLLECTION_SUCCESS,
       payload: res.data,
@@ -107,7 +107,7 @@ export const postPlanCollection = (userId, name, icon) => async (dispatch) => {
     type: POST_PLAN_COLLECTION_START,
   });
   try {
-    const res = await axios.post(`${POST_PLAN_COLLECTION}/${userId}`, { name: name, icon: icon }, authConfig);
+    const res = await axios.post(`${POST_PLAN_COLLECTION}/${userId}`, { name: name, icon: icon }, authConfig(getCookie("user")));
 
     dispatch({
       type: POST_PLAN_COLLECTION_SUCCESS,
@@ -134,7 +134,11 @@ export const updatePlanCollection = (userId, collectionId, name, icon) => async 
     type: UPDATE_PLAN_COLLECTION_START,
   });
   try {
-    const res = await axios.put(`${UPDATE_PLAN_COLLECTION}/${userId}/${collectionId}`, { name: name, icon: icon }, authConfig);
+    const res = await axios.put(
+      `${UPDATE_PLAN_COLLECTION}/${userId}/${collectionId}`,
+      { name: name, icon: icon },
+      authConfig(getCookie("user"))
+    );
 
     dispatch({
       type: UPDATE_PLAN_COLLECTION_SUCCESS,
@@ -160,7 +164,7 @@ export const favoriteCollection = (userId, collectionId) => async (dispatch) => 
     type: UPDATE_PLAN_COLLECTION_START,
   });
   try {
-    const res = await axios.put(`${UPDATE_PLAN_COLLECTION}/favorite/${userId}/${collectionId}`, authConfig);
+    const res = await axios.put(`${UPDATE_PLAN_COLLECTION}/favorite/${userId}/${collectionId}`, authConfig(getCookie("user")));
 
     dispatch({
       type: UPDATE_PLAN_COLLECTION_SUCCESS,
@@ -186,7 +190,7 @@ export const deletePlanCollection = (userId, collectionId) => async (dispatch) =
     type: DELETE_PLAN_COLLECTION_START,
   });
   try {
-    const res = await axios.delete(`${DELETE_PLAN_COLLECTION}/one/${userId}/${collectionId}`, authConfig);
+    const res = await axios.delete(`${DELETE_PLAN_COLLECTION}/one/${userId}/${collectionId}`, authConfig(getCookie("user")));
 
     dispatch({
       type: DELETE_PLAN_COLLECTION_SUCCESS,
@@ -212,7 +216,7 @@ export const deleteAllPlanCollection = (userId) => async (dispatch) => {
     type: DELETE_ALL_PLAN_COLLECTION_START,
   });
   try {
-    const res = await axios.delete(`${DELETE_PLAN_COLLECTION}/all/${userId}`, authConfig);
+    const res = await axios.delete(`${DELETE_PLAN_COLLECTION}/all/${userId}`, authConfig(getCookie("user")));
 
     dispatch({
       type: DELETE_ALL_PLAN_COLLECTION_SUCCESS,
@@ -239,7 +243,11 @@ export const postPlan = (userId, collection_id, planItem, icon) => async (dispat
   });
 
   try {
-    const res = await axios.post(`${POST_PLAN}/${userId}/${collection_id}`, { planItem: planItem, icon: icon }, authConfig);
+    const res = await axios.post(
+      `${POST_PLAN}/${userId}/${collection_id}`,
+      { planItem: planItem, icon: icon },
+      authConfig(getCookie("user"))
+    );
 
     dispatch({
       type: POST_PLAN_SUCCESS,
@@ -271,7 +279,7 @@ export const updatePlan =
       const res = await axios.put(
         `${UPDATE_PLAN}/${userId}/${collectionId}`,
         { planItem: planItem, oldPlan: oldPlan, icon: icon },
-        authConfig
+        authConfig(getCookie("user"))
       );
 
       dispatch({
@@ -298,7 +306,7 @@ export const donePlan = (userId, collectionId, planId) => async (dispatch) => {
     type: BOOLEAN_PLAN_START,
   });
   try {
-    const res = await axios.put(`${DONE_PLAN}/${userId}/${collectionId}/${planId}`, authConfig);
+    const res = await axios.put(`${DONE_PLAN}/${userId}/${collectionId}/${planId}`, authConfig(getCookie("user")));
 
     dispatch({
       type: BOOLEAN_PLAN_SUCCESS,
@@ -324,7 +332,7 @@ export const deletePlan = (userId, collectionId, planId) => async (dispatch) => 
     type: DELETE_PLAN_START,
   });
   try {
-    const res = await axios.delete(`${DELETE_PLAN}/one/${userId}/${collectionId}/${planId}`, authConfig);
+    const res = await axios.delete(`${DELETE_PLAN}/one/${userId}/${collectionId}/${planId}`, authConfig(getCookie("user")));
 
     dispatch({
       type: DELETE_PLAN_SUCCESS,
@@ -350,7 +358,7 @@ export const deleteAllPlan = (userId, collectionId, planId) => async (dispatch) 
     type: DELETE_ALL_PLAN_START,
   });
   try {
-    const res = await axios.delete(`${DELETE_PLAN}/all/${userId}/${collectionId}`, authConfig);
+    const res = await axios.delete(`${DELETE_PLAN}/all/${userId}/${collectionId}`, authConfig(getCookie("user")));
 
     dispatch({
       type: DELETE_ALL_PLAN_SUCCESS,

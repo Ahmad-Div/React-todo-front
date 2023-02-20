@@ -12,13 +12,13 @@ import {
 } from "./types";
 
 import { TODO_CHART, PLAN_CHART } from "./url";
-
+import { getCookie } from "../data/cookie";
 export const getTodoChart = (userId) => async (dispatch) => {
   dispatch({
     type: GET_TODO_CHART_START,
   });
   try {
-    const res = await axios.get(`${TODO_CHART}/${userId}`, authConfig);
+    const res = await axios.get(`${TODO_CHART}/${userId}`, authConfig(getCookie("user")));
     dispatch({
       type: GET_TODO_CHART_SUCCESS,
       payload: res.data,
@@ -41,7 +41,7 @@ export const getPlanChart = (userId) => async (dispatch) => {
     type: GET_PLAN_CHART_START,
   });
   try {
-    const res = await axios.get(`${PLAN_CHART}/${userId}`, authConfig);
+    const res = await axios.get(`${PLAN_CHART}/${userId}`, authConfig(getCookie("user")));
     dispatch({
       type: GET_PLAN_CHART_SUCCESS,
       payload: res.data,

@@ -15,7 +15,6 @@ import {
   AUTH_EMAIL_START,
   AUTH_EMAIL_FAIL,
   AUTH_EMAIL_SUCCESS,
-  REFRESH,
 } from "../../actions/types";
 const initialState = {
   token: getCookie("user"),
@@ -24,7 +23,6 @@ const initialState = {
   loading: null,
   user: null,
   errors: null,
-  refresh: false,
 };
 
 export default function (state = initialState, action) {
@@ -109,13 +107,6 @@ export default function (state = initialState, action) {
         token: null,
         isAuthenticated: false,
         isRegistered: false,
-        refresh: false,
-      };
-
-    case REFRESH:
-      return {
-        ...state,
-        refresh: true,
       };
 
     //if user updated update his account

@@ -32,12 +32,11 @@ import { getCookie, removeCookie, setCookie } from "../data/cookie";
 import setAuthToken from "../data/setAuthToken";
 
 export const loadUser = () => async (dispatch) => {
-  if (getCookie("user")) {
-    setAuthToken(getCookie("user"));
-  }
+  if (!getCookie("user")) return;
+  setAuthToken(getCookie("user"));
 
   try {
-    const res = await axios.get(GET_AUTH_TOKEN, config);
+    const res = await axios.get(GET_AUTH_TOKEN);
     dispatch({
       type: USER_LOADED,
       payload: res.data,
@@ -47,7 +46,7 @@ export const loadUser = () => async (dispatch) => {
       type: AUTH_ERROR,
     });
     removeCookie("user");
-    setAuthToken(getCookie("user"));
+    setAuthToken(null);
   }
 };
 

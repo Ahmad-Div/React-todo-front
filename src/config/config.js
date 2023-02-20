@@ -5,16 +5,20 @@ export const config = {
   },
 };
 
-export const authConfig = {
-  headers: {
-    "Content-Type": "application/json",
-    "x-auth-token": getCookie("user"),
-  },
+export const authConfig = (token) => {
+  return {
+    headers: {
+      "Content-Type": "application/json",
+      "x-auth-token": token,
+    },
+  };
 };
 
-export const fileAuthConfig = {
-  headers: {
-    "Content-Type": "multipart/form-data",
-    "x-auth-token": getCookie("user"),
-  },
+export const fileAuthConfig = (token) => {
+  return {
+    headers: {
+      "Content-Type": "multipart/form-data",
+      "x-auth-token": token,
+    },
+  };
 };

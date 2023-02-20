@@ -56,7 +56,7 @@ export const getTodo = (userId, collection) => async (dispatch) => {
     type: FETCH_TODO_START,
   });
   try {
-    const res = await axios.get(`${GET_ALL_TODO}/${userId}/${collection}`, authConfig);
+    const res = await axios.get(`${GET_ALL_TODO}/${userId}/${collection}`, authConfig(getCookie("user")));
 
     dispatch({
       type: FETCH_TODO_SUCCESS,
@@ -77,7 +77,7 @@ export const getCollections = (userId) => async (dispatch) => {
     type: FETCH_COLLECTION_START,
   });
   try {
-    const res = await axios.get(`${GET_ALL_COLLECTIONS}/${userId}`, authConfig);
+    const res = await axios.get(`${GET_ALL_COLLECTIONS}/${userId}`, authConfig(getCookie("user")));
     dispatch({
       type: FETCH_COLLECTION_SUCCESS,
       payload: res.data,
@@ -99,7 +99,7 @@ export const postCollection =
       type: POST_COLLECTION_START,
     });
     try {
-      const res = await axios.post(`${POST_COLLECTION}/${userId}`, { name: collection, icon: icon }, authConfig);
+      const res = await axios.post(`${POST_COLLECTION}/${userId}`, { name: collection, icon: icon }, authConfig(getCookie("user")));
 
       dispatch({
         type: POST_COLLECTION_SUCCESS,
@@ -126,7 +126,11 @@ export const updateCollection = (userId, collectionId, name, icon) => async (dis
     type: UPDATE_COLLECTION_START,
   });
   try {
-    const res = await axios.put(`${UPDATE_COLLECTION}/${userId}/${collectionId}`, { name: name, icon: icon }, authConfig);
+    const res = await axios.put(
+      `${UPDATE_COLLECTION}/${userId}/${collectionId}`,
+      { name: name, icon: icon },
+      authConfig(getCookie("user"))
+    );
 
     dispatch({
       type: UPDATE_COLLECTION_SUCCESS,
@@ -152,7 +156,7 @@ export const favoriteCollection = (userId, collectionId) => async (dispatch) => 
     type: UPDATE_COLLECTION_START,
   });
   try {
-    const res = await axios.put(`${UPDATE_COLLECTION}/favorite/${userId}/${collectionId}`, authConfig);
+    const res = await axios.put(`${UPDATE_COLLECTION}/favorite/${userId}/${collectionId}`, authConfig(getCookie("user")));
 
     dispatch({
       type: UPDATE_COLLECTION_SUCCESS,
@@ -178,7 +182,7 @@ export const deleteAllCollection = (userId) => async (dispatch) => {
     type: DELETE_ALL_COLLECTION_START,
   });
   try {
-    const res = await axios.delete(`${DELETE_COLLECTION}/all/${userId}`, authConfig);
+    const res = await axios.delete(`${DELETE_COLLECTION}/all/${userId}`, authConfig(getCookie("user")));
 
     dispatch({
       type: DELETE_ALL_COLLECTION_SUCCESS,
@@ -204,7 +208,7 @@ export const deleteCollection = (userId, collectionId) => async (dispatch) => {
     type: DELETE_COLLECTION_START,
   });
   try {
-    const res = await axios.delete(`${DELETE_COLLECTION}/one/${userId}/${collectionId}`, authConfig);
+    const res = await axios.delete(`${DELETE_COLLECTION}/one/${userId}/${collectionId}`, authConfig(getCookie("user")));
 
     dispatch({
       type: DELETE_COLLECTION_SUCCESS,
@@ -231,7 +235,11 @@ export const postTodo = (userId, collection_id, todoItem, icon) => async (dispat
   });
 
   try {
-    const res = await axios.post(`${POST_TODO}/${userId}/${collection_id}`, { todoItem: todoItem, icon: icon }, authConfig);
+    const res = await axios.post(
+      `${POST_TODO}/${userId}/${collection_id}`,
+      { todoItem: todoItem, icon: icon },
+      authConfig(getCookie("user"))
+    );
 
     dispatch({
       type: POST_TODO_SUCCESS,
@@ -263,7 +271,7 @@ export const updateTodo =
       const res = await axios.put(
         `${UPDATE_TODO}/${userId}/${collectionId}`,
         { todoItem: todoItem, oldTodo: oldTodo, icon: icon },
-        authConfig
+        authConfig(getCookie("user"))
       );
 
       dispatch({
@@ -290,7 +298,7 @@ export const doneTodo = (userId, collectionId, todoId) => async (dispatch) => {
     type: BOOLEAN_TODO_START,
   });
   try {
-    const res = await axios.put(`${DONE_TODO}/${userId}/${collectionId}/${todoId}`, authConfig);
+    const res = await axios.put(`${DONE_TODO}/${userId}/${collectionId}/${todoId}`, authConfig(getCookie("user")));
 
     dispatch({
       type: BOOLEAN_TODO_SUCCESS,
@@ -316,7 +324,7 @@ export const deleteAllTodo = (userId, collectionId) => async (dispatch) => {
     type: DELETE_ALL_TODO_START,
   });
   try {
-    const res = await axios.delete(`${DELETE_TODO}/all/${userId}/${collectionId}`, authConfig);
+    const res = await axios.delete(`${DELETE_TODO}/all/${userId}/${collectionId}`, authConfig(getCookie("user")));
 
     dispatch({
       type: DELETE_ALL_TODO_SUCCESS,
@@ -342,7 +350,7 @@ export const deleteTodo = (userId, collectionId, todoId) => async (dispatch) => 
     type: DELETE_TODO_START,
   });
   try {
-    const res = await axios.delete(`${DELETE_TODO}/one/${userId}/${collectionId}/${todoId}`, authConfig);
+    const res = await axios.delete(`${DELETE_TODO}/one/${userId}/${collectionId}/${todoId}`, authConfig(getCookie("user")));
 
     dispatch({
       type: DELETE_TODO_SUCCESS,
