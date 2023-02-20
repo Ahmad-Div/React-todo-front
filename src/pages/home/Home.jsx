@@ -15,11 +15,11 @@ const Home = ({ auth }) => {
   useEffect(() => {
     if (!auth.refresh) {
       dispatch({
-        tpye: REFRESH,
+        type: REFRESH,
       });
       window.location.reload();
     }
-  }, [auth]);
+  }, [auth, dispatch, REFRESH]);
 
   useEffect(() => {
     if (!auth.isAuthenticated) {
